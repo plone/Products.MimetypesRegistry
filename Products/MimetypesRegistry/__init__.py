@@ -1,4 +1,5 @@
-__version__ = (1, 3, 2, 5)
+import os.path
+__version__ = open(os.path.join(__path__[0], 'version.txt')).read().strip()
 
 from Products.MimetypesRegistry import MimeTypesRegistry
 from Products.MimetypesRegistry.common import skins_dir
@@ -26,7 +27,7 @@ sys.modules['Products.MimetypesRegistry.zope.MimeTypeItem'] = MimeTypeItem
 def initialize(context):
     from Products.CMFCore.DirectoryView import registerDirectory
     registerDirectory(skins_dir, GLOBALS)
-    
+
     from Products.CMFCore import utils
     utils.ToolInit("%s Tool" % PKG_NAME, tools=tools,
                    product_name=PKG_NAME,
