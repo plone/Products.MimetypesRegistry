@@ -2,6 +2,7 @@ import os
 from types import UnicodeType
 
 from OFS.Folder import Folder
+from OFS.content_types import guess_content_type
 from Globals import InitializeClass
 from Acquisition import aq_parent
 from Acquisition import aq_base
@@ -254,7 +255,14 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
             elif filename:
                 mt = self.lookup('application/octet-stream')[0]
             else:
-                mt = self.lookup('text/plain')[0]
+                failed = 'text/x-unknown-content-type'
+                filename = filename or ''
+                data = data or ''
+                ct, enc = guess_content_type(filename, data, None)
+                if ct == failed:
+                    ct = 'text/plain'
+                mt = self.lookup(ct)[0]
+
         # Remove acquisition wrappers
         return aq_base(mt)
 
