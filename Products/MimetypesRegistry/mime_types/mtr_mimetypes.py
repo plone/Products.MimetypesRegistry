@@ -99,6 +99,13 @@ class text_html(MimeTypeItem):
     extensions = ('html', 'htm')
     binary     = 0
 
+class text_html_safe(MimeTypeItem):
+
+    __implements__ = MimeTypeItem.__implements__
+    __name__   = "Safe HTML"
+    mimetypes  = ('text/x-html-safe',)
+    extensions = ()
+    binary     = 0
 
 reg_types = [
     text_plain,
@@ -112,6 +119,7 @@ reg_types = [
     application_octet_stream,
     application_rtf,
     text_html,
+    text_html_safe,
     ]
 
 def initialize(registry):
