@@ -1,5 +1,6 @@
 from os.path import splitext, basename
 from cPickle import loads, dumps
+from types import UnicodeType
 
 from interfaces import IMimetype, ISourceAdapter, IClassifier, \
     IMimetypesRegistry

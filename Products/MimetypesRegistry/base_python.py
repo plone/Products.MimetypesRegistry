@@ -26,7 +26,7 @@ def getToolByName(self, name):
     assert name == 'mimetypes_registry'
     global _MTR
     if _MTR is None:
-        from Products.PortalTransforms.MimeTypesTool import MimeTypesTool
+        from Products.MimetypesRegistry.MimeTypesTool import MimeTypesTool
         _MTR = MimeTypesTool(fill=1)
     return _MTR
 

@@ -44,7 +44,7 @@ def getToolByName(context, name, default=_marker):
     tool = _getToolByName(context, name, default)
     if name == 'mimetypes_registry' and tool is default:
         if FB_REGISTRY is None:
-            from Products.PortalTransforms.MimeTypesRegistry \
+            from Products.MimetypesRegistry.MimeTypesRegistry \
                  import MimeTypesRegistry
             FB_REGISTRY = MimeTypesRegistry()
         tool = FB_REGISTRY
