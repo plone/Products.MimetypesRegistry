@@ -148,12 +148,14 @@ class MimeTypesRegistry(Base):
                 ext = ext[1:] # remove the dot
         else:
             ext = filename
-        if self.encodings_map.has_key(ext):
-            encoding = self.encodings_map[ext]
-            base, ext = splitext(base)
-            ext = ext[1:] # remove the dot
-        else:
-            encoding = None
+        # XXX This code below make no sense and may break because base
+        # isn't defined.
+##        if self.encodings_map.has_key(ext):
+##            encoding = self.encodings_map[ext]
+##            base, ext = splitext(base)
+##            ext = ext[1:] # remove the dot
+##        else:
+##            encoding = None
         return self.extensions.get(ext)
 
     def _classifiers(self):
