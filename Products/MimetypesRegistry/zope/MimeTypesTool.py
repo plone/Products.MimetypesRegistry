@@ -66,10 +66,6 @@ class MimeTypesTool(UniqueObject, ActionProviderBase, Folder, MimeTypesRegistry)
         Folder.__setstate__(self, state)
         initialize(self)
 
-    def lookup(self, mimetypestring):
-        result = MimeTypesRegistry.lookup(self, mimetypestring)
-        return tuple([m.__of__(self) for m in result])
-
     security.declareProtected(CMFCorePermissions.ManagePortal, 'manage_delObjects')
     def manage_delObjects(self, ids, REQUEST=None):
         """ delete the selected mime types """

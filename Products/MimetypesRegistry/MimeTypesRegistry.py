@@ -102,7 +102,7 @@ class MimeTypesRegistry(Base):
         for g in self._mimetypes.values():
             for mt in g.values():
                 res[mt] =1
-        return res.keys()
+        return [ aq_base(mtitem) for mtitem in res.keys() ]
 
     def list_mimetypes(self):
         """Return all defined mime types, as string"""
@@ -119,19 +119,19 @@ class MimeTypesRegistry(Base):
         RFC-2046 name return an empty list if no one is known.
         """
         if implements(mimetypestring, IMimetype):
-            return (mimetypestring, )
+            return (aq_base(mimetypestring), )
         __traceback_info__ = (repr(mimetypestring), str(mimetypestring))
         major, minor = split(str(mimetypestring))
         group = self._mimetypes.get(major, {})
         if not minor or minor == '*':
-            v = group.values()
+            res = group.values()
         else:
-            v = group.get(minor)
-            if v:
-                v = (v,)
+            res = group.get(minor)
+            if res:
+                res = (res,)
             else:
                 return ()
-        return v
+        return tuple([ aq_base(mtitem) for mtitem  in res ])
 
     def lookupExtension(self, filename):
         """Lookup for IMimetypes object matching filename
@@ -160,7 +160,7 @@ class MimeTypesRegistry(Base):
             ext = ext[1:] # remove the dot
         else:
             encoding = None
-        return self.extensions.get(ext)
+        return aq_base(self.extensions.get(ext))
 
     def _classifiers(self):
         return [mt for mt in self.mimetypes() if implements(mt, IClassifier)]
@@ -245,7 +245,7 @@ class MimeTypesRegistry(Base):
             except UnicodeDecodeError:
                 data = unicode(data, self.fallbackEncoding)
 
-        return (data, filename, mt)
+        return (data, filename, aq_base(mt))
 
     def guess_encoding(self, data):
         """ Try to guess encoding from a text value if no encoding
