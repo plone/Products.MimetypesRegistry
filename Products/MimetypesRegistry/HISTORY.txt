@@ -1,5 +1,5 @@
-1.3.2-6 - xxxx-xx-xx
-====================
+1.3.3-final - 2005-03-05
+========================
 
  * More a workaround than a fix for [ 1056252 ] Content type algorithm
    can be confused.
