@@ -62,9 +62,9 @@ class MimeTypesTool(UniqueObject, ActionProviderBase, Folder, MimeTypesRegistry)
         self.manage_addProperty('fallbackEncoding', 'latin1', 'string')
         self.manage_addProperty('unicodePolicy', 'unicodePolicies', 'selection')
 
-    def __setstate__(self, state):
-        Folder.__setstate__(self, state)
-        initialize(self)
+    #def __setstate__(self, state):
+    #    Folder.__setstate__(self, state)
+    #    initialize(self)
 
     security.declareProtected(CMFCorePermissions.ManagePortal, 'manage_delObjects')
     def manage_delObjects(self, ids, REQUEST=None):
