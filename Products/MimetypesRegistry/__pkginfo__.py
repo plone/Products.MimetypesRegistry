@@ -1,7 +1,8 @@
 
 modname = 'MimetypesRegistry'
-version = open('version.txt').read().strip()
-numversion = version.split('.')
+version = '1.3.0-1'
+numversion = (1, 3, 0, 1)
+at_versions = ('1.3.0-beta3', )
 
 license = 'BSD like'
 license_text = open('LICENSE.txt').read()
