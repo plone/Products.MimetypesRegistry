@@ -57,7 +57,8 @@ class MimeTypesRegistry(Base):
                 raise MimeTypeException('Can\'t register mime type %s' % t)
             group = self._mimetypes.setdefault(major, DictClass())
             if group.has_key(minor):
-                log('Warning: redefining mime type %s (%s)' % (t, mimetype.__class__))
+                if group.get(minor) != mimetype:
+                    log('Warning: redefining mime type %s (%s)' % (t, mimetype.__class__))
             group[minor] = mimetype
         for extension in mimetype.extensions:
             self.register_extension(extension, mimetype)
@@ -70,8 +71,9 @@ class MimeTypesRegistry(Base):
         """
         mimetype = aq_base(mimetype)
         if self.extensions.has_key(extension):
-            log('Warning: redefining extension %s from %s to %s' % (
-                extension, self.extensions[extension], mimetype))
+            if self.extensions.get(extension) != mimetype:
+                log('Warning: redefining extension %s from %s to %s' % (
+                    extension, self.extensions[extension], mimetype))
         #we don't validate fmt yet, but its ["txt", "html"]
         self.extensions[extension] = mimetype
 

@@ -45,6 +45,13 @@ class text_python(MimeTypeItem):
     extensions = ("py",)
     binary     = 0
 
+class text_wiki(MimeTypeItem):
+
+    __implements__ = MimeTypeItem.__implements__
+    __name__   = "Wiki text"
+    mimetypes  = ("text/wiki",)
+    extensions = ()
+    binary     = 0
 
 class application_rtf(MimeTypeItem):
 
@@ -101,6 +108,7 @@ reg_types = [
     text_structured,
     text_rest,
     text_python,
+    text_wiki,
     application_octet_stream,
     application_rtf,
     text_html,

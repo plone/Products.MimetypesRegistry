@@ -12,6 +12,7 @@ from Products.MimetypesRegistry.interfaces import ISourceAdapter, IMimetypesRegi
 from Products.MimetypesRegistry.common import log, _www
 from Products.MimetypesRegistry.MimeTypesRegistry import MimeTypesRegistry
 from Products.MimetypesRegistry.zope.MimeTypeItem import MimeTypeItem
+from Products.MimetypesRegistry.mime_types import initialize
 
 class MimeTypesTool(UniqueObject, ActionProviderBase, Folder, MimeTypesRegistry):
     """extend the MimeTypesRegistry of CMF compliance
@@ -60,6 +61,10 @@ class MimeTypesTool(UniqueObject, ActionProviderBase, Folder, MimeTypesRegistry)
         del self.fallbackEncoding
         self.manage_addProperty('fallbackEncoding', 'latin1', 'string')
         self.manage_addProperty('unicodePolicy', 'unicodePolicies', 'selection')
+
+    def __setstate__(self, state):
+        Folder.__setstate__(self, state)
+        initialize(self)
 
     def lookup(self, mimetypestring):
         result = MimeTypesRegistry.lookup(self, mimetypestring)
