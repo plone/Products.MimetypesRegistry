@@ -9,8 +9,6 @@ from common import log, implements, DictClass, Base, aq_base, \
     MimeTypeException, STRING_TYPES
 from encoding import guess_encoding
 
-__revision__ = '$Id: MimeTypesRegistry.py,v 1.1 2004/05/22 16:30:27 tiran Exp $'
-
 suffix_map = {
     'tgz': '.tar.gz',
     'taz': '.tar.gz',

@@ -7,12 +7,11 @@ magic.py
     Thu Oct 16 23:00:03 CEST 2003
     with magic data from gnome-vfs-mime-magic
 
-$Id: magic.py,v 1.1 2004/05/22 16:30:27 tiran Exp $
 """
 
 import re, struct, string
 
-__version__ = '$Revision: 1.1 $'[11:-2]
+__version__ = '$Revision: 1.2 $'[11:-2]
 
 magic = [
 
