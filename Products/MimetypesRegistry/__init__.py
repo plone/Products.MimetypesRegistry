@@ -1,4 +1,4 @@
-__version__ = (1, 3, 2, 4)
+__version__ = (1, 3, 2, 5)
 
 from Products.MimetypesRegistry import MimeTypesRegistry
 from Products.MimetypesRegistry.common import skins_dir

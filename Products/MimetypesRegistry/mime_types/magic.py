@@ -220,6 +220,30 @@ magic = [
 
 magicNumbers = []
 
+def strToNum(n):
+    val = 0
+    col = long(1)
+    if n[:1] == 'x': n = '0' + n
+    if n[:2] == '0x':
+        # hex
+        n = string.lower(n[2:])
+        while len(n) > 0:
+            l = n[len(n) - 1]
+            val = val + string.hexdigits.index(l) * col
+            col = col * 16
+            n = n[:len(n)-1]
+    elif n[0] == '\\':
+        # octal
+        n = n[1:]
+        while len(n) > 0:
+            l = n[len(n) - 1]
+            if ord(l) < 48 or ord(l) > 57: break
+            val = val + int(l) * col
+            col = col * 8
+            n = n[:len(n)-1]
+    else:
+        val = string.atol(n)
+    return val
 
 class magicTest:
     def __init__(self, offset, t, op, value, msg, mask = None):
