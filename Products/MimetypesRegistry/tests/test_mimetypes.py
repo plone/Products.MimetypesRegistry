@@ -1,8 +1,9 @@
 import os, sys
 if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
-
+from Testing import ZopeTestCase
 from Products.Archetypes.tests.common import *
+
 from Products.MimetypesRegistry.mime_types import text_plain, text_xml, application_octet_stream
 from utils import input_file_path
 
@@ -15,7 +16,8 @@ class TestMimeTypesclass(ArcheSiteTestCase):
     def testClassify(self):
         reg = self.registry
         c = reg._classifiers()
-        self.failUnlessEqual(c[0].name(), "Extensible Markup Language")
+        self.failUnless(c[0].name().startswith("Extensible Markup Language"),
+                        c[0].name())
 
         #Real XML
         data = "<?xml version='1.0'?><foo>bar</foo>"
