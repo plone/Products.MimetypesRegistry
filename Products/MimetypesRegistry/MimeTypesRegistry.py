@@ -310,7 +310,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
                 except (ValueError, LookupError):
                     # wrong unicodePolicy
                     data = unicode(data, encoding)
-            except UnicodeDecodeError:
+            except:
                 data = unicode(data, self.fallbackEncoding)
 
         return (data, filename, aq_base(mt))
