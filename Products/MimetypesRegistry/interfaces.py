@@ -1,4 +1,4 @@
-from common import Interface, Attribute
+from Interface import Interface, Attribute
 
 class IMimetype(Interface):
     """Specification for dealing with mimetypes RFC-2046 style"""
