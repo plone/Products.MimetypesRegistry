@@ -202,10 +202,7 @@ class MimeTypesRegistry(Base):
             else:
                 mt = self.lookup('text/plain')[0]
         # Remove acquisition wrappers
-        mt = aq_base(mt)
-        # Copy by pickle, to remove connection references
-        mt = loads(dumps(mt))
-        return mt
+        return aq_base(mt)
 
     def __call__(self, data, **kwargs):
         """ Return a triple (data, filename, mimetypeobject) given
