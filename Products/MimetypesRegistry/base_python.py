@@ -53,5 +53,8 @@ def implements(object, interface):
         return 1
     return 0
 
+class BadRequest(Exception): pass
+
 __all__ = ('Base', 'log', 'DictClass', 'ListClass', 'getToolByName', 'aq_base',
-           'Interface', 'Attribute', 'implements', 'skins_dir', '_www', )
+           'Interface', 'Attribute', 'implements', 'skins_dir', '_www',
+           'BadRequest', )

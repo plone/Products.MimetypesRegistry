@@ -50,6 +50,8 @@ def getToolByName(context, name, default=_marker):
         tool = FB_REGISTRY
     return tool
 
+from zExceptions import BadRequest
 
 __all__ = ('Base', 'log', 'DictClass', 'ListClass', 'getToolByName', 'aq_base',
-           'Interface', 'Attribute', 'implements', 'skins_dir', '_www', )
+           'Interface', 'Attribute', 'implements', 'skins_dir', '_www',
+           'BadRequest', )
