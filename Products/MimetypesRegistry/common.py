@@ -8,18 +8,12 @@ STRING_TYPES = (UnicodeType, StringType)
 class MimeTypeException(Exception):
     pass
 
-try:
-    import Zope
-except ImportError:
-    HAS_ZOPE = 0
-else:
-    HAS_ZOPE = 1
+# logging function
+from zLOG import LOG, INFO
+def log(msg, severity=INFO, id='MimetypesRegistry'):
+    LOG(id, severity, msg)
 
-if HAS_ZOPE:
-    from base_zope import *
-else:
-    from base_python import *
-
-__all__ = ('Base', 'log', 'DictClass', 'ListClass', 'getToolByName',
-           'Interface', 'Attribute', 'implements', 'skins_dir', 'aq_base',
-           'HAS_ZOPE', 'time', 'MimeTypeException', 'STRING_TYPES', )
+# directory where template for the ZMI are located
+import os.path
+_www = os.path.join(os.path.dirname(__file__), 'www')
+skins_dir = os.path.join(os.path.dirname(__file__), 'skins')

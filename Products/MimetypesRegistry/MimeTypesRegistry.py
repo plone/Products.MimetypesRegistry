@@ -1,14 +1,33 @@
-from os.path import splitext, basename
-from cPickle import loads, dumps
+import os
 from types import UnicodeType
 
-from interfaces import IMimetype, ISourceAdapter, IClassifier, \
-    IMimetypesRegistry
-from MimeTypeItem import MimeTypeItem
-from mime_types import initialize, magic
-from common import log, implements, DictClass, Base, aq_base, \
-    MimeTypeException, STRING_TYPES
-from encoding import guess_encoding
+from OFS.Folder import Folder
+from Globals import InitializeClass
+from Acquisition import aq_parent
+from Acquisition import aq_base
+from Globals import PersistentMapping
+from AccessControl import ClassSecurityInfo
+from Products.CMFCore import CMFCorePermissions
+from Products.CMFCore.ActionProviderBase import ActionProviderBase
+from Products.CMFCore.TypesTool import FactoryTypeInformation
+from Products.CMFCore.utils import UniqueObject
+from Products.PageTemplates.PageTemplateFile import PageTemplateFile
+
+from Products.MimetypesRegistry.interfaces import ISourceAdapter
+from Products.MimetypesRegistry.interfaces import IMimetypesRegistry
+from Products.MimetypesRegistry.interfaces import IMimetype
+from Products.MimetypesRegistry.interfaces import IClassifier
+from Products.MimetypesRegistry.interfaces import ISourceAdapter
+from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
+from Products.MimetypesRegistry.mime_types import initialize
+from Products.MimetypesRegistry.mime_types import magic
+from Products.MimetypesRegistry.common import log
+from Products.MimetypesRegistry.common import MimeTypeException
+from Products.MimetypesRegistry.common import STRING_TYPES
+from Products.MimetypesRegistry.common import _www
+from Products.MimetypesRegistry.encoding import guess_encoding
+from Products.MimetypesRegistry.common import log
+
 
 suffix_map = {
     'tgz': '.tar.gz',
@@ -21,7 +40,7 @@ encodings_map = {
     'Z': 'compress',
     }
 
-class MimeTypesRegistry(Base):
+class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
     """Mimetype registry that deals with
     a) registering types
     b) wildcarding of rfc-2046 types
@@ -30,19 +49,54 @@ class MimeTypesRegistry(Base):
 
     __implements__ = (IMimetypesRegistry, ISourceAdapter)
 
-    def __init__(self, fill=1):
+    id        = 'mimetypes_registry'
+    meta_type = 'MimeTypes Registry'
+    isPrincipiaFolderish = 1 # Show up in the ZMI
+
+    meta_types = all_meta_types = (
+        { 'name'   : 'MimeType',
+          'action' : 'manage_addMimeTypeForm'},
+        )
+
+    manage_options = (
+        ( { 'label'   : 'MimeTypes',
+            'action' : 'manage_main'},) +
+        Folder.manage_options[2:]
+        )
+
+    manage_addMimeTypeForm = PageTemplateFile('addMimeType', _www)
+    manage_main = PageTemplateFile('listMimeTypes', _www)
+    manage_editMimeTypeForm = PageTemplateFile('editMimeType', _www)
+
+    security = ClassSecurityInfo()
+
+    security.declareProtected(CMFCorePermissions.ManagePortal, 'register')
+    security.declareProtected(CMFCorePermissions.ManagePortal, 'unregister')
+    security.declarePublic('mimetypes')
+    security.declarePublic('list_mimetypes')
+    security.declarePublic('lookup')
+    security.declarePublic('lookupExtension')
+    security.declarePublic('classify')
+
+    # FIXME
+    __allow_access_to_unprotected_subobjects__ = 1
+
+    def __init__(self,):
         self.encodings_map = encodings_map.copy()
         self.suffix_map = suffix_map.copy()
         # Major key -> minor IMimetype objects
-        self._mimetypes  = DictClass()
+        self._mimetypes  = PersistentMapping()
         # ext -> IMimetype mapping
-        self.extensions = DictClass()
-        self.defaultMimetype = 'text/plain'
-        self.fallbackEncoding = 'latin1'
-        self.unicodePolicy = 'replace'
-        if fill:
-            # initialize mime types
-            initialize(self)
+        self.extensions = PersistentMapping()
+
+        self.manage_addProperty('defaultMimetype', 'text/plain', 'string')
+        self.manage_addProperty('unicodePolicies', 'strict ignore replace', 'tokens')
+        self.manage_addProperty('unicodePolicy', 'unicodePolicies', 'selection')
+        self.manage_addProperty('fallbackEncoding', 'latin1', 'string')
+
+        # initialize mime types
+        initialize(self)
+        self._new_style_mtr = 1
 
     def register(self, mimetype):
         """ Register a new mimetype
@@ -50,12 +104,12 @@ class MimeTypesRegistry(Base):
         mimetype must implement IMimetype
         """
         mimetype = aq_base(mimetype)
-        assert implements(mimetype, IMimetype)
+        assert IMimetype.isImplementedBy(mimetype)
         for t in mimetype.mimetypes:
             major, minor = split(t)
             if not major or not minor or minor == '*':
                 raise MimeTypeException('Can\'t register mime type %s' % t)
-            group = self._mimetypes.setdefault(major, DictClass())
+            group = self._mimetypes.setdefault(major, PersistentMapping())
             if group.has_key(minor):
                 if group.get(minor) != mimetype:
                     log('Warning: redefining mime type %s (%s)' % (t, mimetype.__class__))
@@ -83,7 +137,7 @@ class MimeTypesRegistry(Base):
 
         mimetype must implement IMimetype
         """
-        assert implements(mimetype, IMimetype)
+        assert IMimetype.isImplementedBy(mimetype)
         for t in mimetype.mimetypes:
             major, minor = split(t)
             group = self._mimetypes.get(major, {})
@@ -118,7 +172,7 @@ class MimeTypesRegistry(Base):
         Return a list of mimetypes objects associated with the
         RFC-2046 name return an empty list if no one is known.
         """
-        if implements(mimetypestring, IMimetype):
+        if IMimetype.isImplementedBy(mimetypestring):
             return (aq_base(mimetypestring), )
         __traceback_info__ = (repr(mimetypestring), str(mimetypestring))
         major, minor = split(str(mimetypestring))
@@ -143,10 +197,10 @@ class MimeTypesRegistry(Base):
         extension or None
         """
         if filename.find('.') != -1:
-            base, ext = splitext(filename)
+            base, ext = os.path.splitext(filename)
             ext = ext[1:] # remove the dot
             while self.suffix_map.has_key(ext):
-                base, ext = splitext(base + self.suffix_map[ext])
+                base, ext = os.path.splitext(base + self.suffix_map[ext])
                 ext = ext[1:] # remove the dot
         else:
             ext = filename
@@ -156,14 +210,14 @@ class MimeTypesRegistry(Base):
         # isn't defined.
         if self.encodings_map.has_key(ext) and base:
             encoding = self.encodings_map[ext]
-            base, ext = splitext(base)
+            base, ext = os.path.splitext(base)
             ext = ext[1:] # remove the dot
         else:
             encoding = None
         return aq_base(self.extensions.get(ext))
 
     def _classifiers(self):
-        return [mt for mt in self.mimetypes() if implements(mt, IClassifier)]
+        return [mt for mt in self.mimetypes() if IClassifier.isImplementedBy(mt)]
 
     def classify(self, data, mimetype=None, filename=None):
         """Classify works as follows:
@@ -215,9 +269,9 @@ class MimeTypesRegistry(Base):
         encoding = kwargs.get('encoding', None)
         mt = None
         if hasattr(data, 'filename'):
-            filename = basename(data.filename)
+            filename = os.path.basename(data.filename)
         elif hasattr(data, 'name'):
-            filename = basename(data.name)
+            filename = os.path.basename(data.name)
 
         if hasattr(data, 'read'):
             _data = data.read()
@@ -262,6 +316,37 @@ class MimeTypesRegistry(Base):
             except:
                 encoding = 'UTF-8'
         return encoding
+
+    security.declareProtected(CMFCorePermissions.ManagePortal, 'manage_delObjects')
+    def manage_delObjects(self, ids, REQUEST=None):
+        """ delete the selected mime types """
+        for id in ids:
+            self.unregister(self.lookup(id)[0])
+        if REQUEST is not None:
+            REQUEST['RESPONSE'].redirect(self.absolute_url()+'/manage_main')
+
+    security.declareProtected(CMFCorePermissions.ManagePortal, 'manage_addMimeType')
+    def manage_addMimeType(self, id, mimetypes, extensions, icon_path, binary=0,
+                           REQUEST=None):
+        """add a mime type to the tool"""
+        mt = MimeTypeItem(id, mimetypes, extensions, binary, icon_path)
+        self.register(mt)
+        if REQUEST is not None:
+            REQUEST['RESPONSE'].redirect(self.absolute_url()+'/manage_main')
+
+    security.declareProtected(CMFCorePermissions.ManagePortal, 'manage_editMimeType')
+    def manage_editMimeType(self, name, new_name, mimetypes, extensions, icon_path, binary=0,
+                            REQUEST=None):
+        """edit a mime type by name"""
+        mt = self.lookup(name)[0]
+        self.unregister(mt)
+        mt.edit(new_name, mimetypes, extensions, icon_path, binary)
+        self.register(mt)
+        if REQUEST is not None:
+            REQUEST['RESPONSE'].redirect(self.absolute_url()+'/manage_main')
+
+InitializeClass(MimeTypesRegistry)
+
 
 def split(name):
     """ split a mime type in a (major / minor) 2-uple """

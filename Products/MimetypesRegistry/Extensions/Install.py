@@ -8,16 +8,21 @@ from OFS.ObjectManager import BadRequestException
 from Products.MimetypesRegistry import GLOBALS, skins_dir
 from Products.MimetypesRegistry.interfaces import IMimetypesRegistry
 from Acquisition import aq_base
-
+from StringIO import StringIO
 
 def install(self):
+    out = StringIO()
     id = 'mimetypes_registry'
-    if hasattr(aq_base(self), id) and not \
-      IMimetypesRegistry.isImplementedBy(getattr(self, id)):
-        self.manage_delObjects([id,])
+    if hasattr(aq_base(self), id):
+        mtr = getattr(self, id)
+        if not IMimetypesRegistry.isImplementedBy(mtr) or \
+          not getattr(aq_base(mtr), '_new_style_mtr', None) == 1:
+            print >>out, 'Removing old mimetypes registry tool'
+            self.manage_delObjects([id,])
     if not hasattr(self, id):
         addTool = self.manage_addProduct['MimetypesRegistry'].manage_addTool
         addTool('MimeTypes Registry')
+        print >>out, 'Installing mimetypes registry tool'
 
     skinstool=getToolByName(self, 'portal_skins')
 
@@ -46,3 +51,5 @@ def install(self):
                         path.append(productSkinName)
                 path = ','.join(path)
                 skinstool.addSkinSelection(skinName, path)
+
+    return out.getvalue()

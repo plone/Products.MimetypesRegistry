@@ -1,8 +1,17 @@
-from os.path import dirname, join, exists
-from interfaces import IMimetype
-from common import HAS_ZOPE, MimeTypeException
+import os
 
-class Mimetype:
+from Acquisition import Explicit
+from OFS.SimpleItem import Item
+from AccessControl import ClassSecurityInfo
+from Globals import Persistent, InitializeClass
+from Products.CMFCore import CMFCorePermissions
+
+from Products.MimetypesRegistry.interfaces import IMimetype
+from Products.MimetypesRegistry.common import MimeTypeException
+
+
+class MimeTypeItem(Persistent, Explicit, Item):
+    security = ClassSecurityInfo()
     __implements__ = (IMimetype,)
 
     def __init__(self, name='', mimetypes=None, extensions=None, binary=None,
@@ -34,18 +43,22 @@ class Mimetype:
     def __hash__(self):
         return hash(self.name())
 
+    security.declarePublic('name')
     def name(self):
         """ The name of this object """
         return self.__name__
 
+    security.declarePublic('major')
     def major(self):
         """ return the major part of the RFC-2046 name for this mime type """
         return self.normalized().split('/', 1)[0]
 
+    security.declarePublic('minor')
     def minor(self):
         """ return the minor part of the RFC-2046 name for this mime type """
         return self.normalized().split('/', 1)[1]
 
+    security.declarePublic('normalized')
     def normalized(self):
         """ return the main RFC-2046 name for this mime type
 
@@ -54,24 +67,35 @@ class Mimetype:
         """
         return self.mimetypes[0]
 
+    security.declareProtected(CMFCorePermissions.ManagePortal, 'edit')
+    def edit(self, name, mimetypes, extensions, icon_path, binary=0,
+             REQUEST=None):
+        """edit this mime type"""
+        # if mimetypes and extensions are string instead of lists, split them on new lines
+        if type(mimetypes) in (type(''), type(u'')):
+            mimetypes = [mts.strip() for mts in mimetypes.split('\n') if mts.strip()]
+        if type(extensions) in (type(''), type(u'')):
+            extensions = [mts.strip() for mts in extensions.split('\n') if mts.strip()]
+        self.__name__ = self.id = name
+        self.mimetypes = mimetypes
+        self.extensions = extensions
+        self.binary = binary
+        self.icon_path = icon_path
+        if REQUEST is not None:
+            REQUEST['RESPONSE'].redirect(self.absolute_url()+'/manage_main')
+
+InitializeClass(MimeTypeItem)
 
 
-
-ICONS_DIR = join(dirname(__file__), 'skins', 'mimetypes_icons')
+ICONS_DIR = os.path.join(os.path.dirname(__file__), 'skins', 'mimetypes_icons')
 
 def guess_icon_path(mimetype, icons_dir=ICONS_DIR, icon_ext='png'):
     if mimetype.extensions:
         for ext in mimetype.extensions:
             icon_path = '%s.%s' % (ext, icon_ext)
-            if exists(join(icons_dir, icon_path)):
+            if os.path.exists(os.path.join(icons_dir, icon_path)):
                 return icon_path
     icon_path = '%s.png' % mimetype.major()
-    if exists(join(icons_dir, icon_path)):
+    if os.path.exists(os.path.join(icons_dir, icon_path)):
         return icon_path
     return 'unknown.png'
-
-# make mimetype zope aware on zope platforms
-if HAS_ZOPE:
-    from zope.MimeTypeItem import MimeTypeItem
-else:
-    MimeTypeItem = Mimetype
