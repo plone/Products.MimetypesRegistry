@@ -1,4 +1,9 @@
-from rigging import *
+import os, sys
+if __name__ == '__main__':
+    execfile(os.path.join(sys.path[0], 'framework.py'))
+
+from Products.Archetypes.tests.common import *
+
 from Products.MimetypesRegistry.encoding import guess_encoding
 
 class TestGuessEncoding(TestCase):
@@ -71,10 +76,10 @@ charset=utf-8
 
 
 def test_suite():
-    return TestSuite([
-        makeSuite(TestGuessEncoding),
-        ])
+    from unittest import TestSuite, makeSuite
+    suite = TestSuite()
+    suite.addTest(makeSuite(TestGuessEncoding))
+    return suite
 
-
-if __name__=='__main__':
-    main(defaultTest='test_suite')
+if __name__ == '__main__':
+    framework()

@@ -1,2 +1,2 @@
 # backward compatibility
-from Products.MimetypesRegistry import MimeTypesRegistry as MimeTypesTool
+from Products.MimetypesRegistry.MimeTypesRegistry import MimeTypesRegistry as MimeTypesTool

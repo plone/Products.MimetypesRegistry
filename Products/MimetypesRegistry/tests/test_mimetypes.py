@@ -1,16 +1,16 @@
-from rigging import *
+import os, sys
+if __name__ == '__main__':
+    execfile(os.path.join(sys.path[0], 'framework.py'))
+
+from Products.Archetypes.tests.common import *
 from Products.MimetypesRegistry.mime_types import text_plain, text_xml, application_octet_stream
 from utils import input_file_path
 
-class TestMimeTypes(TestCase):
-    def setUp(self):
-        r = self.registry = MimeTypesTool(fill=1)
-#        r.register(text_plain())
-#        r.register(text_xml())
+class TestMimeTypesclass(ArcheSiteTestCase):
 
-    def testRegister(self):
-        #setup proves this works
-        pass
+    def afterSetUp(self):
+        ArcheSiteTestCase.afterSetUp(self)
+        self.registry = self.getPortal().mimetypes_registry
 
     def testClassify(self):
         reg = self.registry
@@ -102,10 +102,10 @@ class TestMimeTypes(TestCase):
 
 
 def test_suite():
-    return TestSuite([
-        makeSuite(TestMimeTypes),
-        ])
+    from unittest import TestSuite, makeSuite
+    suite = TestSuite()
+    suite.addTest(makeSuite(TestMimeTypesclass))
+    return suite
 
-
-if __name__=='__main__':
-    main(defaultTest='test_suite')
+if __name__ == '__main__':
+    framework()
