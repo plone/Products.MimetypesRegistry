@@ -1,6 +1,9 @@
 1.3.2-6 - xxxx-xx-xx
 ====================
 
+ * workaround for [ 1068001 ] BaseUnit Encoding Error: macintosh
+   [yenzenz]
+
  * In the case all else fails, try to resort to guess_content_type so
    that at least we don't get 'text/plain' when the file is in fact a
    binary file.

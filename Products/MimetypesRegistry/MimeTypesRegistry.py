@@ -295,6 +295,15 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
             # if no encoding specified, try to guess it from data
             if encoding is None:
                 encoding = self.guess_encoding(data)
+
+            # ugly workaround for
+            # https://sourceforge.net/tracker/?func=detail&aid=1068001&group_id=75272&atid=543430
+            # covered by
+            # https://sourceforge.net/tracker/?func=detail&atid=355470&aid=843590&group_id=5470
+            # dont remove this code unless python is fixed.
+            if encoding is "macintosh":
+                encoding = 'mac_roman'
+
             try:
                 try:
                     data = unicode(data, encoding, self.unicodePolicy)
