@@ -1,4 +1,4 @@
-from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
+from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem, guess_icon_path
 from Products.MimetypesRegistry.common import MimeTypeException
 
 import mimetypes as pymimetypes
@@ -31,6 +31,8 @@ def initialize(registry):
             if not ext in mto.extensions:
                 registry.register_extension(ext, mto)
                 mto.extensions += (ext, )
+                # here we guess icon path again, to find icon match the new ext
+                mto.icon_path = guess_icon_path(mto)
             continue
         isBin = mt.split('/', 1)[0] != "text"
         registry.register(MimeTypeItem(mt, (mt,), (ext,), isBin))
