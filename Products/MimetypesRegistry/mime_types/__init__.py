@@ -2,8 +2,7 @@ import mtr_mimetypes
 import py_mimetypes
 import magic
 
-from mtr_mimetypes import text_plain, text_pre_plain, text_structured, \
-    text_rest, text_python, application_rtf, application_msword, text_xml
+from mtr_mimetypes import *
 
 # XXX backward compatibility trick
 # Set Products.PortalTransforms.mime_types as alias for

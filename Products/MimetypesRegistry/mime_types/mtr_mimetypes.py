@@ -111,3 +111,5 @@ def initialize(registry):
         if type(mt) != InstanceType:
             mt = mt()
         registry.register(mt)
+
+__all__ = tuple([cls.__name__ for cls in reg_types])
