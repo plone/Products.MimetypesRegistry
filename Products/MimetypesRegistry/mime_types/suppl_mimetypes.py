@@ -5,6 +5,7 @@ from Products.MimetypesRegistry.common import MimeTypeException
 map = {
     # '.extension' : 'mimetype',
     '.svg' : 'image/svg+xml', # scaleable vector graphics
+    '.pjpg' : 'image/pjpeg', # scaleable vector graphics
     
 }
 

@@ -7,6 +7,7 @@ from Products.Archetypes.tests.common import *
 
 from Products.MimetypesRegistry.encoding import guess_encoding
 
+
 class TestGuessEncoding(ArchetypesTestCase):
 
     def testUTF8(self):
@@ -74,6 +75,23 @@ charset=utf-8
 </body>
 </html> ''')
         self.failUnlessEqual(e, 'iso-8859-1')
+
+
+    def test_broken_percent(self):
+        e = guess_encoding(
+r"""<pre>
+&lt;metal:block tal:define="dummy python:
+request.RESPONSE.setHeader('Content-Type',
+'text/html;;charset=%s' % charset)" /&gt;
+&lt;metal:block tal:define="dummy
+python:request.RESPONSE.setHeader('Content-Language', lang)"
+/
+&gt;
+</pre>
+"""
+    )
+        # unable to detect a valid encoding
+        self.failUnlessEqual(e, None) 
 
 
 def test_suite():
