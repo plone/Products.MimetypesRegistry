@@ -3,7 +3,9 @@ from Products.MimetypesRegistry.common import MimeTypeException
 
 
 map = {
-    # 'extension' : 'mimetype',
+    # '.extension' : 'mimetype',
+    '.svg' : 'image/svg+xml', # scaleable vector graphics
+    
 }
 
 def initialize(registry):
