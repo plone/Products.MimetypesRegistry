@@ -5,9 +5,6 @@ from types import UnicodeType, StringType
 
 STRING_TYPES = (UnicodeType, StringType)
 
-class TransformException(Exception):
-    pass
-
 class MimeTypeException(Exception):
     pass
 
@@ -25,5 +22,4 @@ else:
 
 __all__ = ('Base', 'log', 'DictClass', 'ListClass', 'getToolByName',
            'Interface', 'Attribute', 'implements', 'skins_dir', 'aq_base',
-           'HAS_ZOPE', 'time', 'Cache', 'TransformException', 
-           'MimeTypeException', 'STRING_TYPES', )
+           'HAS_ZOPE', 'time', 'MimeTypeException', 'STRING_TYPES', )
