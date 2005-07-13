@@ -18,7 +18,6 @@ from Products.MimetypesRegistry.interfaces import ISourceAdapter
 from Products.MimetypesRegistry.interfaces import IMimetypesRegistry
 from Products.MimetypesRegistry.interfaces import IMimetype
 from Products.MimetypesRegistry.interfaces import IClassifier
-from Products.MimetypesRegistry.interfaces import ISourceAdapter
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 from Products.MimetypesRegistry.mime_types import initialize
 from Products.MimetypesRegistry.mime_types import magic
