@@ -71,12 +71,16 @@ class application_msword(MimeTypeItem):
 
 class text_xml(MimeTypeItem):
 
-    __implements__ = MimeTypeItem.__implements__ + (IClassifier,)
+    __implements__ = MimeTypeItem.__implements__ # + (IClassifier,)
 
     __name__   = "Extensible Markup Language (XML)"
     mimetypes  = ('text/xml',)
     extensions = ('xml',)
     binary     = 0
+
+    # This is far too eager in classifying content as xml.
+    # Specifically it matches OpenOffice documents which are
+    # zipped xml files.
 
     def classify(self, data):
         m = re.search('<?xml.*?>', data)
