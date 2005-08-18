@@ -1,3 +1,16 @@
+post 1.3.5
+==========
+
+  * added a method to detect mimetypes of zipped files, 
+    here specialy for OOo now all Openofice files and zip 
+    files are detected properly.  my simple tests are working: 
+    a OOo-Writer and a simpe zipfile are detected.
+    [yenzenz]
+
+  * updated freedesktop.org.xml file to latest CVS version rev 1.57 from
+    http://cvs.freedesktop.org/mime/shared-mime-info/freedesktop.org.xml
+    [yenzenz]
+
 1.3.5-final03 - 2005-08-07
 ==========================
 
