@@ -11,7 +11,7 @@ class TestMimeTypesclass(ArcheSiteTestCase):
 
     def afterSetUp(self):
         ArcheSiteTestCase.afterSetUp(self)
-        self.registry = self.getPortal().mimetypes_registry
+        self.registry = self.portal.mimetypes_registry
 
     def testClassify(self):
         reg = self.registry
