@@ -14,6 +14,7 @@ import struct
 import string
 from StringIO import StringIO
 from zipfile import ZipFile
+from zipfile import BadZipfile
 from xml.dom import minidom
 
 __version__ = '$Revision: 1.2 $'[11:-2]
@@ -317,7 +318,18 @@ def classify_zip(data, mt):
     """rough method to detect if the zipfile is an OOo file,
        more releated tests are welcome. """
     sio = StringIO(data)
-    z = ZipFile(sio)
+    try:
+        z = ZipFile(sio)
+    except BadZipfile:
+        # fallback
+        # seems the file fooled the detection or it is destroyed
+        return "application/octet-stream"
+    except:
+        # fallback
+        # if files are truncated other exceptions are possible. need to find out
+        # which. unless we dont know we need to catch all 
+        return "application/octet-stream"
+    
     for zipinfo in z.filelist:
         # detect OOo - quick fix, needed to made more general for other 
         # zip-formats like jar, etc. - but thats a future task

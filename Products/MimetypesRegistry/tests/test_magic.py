@@ -20,6 +20,7 @@ class TestGuessMagic(ArchetypesTestCase):
         for filename, expected in samplefiles:
             file = open(input_file_path(filename))
             data = file.read()
+            file.close()
             got = guessMime(data)
             self.failUnlessEqual(got, expected)
 
