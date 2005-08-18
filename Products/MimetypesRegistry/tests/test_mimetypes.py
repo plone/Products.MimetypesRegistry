@@ -16,7 +16,6 @@ class TestMimeTypesclass(ArcheSiteTestCase):
     def testClassify(self):
         reg = self.registry
         c = reg._classifiers()
-        import pdb; pdb.set_trace()
         self.failUnless(c[0].name().startswith("Extensible Markup Language"),
                         c[0].name())
 
