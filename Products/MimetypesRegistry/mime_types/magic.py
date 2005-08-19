@@ -32,8 +32,26 @@ magic = [
     [0L, 'string', '=', 'Rar!', 'application/x-rar'],
     [257L, 'string', '=', 'ustar\0', 'application/x-tar'],
     [257L, 'string', '=', 'ustar\040\040\0', 'application/x-gtar'],
-# disabled because it also detects formats like *.sxw which are zip-based
-## enabled again to avoid detection of sxw as text/xml
+    # the following detection of OOo is according to 
+    # http://books.evc-cit.info/oobook/ch01.html
+    # and some heuristics found in hexeditor. if theres a better way to detect,
+    # we should replace the signatures below.
+    # best would to just read and evaluate the manifest file of the zip, but
+    # the magic tests are running on the first 8kB, so we cant unzip the 
+    # manifest in files >8kB.
+    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.writer', 
+     'application/vnd.sun.xml.writer'],
+    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.calc', 
+     'application/vnd.sun.xml.calc'],
+    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.draw', 
+     'application/vnd.sun.xml.draw'],
+    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.impress', 
+     'application/vnd.sun.xml.impress'],
+    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.chart', 
+     'application/vnd.sun.xml.chart'],
+    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.global', 
+     'application/vnd.sun.xml.global'],
+    # zip works now, after we have it with lower priority than OOo
     [0L, 'string', '=', 'PK\003\004', 'application/zip'],
     [0L, 'string', '=', 'GIF8', 'image/gif'],
     [4L, 'string', '=', 'moov', 'video/quicktime'],
@@ -314,52 +332,11 @@ class magicTest:
 #    print str([self.msg, self.value, data])
         return self.test(data)
 
-def classify_zip(data, mt):
-    """rough method to detect if the zipfile is an OOo file,
-       more releated tests are welcome. """
-    sio = StringIO(data)
-    try:
-        z = ZipFile(sio)
-    except BadZipfile:
-        # fallback
-        # seems the file fooled the detection or it is destroyed
-        return "application/octet-stream"
-    except:
-        # fallback
-        # if files are truncated other exceptions are possible. need to find out
-        # which. unless we dont know we need to catch all 
-        return "application/octet-stream"
-    
-    for zipinfo in z.filelist:
-        # detect OOo - quick fix, needed to made more general for other 
-        # zip-formats like jar, etc. - but thats a future task
-        if zipinfo.filename == "META-INF/manifest.xml":
-            manifestdata = z.read(zipinfo.filename)
-            manifest=minidom.parseString(manifestdata)
-            root = manifest.childNodes[1]
-            if not root:
-                return mt
-            for child in root.childNodes:
-                if child.nodeType != child.ELEMENT_NODE:
-                    continue
-                if child.tagName != "manifest:file-entry":
-                    continue
-                if child.getAttribute('manifest:full-path') == '/':
-                    manifestmt = child.getAttribute('manifest:media-type')
-                    if manifestmt.startswith('application/'):
-                        return manifestmt
-                    else:
-                        return mt 
-    z.close()
-    return mt
 
 def guessMime(data):
     for test in magicNumbers:
         m = test.compare(data)
         if m: 
-            # test for OpenOffice
-            if m == 'application/zip':
-                m = classify_zip(data, m)
             return m
     # no matching, magic number.
     return
