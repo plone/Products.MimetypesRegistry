@@ -1,5 +1,5 @@
-post 1.3.5
-==========
+1.3.6-final01 - 2005-08-30
+==========================
 
   * after one night sleeping over it I removed the yesterday added method.
     therefore I added according to some heuristics and OOo-Documentation
