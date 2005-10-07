@@ -1,3 +1,23 @@
+XXXXXXXXXXXXX - XXXX-XX-XX
+==========================
+
+  * globs from freedesktop.org shared-mime-info were incorrectly
+    mapped to 'extensions' and never really worked because the code
+    tried to strip a leading dot, where the globs normally had '*.'.
+
+    The side-effect of this is that in *nix, the Python 'mimetypes'
+    module would happily read '/etc/mime.types' and gracefully work
+    (/etc/mime.types has most of the extensions of shared-mime-info
+    but a few), where on Windows it would fail to detect mimetypes by
+    extension.
+    [sidnei]
+
+  * Added support for real globs, using fnmatch.translate and
+    re.compile and a migration function that will be run from Plone
+    2.1.1 migration, with some tests specific for globs read from
+    shared-mime-info.
+    [sidnei]
+
 1.3.6-final01 - 2005-08-30
 ==========================
 
