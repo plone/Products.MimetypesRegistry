@@ -40,6 +40,7 @@ at_versions = (
     '1.3.4-rc2',
     '1.3.4-rc3',
     '1.3.4-final',
+    '1.3.5-final',
     ###MARKERFORATRELEASESCRIPT###
     )
 
