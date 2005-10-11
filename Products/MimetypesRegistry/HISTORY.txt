@@ -1,9 +1,29 @@
-prepare 1.4.0
-=============
-
-  * nothing - add chnages here
-
 1.3.7-final01 - 2005-10-11
+==========================
+
+  * For the sake of sanity, include a 'mime.types' with
+    MimetypesRegistry to minimize the platform-specific differences in
+    mime detection when the python 'mimetypes' module is involved.
+    [dreamcatcher]
+
+  * globs from freedesktop.org shared-mime-info were incorrectly
+    mapped to 'extensions' and never really worked because the code
+    tried to strip a leading dot, where the globs normally had '*.'.
+
+    The side-effect of this is that in *nix, the Python 'mimetypes'
+    module would happily read '/etc/mime.types' and gracefully work
+    (/etc/mime.types has most of the extensions of shared-mime-info
+    but a few), where on Windows it would fail to detect mimetypes by
+    extension.
+    [dreamcatcher]
+
+  * Added support for real globs, using fnmatch.translate and
+    re.compile and a migration function that will be run from Plone
+    2.1.1 migration, with some tests specific for globs read from
+    shared-mime-info.
+    [dreamcatcher]
+
+1.3.6-final01 - 2005-08-30
 ==========================
 
   * after one night sleeping over it I removed the yesterday added method.
@@ -11,9 +31,9 @@ prepare 1.4.0
     some magic bytes to magic.py and made better tests.
     [yenzenz]
 
-  * added a method to detect mimetypes of zipped files, 
-    here specialy for OOo now all Openofice files and zip 
-    files are detected properly.  my simple tests are working: 
+  * added a method to detect mimetypes of zipped files,
+    here specialy for OOo now all Openofice files and zip
+    files are detected properly.  my simple tests are working:
     a OOo-Writer and a simpe zipfile are detected.
     [yenzenz]
 
@@ -24,7 +44,7 @@ prepare 1.4.0
 1.3.5-final03 - 2005-08-07
 ==========================
 
-  * nothing - the odd version checking needs a version change to stick to 
+  * nothing - the odd version checking needs a version change to stick to
     Archetypes version again.
     [yenzenz]
 
