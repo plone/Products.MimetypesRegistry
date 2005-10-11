@@ -14,11 +14,8 @@ class MimeTypeItem(Persistent, Explicit, Item):
     security = ClassSecurityInfo()
     __implements__ = (IMimetype,)
 
-    extensions = ()
-    globs = ()
-
-    def __init__(self, name='', mimetypes=None, extensions=None,
-                 binary=None, icon_path='', globs=None):
+    def __init__(self, name='', mimetypes=None, extensions=None, binary=None,
+                 icon_path=''):
         if name:
             self.__name__ = self.id = name
         if mimetypes is not None:
@@ -27,8 +24,6 @@ class MimeTypeItem(Persistent, Explicit, Item):
             self.extensions = extensions
         if binary is not None:
             self.binary = binary
-        if globs is not None:
-            self.globs = globs
         self.icon_path = icon_path or guess_icon_path(self)
 
     def __str__(self):
@@ -73,23 +68,16 @@ class MimeTypeItem(Persistent, Explicit, Item):
         return self.mimetypes[0]
 
     security.declareProtected(CMFCorePermissions.ManagePortal, 'edit')
-    def edit(self, name, mimetypes, extensions, icon_path,
-             binary=0, globs=None, REQUEST=None):
+    def edit(self, name, mimetypes, extensions, icon_path, binary=0,
+             REQUEST=None):
         """edit this mime type"""
-        # if mimetypes and extensions are string instead of lists,
-        # split them on new lines
-        if isinstance(mimetypes, basestring):
-            mimetypes = [mts.strip() for mts in mimetypes.split('\n')
-                         if mts.strip()]
-        if isinstance(extensions, basestring):
-            extensions = [mts.strip() for mts in extensions.split('\n')
-                          if mts.strip()]
-        if isinstance(globs, basestring):
-            globs = [glob.strip() for glob in globs.split('\n')
-                     if glob.strip()]
+        # if mimetypes and extensions are string instead of lists, split them on new lines
+        if type(mimetypes) in (type(''), type(u'')):
+            mimetypes = [mts.strip() for mts in mimetypes.split('\n') if mts.strip()]
+        if type(extensions) in (type(''), type(u'')):
+            extensions = [mts.strip() for mts in extensions.split('\n') if mts.strip()]
         self.__name__ = self.id = name
         self.mimetypes = mimetypes
-        self.globs = globs
         self.extensions = extensions
         self.binary = binary
         self.icon_path = icon_path

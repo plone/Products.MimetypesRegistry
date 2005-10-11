@@ -1,36 +1,21 @@
-import os.path
-import OFS.content_types
-from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
-from Products.MimetypesRegistry.MimeTypeItem import guess_icon_path
+from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem, guess_icon_path
 from Products.MimetypesRegistry.common import MimeTypeException
 
 import mimetypes as pymimetypes
 
-mimes_initialized = False
-
-def mimes_initialize():
-    global mimes_initialized
-    if mimes_initialized:
-        return
-    mimes_initialized = True
-    # Augment known mime-types.
-    here = os.path.dirname(os.path.abspath(__file__))
-    OFS.content_types.add_files([os.path.join(here, 'mime.types')])
-
-# don't register the mimetype from python mimetypes if matching on of
-# this extensions.
+# don't register the mimetype from python mimetypes if matching on of this
+# extensions.
 skip_extensions = (
     )
 
 def initialize(registry):
-    # Find things that are not in the specially registered mimetypes
-    # and add them using some default policy, none of these will impl
-    # iclassifier
-    mimes_initialize()
+    #Find things that are not in the specially registered mimetypes
+    #and add them using some default policy, none of these will impl
+    #iclassifier
     for ext, mt in pymimetypes.types_map.items():
         if ext[0] == '.':
             ext = ext[1:]
-
+        
         if registry.lookupExtension(ext):
             continue
         if ext in skip_extensions:

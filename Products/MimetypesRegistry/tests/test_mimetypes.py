@@ -71,47 +71,6 @@ class TestMimeTypesclass(ArcheSiteTestCase):
         mt = reg.classify(data, filename="test.pdf.gz")
         self.failUnlessEqual(str(mt), 'application/pdf')
 
-    def testFDOGlobs(self):
-        # The mime types here might only match if they match a glob on
-        # the freedesktop.org registry.
-        data = ''
-        reg = self.registry
-        mt = reg.classify(data, filename="test.anim1")
-        self.failUnlessEqual(str(mt), 'video/x-anim')
-
-        mt = reg.classify(data, filename="test.ini~")
-        self.failUnlessEqual(str(mt), 'application/x-trash')
-
-        mt = reg.classify(data, filename="test.ini%")
-        self.failUnlessEqual(str(mt), 'application/x-trash')
-
-        mt = reg.classify(data, filename="test.ini.bak")
-        self.failUnlessEqual(str(mt), 'application/x-trash')
-
-        mt = reg.classify(data, filename="test.f90")
-        self.failUnlessEqual(str(mt), 'text/x-fortran')
-
-        mt = reg.classify(data, filename="test.f95")
-        self.failUnlessEqual(str(mt), 'text/x-fortran')
-
-        mt = reg.classify(data, filename="makefile")
-        self.failUnlessEqual(str(mt), 'text/x-makefile')
-
-        mt = reg.classify(data, filename="Makefile")
-        self.failUnlessEqual(str(mt), 'text/x-makefile')
-
-        mt = reg.classify(data, filename="makefile.ac")
-        self.failUnlessEqual(str(mt), 'text/x-makefile')
-
-        mt = reg.classify(data, filename="makefile.in")
-        self.failUnlessEqual(str(mt), 'text/x-makefile')
-
-        mt = reg.classify(data, filename="AUTHORS")
-        self.failUnlessEqual(str(mt), 'text/x-authors')
-
-        mt = reg.classify(data, filename="INSTALL")
-        self.failUnlessEqual(str(mt), 'text/x-install')
-
     def testLookup(self):
         reg = self.registry
         mt = reg.lookup('text/plain')
