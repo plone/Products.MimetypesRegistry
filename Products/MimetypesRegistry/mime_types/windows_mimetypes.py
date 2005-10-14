@@ -58,7 +58,7 @@ def get_mime_types():
 
 def normalize(mt):
     # Some mimetypes might have extra ';q=value' params.
-    return mt.split(';')[0]
+    return mt.lower().split(';')[0]
 
 def initialize():
     if not mimetypes.inited:
@@ -66,6 +66,8 @@ def initialize():
 
     for mt in get_mime_types():
         ext = get_ext_for_mimetype(mt)
+        if ext is None:
+            continue
         if not mimetypes.types_map.has_key(ext):
             mimetypes.add_type(normalize(mt), ext)
 
@@ -73,5 +75,5 @@ if __name__=='__main__':
     for mt in get_mime_types():
         ext = get_ext_for_mimetype(mt)
         desc = get_desc_for_mimetype(mt)
-        print "%s (%s) - %s" % (mt, desc, ext)
+        print "%s (%s) - %s" % (mt.lower(), desc, ext)
     import code; code.interact(local=locals())
