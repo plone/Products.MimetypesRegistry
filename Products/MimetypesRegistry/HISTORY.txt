@@ -1,3 +1,9 @@
+XXXXXXXXXXXX  - XXXXXXXXX
+==========================
+
+  * Augment known mimetypes with Windows mimetypes, if available.
+    [dreamcatcher]
+
 1.3.7-final01 - 2005-10-11
 ==========================
 

@@ -4,6 +4,7 @@ from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 from Products.MimetypesRegistry.MimeTypeItem import guess_icon_path
 from Products.MimetypesRegistry.common import MimeTypeException
 
+
 import mimetypes as pymimetypes
 
 mimes_initialized = False
@@ -26,7 +27,19 @@ def initialize(registry):
     # Find things that are not in the specially registered mimetypes
     # and add them using some default policy, none of these will impl
     # iclassifier
+
+    # Read our included mime.types file, in addition to whatever the
+    # mimetypes python module might have found.
     mimes_initialize()
+
+    # Initialize from registry known mimetypes if we are on Windows
+    # and pywin32 is available.
+    try:
+        import windows_mimetypes
+        windows_mimetypes.initialize()
+    except ImportError:
+        pass
+    
     for ext, mt in pymimetypes.types_map.items():
         if ext[0] == '.':
             ext = ext[1:]
