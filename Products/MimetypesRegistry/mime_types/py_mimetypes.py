@@ -35,8 +35,8 @@ def initialize(registry):
     # Initialize from registry known mimetypes if we are on Windows
     # and pywin32 is available.
     try:
-        import windows_mimetypes
-        windows_mimetypes.initialize()
+        from windows_mimetypes import initialize
+        initialize()
     except ImportError:
         pass
     
