@@ -117,6 +117,11 @@ class TestMimeTypesclass(ArcheSiteTestCase):
         mt = reg.lookup('text/plain')
         self.failUnless(isinstance(mt[0], text_plain), str(mt[0]))
 
+        # Test lookup of aliases in SMI database (see smi_mimetypes)
+        mt1 = reg.lookup('application/vnd.wordperfect')
+        mt2 = reg.lookup('application/wordperfect')
+        self.assertEqual(mt1, mt2)
+
         mt = reg.lookup('text/notexistent')
         self.failUnlessEqual(mt, ())
 

@@ -19,7 +19,8 @@ class SharedMimeInfoHandler(ContentHandler):
         if name in ('mime-type',):
             current = {'type': attrs['type'],
                        'comments': {},
-                       'globs': []}
+                       'globs': [],
+                       'aliases': []}
             self.mimes.append(current)
             self.current = current
             return
@@ -36,6 +37,10 @@ class SharedMimeInfoHandler(ContentHandler):
         if name in ('glob',):
             globs = self.current['globs']
             globs.append(attrs['pattern'])
+            return
+        if name in ('alias',):
+            aliases = self.current['aliases']
+            aliases.append(attrs['type'])
 
     def endElement(self, name):
         if self.collect_comment and name in ('comment',):
@@ -68,6 +73,7 @@ def initialize(registry):
     # iclassifier
     for res in mimetypes:
         mt = str(res['type'])
+        mts = (mt,) + tuple(res['aliases'])
 
         # check the mime type
         try:
@@ -94,6 +100,7 @@ def initialize(registry):
                 mto.globs = list(mto.globs) + [glob]
         else:
             isBin = mt.split('/', 1)[0] != "text"
-            mti = MimeTypeItem(name, mimetypes=(mt,), binary=isBin,
+            mti = MimeTypeItem(name, mimetypes=mts,
+                               binary=isBin,
                                globs=globs)
             registry.register(mti)
