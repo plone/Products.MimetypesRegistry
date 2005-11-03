@@ -17,49 +17,49 @@
 
   <table width="50%">
     <tr>
-      <td>Name</td>
-      <td>
+      <td class="form-label">Name</td>
+      <td class="form-element">
         <input name="id"
                tal:attributes="value python:request.get('id', '');"/>
       </td>
       </tr><tr>
-      <td>Icon path</td>
-      <td>
+      <td class="form-label">Icon path</td>
+      <td class="form-element">
         <input name="icon_path"
                tal:attributes="value python:request.get('icon_path', '');"/>
       </td>
       </tr><tr>
-      <td>Binary?
+      <td class="form-label">Binary?
       </td>
-      <td>
+      <td class="form-element">
         <input name="binary" type="checkbox"
                tal:attributes="value python:request.get('binary', '');"/>
       </td>
       </tr><tr>
-      <td>Mime-types
+      <td class="form-label">Mime-types
       </td>
-      <td>
+      <td class="form-element">
         <textarea name="mimetypes:list"
                   tal:content="python:request.get('mimetypes', '')"/>
       </td>
       </tr><tr>
-      <td>Extensions
+      <td class="form-label">Extensions
       </td>
-      <td>
+      <td class="form-element">
         <textarea name="extensions:list"
                   tal:content="python:request.get('extensions', '')"/>
       </td>
     </tr><tr>
-      <td>Globs
+      <td class="form-label">Globs
       </td>
-      <td>
+      <td class="form-element">
         <textarea name="globs:list"
                   tal:content="python:request.get('globs', '')"/>
       </td>
     </tr>
   </table>
 
-  <input type="submit"/>
+  <input type="submit" />
 </form>
 
 <tal:footer tal:replace="structure here/manage_page_footer|nothing">footer</tal:footer>

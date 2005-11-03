@@ -22,7 +22,7 @@
         tal:define="dummy mimetypes/sort">
 
     <table width="90%">
-      <tr>
+      <tr class="form-label">
         <th colspan="3">Name</th>
         <th>Mime-types</th>
         <th>Extensions</th>
@@ -30,7 +30,7 @@
         <th>Binary?</th>
       </tr>
 
-      <tr tal:repeat="mt_id mimetypes">
+      <tr class="form-element" tal:repeat="mt_id mimetypes">
         <tal:block tal:define="mt python:here.lookup(mt_id)[0];">
           <td>
             <input type="checkbox" name="ids:list"
@@ -51,7 +51,7 @@
       </tr>
     </table>
 
-    <input type="submit" value="delete selected"/>
+    <input type="submit" value="Delete Selected Items" />
 
   </form>
 
