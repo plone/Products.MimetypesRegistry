@@ -1,6 +1,12 @@
 XXXXXXXXXXXX  - XXXXXXXXX
 ==========================
 
+  * Split yet another part of register() into a separate
+    method. Cleanup smi_mimetypes initialize a little bit to to use
+    the new method when adding new mimetypes to a already-registered
+    entry.
+    [dreamcatcher]
+
   * Include aliases in the list of mimetypes for a entry. Based on
     patch by Jean Jordaan
     [dreamcatcher]

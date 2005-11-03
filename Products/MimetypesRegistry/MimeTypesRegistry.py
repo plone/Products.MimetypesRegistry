@@ -103,19 +103,24 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         mimetype = aq_base(mimetype)
         assert IMimetype.isImplementedBy(mimetype)
         for t in mimetype.mimetypes:
-            major, minor = split(t)
-            if not major or not minor or minor == '*':
-                raise MimeTypeException('Can\'t register mime type %s' % t)
-            group = self._mimetypes.setdefault(major, PersistentMapping())
-            if group.has_key(minor):
-                if group.get(minor) != mimetype:
-                    log('Warning: redefining mime type %s (%s)' % (
-                        t, mimetype.__class__))
-            group[minor] = mimetype
+            self.register_mimetype(t, mimetype)
         for extension in mimetype.extensions:
             self.register_extension(extension, mimetype)
         for glob in mimetype.globs:
             self.register_glob(glob, mimetype)
+
+    security.declareProtected(CMFCorePermissions.ManagePortal,
+                              'register_mimetype')
+    def register_mimetype(self, mt, mimetype):
+        major, minor = split(mt)
+        if not major or not minor or minor == '*':
+            raise MimeTypeException('Can\'t register mime type %s' % mt)
+        group = self._mimetypes.setdefault(major, PersistentMapping())
+        if group.has_key(minor):
+            if group.get(minor) != mimetype:
+                log('Warning: redefining mime type %s (%s)' % (
+                    mt, mimetype.__class__))
+        group[minor] = mimetype
 
     security.declareProtected(CMFCorePermissions.ManagePortal,
                               'register_extension')

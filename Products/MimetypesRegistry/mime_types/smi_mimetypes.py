@@ -96,8 +96,12 @@ def initialize(registry):
             mto = mto[0]
             for glob in globs:
                 if not glob in mto.globs:
+                    mto.globs = list(mto.globs) + [glob]
                     registry.register_glob(glob, mto)
-                mto.globs = list(mto.globs) + [glob]
+            for mt in mts:
+                if not mt in mto.mimetypes:
+                    mto.mimetypes = list(mto.mimetypes) + [mt]
+                    registry.register_mimetype(mt, mto)
         else:
             isBin = mt.split('/', 1)[0] != "text"
             mti = MimeTypeItem(name, mimetypes=mts,
