@@ -11,7 +11,12 @@ from Acquisition import aq_base
 from Globals import PersistentMapping
 from AccessControl import ClassSecurityInfo
 from BTrees.OOBTree import OOBTree
-from Products.CMFCore import CMFCorePermissions
+# BBB CMF < 1.5
+try:
+    from Products.CMFCore.permissions import ManagePortal
+except ImportError:
+    from Products.CMFCore.CMFCorePermissions import ManagePortal
+
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
 from Products.CMFCore.TypesTool import FactoryTypeInformation
 from Products.CMFCore.utils import UniqueObject
@@ -94,7 +99,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         initialize(self)
         self._new_style_mtr = 1
 
-    security.declareProtected(CMFCorePermissions.ManagePortal, 'register')
+    security.declareProtected(ManagePortal, 'register')
     def register(self, mimetype):
         """ Register a new mimetype
 
@@ -109,8 +114,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         for glob in mimetype.globs:
             self.register_glob(glob, mimetype)
 
-    security.declareProtected(CMFCorePermissions.ManagePortal,
-                              'register_mimetype')
+    security.declareProtected(ManagePortal, 'register_mimetype')
     def register_mimetype(self, mt, mimetype):
         major, minor = split(mt)
         if not major or not minor or minor == '*':
@@ -122,8 +126,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
                     mt, mimetype.__class__))
         group[minor] = mimetype
 
-    security.declareProtected(CMFCorePermissions.ManagePortal,
-                              'register_extension')
+    security.declareProtected(ManagePortal, 'register_extension')
     def register_extension(self, extension, mimetype):
         """ Associate a file's extension to a IMimetype
 
@@ -138,8 +141,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         # we don't validate fmt yet, but its ["txt", "html"]
         self.extensions[extension] = mimetype
 
-    security.declareProtected(CMFCorePermissions.ManagePortal,
-                              'register_glob')
+    security.declareProtected(ManagePortal, 'register_glob')
     def register_glob(self, glob, mimetype):
         """ Associate a glob to a IMimetype
 
@@ -161,7 +163,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         pattern = re.compile(fnmatch.translate(glob))
         globs[glob] = (pattern, mimetype)
 
-    security.declareProtected(CMFCorePermissions.ManagePortal, 'unregister')
+    security.declareProtected(ManagePortal, 'unregister')
     def unregister(self, mimetype):
         """ Unregister a new mimetype
 
@@ -404,8 +406,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
                 encoding = 'UTF-8'
         return encoding
 
-    security.declareProtected(CMFCorePermissions.ManagePortal,
-                              'manage_delObjects')
+    security.declareProtected(ManagePortal, 'manage_delObjects')
     def manage_delObjects(self, ids, REQUEST=None):
         """ delete the selected mime types """
         for id in ids:
@@ -413,8 +414,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         if REQUEST is not None:
             REQUEST['RESPONSE'].redirect(self.absolute_url()+'/manage_main')
 
-    security.declareProtected(CMFCorePermissions.ManagePortal,
-                              'manage_addMimeType')
+    security.declareProtected(ManagePortal, 'manage_addMimeType')
     def manage_addMimeType(self, id, mimetypes, extensions, icon_path,
                            binary=0, globs=None, REQUEST=None):
         """add a mime type to the tool"""
@@ -424,8 +424,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         if REQUEST is not None:
             REQUEST['RESPONSE'].redirect(self.absolute_url()+'/manage_main')
 
-    security.declareProtected(CMFCorePermissions.ManagePortal,
-                              'manage_editMimeType')
+    security.declareProtected(ManagePortal, 'manage_editMimeType')
     def manage_editMimeType(self, name, new_name, mimetypes, extensions,
                             icon_path, binary=0, globs=None, REQUEST=None):
         """Edit a mime type by name
