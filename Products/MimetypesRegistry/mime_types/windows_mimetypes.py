@@ -48,7 +48,6 @@ def get_mime_types():
     try:
         hk = win32api.RegOpenKey(win32con.HKEY_CLASSES_ROOT,
                                  r"MIME\Database\Content Type")
-        
         items = win32api.RegEnumKeyEx(hk)
     except win32api.error, details:
         logger.info("win32api error fetching mimetypes: %s",
