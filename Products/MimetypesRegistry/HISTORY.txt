@@ -1,6 +1,20 @@
 1.3.8-RC1 - 2005-12-29
 ======================
 
+  * Split yet another part of register() into a separate
+    method. Cleanup smi_mimetypes initialize a little bit to to use
+    the new method when adding new mimetypes to a already-registered
+    entry.
+    [dreamcatcher]
+
+  * Include aliases in the list of mimetypes for a entry. Based on
+    patch by Jean Jordaan
+    [dreamcatcher]
+
+  * Use a SAX-based parser instead of minidom to improve Zope startup
+    time (by 17 seconds on my Pismo) and memory footprint.
+    [dreamcatcher]
+
   * Augment known mimetypes with Windows mimetypes, if available.
     [dreamcatcher]
 
