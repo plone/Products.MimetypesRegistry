@@ -4,6 +4,7 @@ from Acquisition import Explicit
 from OFS.SimpleItem import Item
 from AccessControl import ClassSecurityInfo
 from Globals import Persistent, InitializeClass
+
 # BBB CMF < 1.5
 try:
     from Products.CMFCore.permissions import ManagePortal
