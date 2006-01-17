@@ -11,11 +11,7 @@ from Acquisition import aq_base
 from Globals import PersistentMapping
 from AccessControl import ClassSecurityInfo
 from BTrees.OOBTree import OOBTree
-# BBB CMF < 1.5
-try:
-    from Products.CMFCore.permissions import ManagePortal
-except ImportError:
-    from Products.CMFCore.CMFCorePermissions import ManagePortal
+from Products.CMFCore.permissions import ManagePortal
 
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
 from Products.CMFCore.TypesTool import FactoryTypeInformation

@@ -1,6 +1,9 @@
 1.4.0-developement
 ==================
 
+  * Removed BBB code for CMFCorePermissions import location.
+    [hannosch]
+
   * removed deprecation warning for ToolInit.
     [jensens]
 
