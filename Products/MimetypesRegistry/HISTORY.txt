@@ -1,5 +1,5 @@
-1.4.0-developement
-==================
+1.4.0-alpha01 - 2006-01-26
+==========================
 
   * removed odd archetypes 1.3 style version checking
     [jensens]
