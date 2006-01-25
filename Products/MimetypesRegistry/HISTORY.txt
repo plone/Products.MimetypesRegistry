@@ -1,6 +1,9 @@
 1.4.0-developement
 ==================
 
+  * removed odd archetypes 1.3 style version checking
+    [jensens]
+
   * Removed BBB code for CMFCorePermissions import location.
     [hannosch]
 

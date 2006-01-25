@@ -21,32 +21,6 @@ if 'final' in release:
 
 numversion = (int(major), int(minor), int(bugfix), relinfo)
 
-at_versions = (
-    '1.3.0-final',
-    '1.3.1-rc1',
-    '1.3.1-rc2',
-    '1.3.1-rc3',
-    '1.3.1-rc4',
-    '1.3.1-final',
-    '1.3.2-rc1',
-    '1.3.2-final',
-    '1.3.3-rc1',
-    '1.3.3-rc2',
-    '1.3.3-rc3',
-    '1.3.3-final',
-    '1.3.4-beta1',
-    '1.3.4-beta2',
-    '1.3.4-rc1',
-    '1.3.4-rc2',
-    '1.3.4-rc3',
-    '1.3.4-final',
-    '1.3.5-final',
-    '1.3.6-RC1',
-    '1.3.6-final',
-    '1.3.7-final',
-    ###MARKERFORATRELEASESCRIPT###
-    )
-
 license = 'BSD like'
 license_text = open(os.path.join(PRODUCT.__path__[0], 'LICENSE.txt')).read()
 copyright = '''Copyright (c) 2003 LOGILAB S.A. (Paris, FRANCE)'''
@@ -68,11 +42,11 @@ you've downloaded the Python distribution, you can't make it a Zope
 product since Zope files have been removed from this distribution.
 """
 
-web = "http://www.sourceforge.net/projects/archetypes"
+web = "http://plone.org/products/archetypes"
 ftp = ""
 mailing_list = "archetypes-devel@lists.sourceforge.net"
 
 debian_name = "zope-cmfmtr"
-debian_maintainer = "Christian Heimes"
+debian_maintainer = "Christian Heimes (?)"
 debian_maintainer_email = "heimes@faho.rwth-aachen.de"
 debian_handler = "zope"
