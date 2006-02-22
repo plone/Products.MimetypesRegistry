@@ -1,6 +1,11 @@
 1.4.0-alpha01 - 2006-01-26
 ==========================
 
+  * ensured that the key gotten back from windows_mimetypes.py existed
+  mark says the best way is to examine each key to ensure its valid but
+  would be slower.
+    [runyaga]
+
   * removed odd archetypes 1.3 style version checking
     [jensens]
 

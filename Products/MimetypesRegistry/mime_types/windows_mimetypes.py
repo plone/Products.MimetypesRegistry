@@ -53,7 +53,7 @@ def get_mime_types():
         logger.info("win32api error fetching mimetypes: %s",
                     details)
         items = []
-    return [i[0] for i in items]
+    return [i[0] for i in items if i[0]]
 
 def normalize(mt):
     # Some mimetypes might have extra ';q=value' params.
