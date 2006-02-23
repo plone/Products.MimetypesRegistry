@@ -48,5 +48,5 @@ mailing_list = "archetypes-devel@lists.sourceforge.net"
 
 debian_name = "zope-cmfmtr"
 debian_maintainer = "Christian Heimes (?)"
-debian_maintainer_email = "heimes@faho.rwth-aachen.de"
+debian_maintainer_email = "tiran@cheimes.de"
 debian_handler = "zope"
