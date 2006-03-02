@@ -1,8 +1,12 @@
 post 1.4.0-alpha02
 ==================
 
+  * fixed Plone #5027: MimeTypeRegistry.classify doesn't handle 
+    "no mimetype" gracefully. Returns 'None' now.
+    [jensens]
+
   * fixed http://dev.plone.org/archetypes/ticket/622
-    [yenzenz] 
+    [jensens] 
 
 1.4.0-alpha02 - 2006-02-23
 ==========================

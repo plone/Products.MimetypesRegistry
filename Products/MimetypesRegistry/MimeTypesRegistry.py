@@ -296,7 +296,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
            else to application/octet-stream of no filename was provided,
            else to text/plain
 
-        Return an IMimetype object
+        Return an IMimetype object or None 
         """
         mt = None
         if mimetype:
@@ -318,9 +318,9 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
                     mt = self.lookup(mstr)[0]
         if not mt:
             if not data:
-                mt = self.lookup(self.defaultMimetype)[0]
+                mtlist = self.lookup(self.defaultMimetype)
             elif filename:
-                mt = self.lookup('application/octet-stream')[0]
+                mtlist = self.lookup('application/octet-stream')
             else:
                 failed = 'text/x-unknown-content-type'
                 filename = filename or ''
@@ -328,7 +328,11 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
                 ct, enc = guess_content_type(filename, data, None)
                 if ct == failed:
                     ct = 'text/plain'
-                mt = self.lookup(ct)[0]
+                mtlist = self.lookup(ct)
+            if len(mtlist)>0:
+                mt = mtlist[0]
+            else:
+                return None
 
         # Remove acquisition wrappers
         return aq_base(mt)
