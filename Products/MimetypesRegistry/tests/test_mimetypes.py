@@ -4,7 +4,9 @@ if __name__ == '__main__':
 from Testing import ZopeTestCase
 from Products.Archetypes.tests.common import *
 
-from Products.MimetypesRegistry.mime_types import text_plain, text_xml, application_octet_stream
+from Products.MimetypesRegistry.mime_types import text_plain
+from Products.MimetypesRegistry.mime_types import text_xml
+from Products.MimetypesRegistry.mime_types import application_octet_stream
 from utils import input_file_path
 
 class TestMimeTypesclass(ArcheSiteTestCase):
@@ -23,6 +25,17 @@ class TestMimeTypesclass(ArcheSiteTestCase):
         data = "<?xml version='1.0'?><foo>bar</foo>"
         mt = reg.classify(data)
         self.failUnless(isinstance(mt, text_xml), str(mt))
+
+        # with leading whitespace (http://dev.plone.org/archetypes/ticket/622)
+        # still valid xml
+        data = " <?xml version='1.0'?><foo>bar</foo>"
+        mt = reg.classify(data)
+        self.failUnless(isinstance(mt, text_xml), str(mt))
+        
+        # also #622: this is not xml
+        data = 'xml > plain text'
+        mt = reg.classify(data)
+        self.failUnless(str(mt) != 'text/xml')
 
         #Passed in MT
         mt = reg.classify(data, mimetype="text/plain")
