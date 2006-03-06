@@ -5,7 +5,12 @@ from OFS.SimpleItem import Item
 from AccessControl import ClassSecurityInfo
 from Globals import Persistent, InitializeClass
 
-from Products.CMFCore.permissions import ManagePortal
+# BBB CMF < 1.5
+try:
+    from Products.CMFCore.permissions import ManagePortal
+except ImportError:
+    from Products.CMFCore.CMFCorePermissions import ManagePortal
+
 from Products.MimetypesRegistry.interfaces import IMimetype
 from Products.MimetypesRegistry.common import MimeTypeException
 

@@ -11,7 +11,11 @@ from Acquisition import aq_base
 from Globals import PersistentMapping
 from AccessControl import ClassSecurityInfo
 from BTrees.OOBTree import OOBTree
-from Products.CMFCore.permissions import ManagePortal
+# BBB CMF < 1.5
+try:
+    from Products.CMFCore.permissions import ManagePortal
+except ImportError:
+    from Products.CMFCore.CMFCorePermissions import ManagePortal
 
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
 from Products.CMFCore.TypesTool import FactoryTypeInformation
@@ -296,7 +300,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
            else to application/octet-stream of no filename was provided,
            else to text/plain
 
-        Return an IMimetype object or None 
+        Return an IMimetype object
         """
         mt = None
         if mimetype:
@@ -318,9 +322,9 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
                     mt = self.lookup(mstr)[0]
         if not mt:
             if not data:
-                mtlist = self.lookup(self.defaultMimetype)
+                mt = self.lookup(self.defaultMimetype)[0]
             elif filename:
-                mtlist = self.lookup('application/octet-stream')
+                mt = self.lookup('application/octet-stream')[0]
             else:
                 failed = 'text/x-unknown-content-type'
                 filename = filename or ''
@@ -328,11 +332,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
                 ct, enc = guess_content_type(filename, data, None)
                 if ct == failed:
                     ct = 'text/plain'
-                mtlist = self.lookup(ct)
-            if len(mtlist)>0:
-                mt = mtlist[0]
-            else:
-                return None
+                mt = self.lookup(ct)[0]
 
         # Remove acquisition wrappers
         return aq_base(mt)
