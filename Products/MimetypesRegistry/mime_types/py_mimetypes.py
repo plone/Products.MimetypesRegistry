@@ -4,9 +4,12 @@ from Products.MimetypesRegistry.MimeTypeItem import guess_icon_path
 from Products.MimetypesRegistry.common import MimeTypeException
 
 try:
-    from zope.app.content_types import add_files
-except ImportError: # BBB: Zope < 2.9
-    from OFS.content_types import add_files
+    from zope.app.contenttypes import add_files
+except ImportError: # BBB: Zope < 2.10
+    try:
+        from zope.app.content_types import add_files
+    except ImportError: # BBB: Zope < 2.9
+        from OFS.content_types import add_files
 
 import mimetypes as pymimetypes
 
