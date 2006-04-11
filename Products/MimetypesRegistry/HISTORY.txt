@@ -1,6 +1,9 @@
 1.4.0 - Unreleased
 ==================
 
+  * Use zope.app.content_types in favor of OFS.content_types if available.
+    [stefan]
+
   * Spring-cleaning of tests infrastructure.
     [hannosch]
 
