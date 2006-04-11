@@ -4,9 +4,9 @@ from Products.MimetypesRegistry.MimeTypeItem import guess_icon_path
 from Products.MimetypesRegistry.common import MimeTypeException
 
 try:
-    from zope.app import content_types
+    from zope.app.content_types import add_files
 except ImportError: # BBB: Zope < 2.9
-    from OFS import content_types
+    from OFS.content_types import add_files
 
 import mimetypes as pymimetypes
 
@@ -19,7 +19,7 @@ def mimes_initialize():
     mimes_initialized = True
     # Augment known mime-types.
     here = os.path.dirname(os.path.abspath(__file__))
-    content_types.add_files([os.path.join(here, 'mime.types')])
+    add_files([os.path.join(here, 'mime.types')])
 
 # don't register the mimetype from python mimetypes if matching on of
 # this extensions.
