@@ -1,3 +1,6 @@
+  * Use zope.contenttype in favor of zope.app.content_types if available.
+    [hannosch]
+
 1.4.0-beta2 - 2006-05-12
 ========================
 
