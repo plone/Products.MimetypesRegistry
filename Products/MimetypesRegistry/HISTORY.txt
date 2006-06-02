@@ -1,3 +1,6 @@
+1.4.0
+=====
+
   * Use zope.contenttype in favor of zope.app.content_types if available.
     [hannosch]
 
