@@ -1,3 +1,10 @@
+1.4.x (unreleased)
+==================
+
+  * Mime type links are now urllib quoted.  This fixes #682 
+    (http://dev.plone.org/archetypes/ticket/682).
+    [rocky]
+
 1.4.0-final - 2006-06-16
 ========================
 
