@@ -1,6 +1,9 @@
 1.4.x (unreleased)
 ==================
 
+  * Converted usage of zLOG to new Python logging module.
+    [hannosch]
+
   * Mime type links are now urllib quoted.  This fixes #682 
     (http://dev.plone.org/archetypes/ticket/682).
     [rocky]
