@@ -65,7 +65,7 @@ def initialize():
 
     for mt in get_mime_types():
         ext = get_ext_for_mimetype(mt)
-        if ext is None:
+        if not ext:
             continue
         if not mimetypes.types_map.has_key(ext):
             mimetypes.add_type(normalize(mt), ext)
