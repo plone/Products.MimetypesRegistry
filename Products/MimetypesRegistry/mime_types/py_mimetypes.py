@@ -47,9 +47,10 @@ def initialize(registry):
         pass
     
     for ext, mt in pymimetypes.types_map.items():
-        if ext[0] == '.':
+        if not ext:
+            continue
+        if ext.startswith('.'):
             ext = ext[1:]
-
         if registry.lookupExtension(ext):
             continue
         if ext in skip_extensions:
