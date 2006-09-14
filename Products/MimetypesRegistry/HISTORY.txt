@@ -1,3 +1,8 @@
+  * Fixed braindead type checking in __cmp__ (that always failed, thus slowing
+    the __cmp__ code down needlessly) and replaced it with an interface test
+    instead.
+    [mj]
+
 1.3.10-final - 2006-09-14
 =========================
 
