@@ -39,11 +39,8 @@ class MimeTypeItem(Persistent, Explicit, Item):
         return "<mimetype %s>" % self.mimetypes[0]
 
     def __cmp__(self, other):
-        try:
-            if isinstance(other, mimetype):
-                other = other.normalized()
-        except:
-            pass
+        if IMimetype.isImplementedBy(other):
+            other = other.normalized()
         return not (other in self.mimetypes)
 
     def __hash__(self):
