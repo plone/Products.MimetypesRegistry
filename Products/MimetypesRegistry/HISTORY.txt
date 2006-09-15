@@ -1,5 +1,5 @@
-1.4.x (unreleased)
-==================
+1.4.1-final - 2006-09-15
+========================
 
   * Converted usage of zLOG to new Python logging module.
     [hannosch]
