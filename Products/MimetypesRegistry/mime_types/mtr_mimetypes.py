@@ -107,6 +107,14 @@ class text_html_safe(MimeTypeItem):
     extensions = ()
     binary     = 0
 
+class text_web_intelligent(MimeTypeItem):
+
+    __implements__ = MimeTypeItem.__implements__
+    __name__   = "Web Intelligent Plain Text"
+    mimetypes  = ('text/x-web-intelligent',)
+    extensions = ()
+    binary     = 0
+
 class text_web_markdown(MimeTypeItem):
 
     __implements__ = MimeTypeItem.__implements__
@@ -123,14 +131,6 @@ class text_web_textile(MimeTypeItem):
     extensions = ('textile',)
     binary     = 0
 
-class text_web_intelligent(MimeTypeItem):
-
-    __implements__ = MimeTypeItem.__implements__
-    __name__   = "Web Intelligent Plain Text"
-    mimetypes  = ('text/x-web-intelligent',)
-    extensions = ('txt',)
-    binary     = 0
-
 reg_types = [
     text_plain,
     text_pre_plain,
@@ -144,9 +144,9 @@ reg_types = [
     application_rtf,
     text_html,
     text_html_safe,
+    text_web_intelligent,
     text_web_markdown,
     text_web_textile,
-    text_web_intelligent,    
     ]
 
 def initialize(registry):
