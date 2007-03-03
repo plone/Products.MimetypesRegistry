@@ -20,9 +20,6 @@ sys.modules['Products.MimetypesRegistry.zope.MimeTypeItem'] = MimeTypeItem
 # end TODO
 
 def initialize(context):
-    from Products.CMFCore.DirectoryView import registerDirectory
-    registerDirectory('skins', GLOBALS)
-
     from Products.CMFCore import utils
     utils.ToolInit("%s Tool" % PKG_NAME, 
                    tools=tools,
