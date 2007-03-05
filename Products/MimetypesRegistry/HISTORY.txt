@@ -1,4 +1,7 @@
-1.6.0-b2 - unreleased
+1.6.0-b3 - unreleased
+=====================
+
+1.6.0-b2 - 2007-03-05
 =====================
 
   * Use new cmf:registerDirectory zcml directive and removed corresponding code
