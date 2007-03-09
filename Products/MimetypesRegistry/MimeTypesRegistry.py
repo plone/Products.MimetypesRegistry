@@ -2,10 +2,11 @@ import os
 import re
 import fnmatch
 from types import UnicodeType
+from zope.interface import implements
+from zope.contenttype import guess_content_type
 
 from OFS.Folder import Folder
 from Globals import InitializeClass
-from Acquisition import aq_parent
 from Acquisition import aq_base
 from Globals import PersistentMapping
 from AccessControl import ClassSecurityInfo
@@ -13,12 +14,12 @@ from BTrees.OOBTree import OOBTree
 from Products.CMFCore.permissions import ManagePortal
 
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
-from Products.CMFCore.TypesTool import FactoryTypeInformation
 from Products.CMFCore.utils import UniqueObject
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 
 from Products.MimetypesRegistry.interfaces import ISourceAdapter
 from Products.MimetypesRegistry.interfaces import IMimetypesRegistry
+from Products.MimetypesRegistry.interfaces import IMimetypesRegistryTool
 from Products.MimetypesRegistry.interfaces import IMimetype
 from Products.MimetypesRegistry.interfaces import IClassifier
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
@@ -26,18 +27,8 @@ from Products.MimetypesRegistry.mime_types import initialize
 from Products.MimetypesRegistry.mime_types import magic
 from Products.MimetypesRegistry.common import log
 from Products.MimetypesRegistry.common import MimeTypeException
-from Products.MimetypesRegistry.common import STRING_TYPES
 from Products.MimetypesRegistry.common import _www
 from Products.MimetypesRegistry.encoding import guess_encoding
-from Products.MimetypesRegistry.common import log
-
-try:
-    from zope.contenttype import guess_content_type
-except ImportError: # BBB: Zope < 2.10
-    try:
-        from zope.app.content_types import guess_content_type
-    except ImportError: # BBB: Zope < 2.9
-        from OFS.content_types import guess_content_type
 
 suffix_map = {
     'tgz': '.tar.gz',
@@ -58,6 +49,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
     """
 
     __implements__ = (IMimetypesRegistry, ISourceAdapter)
+    implements(IMimetypesRegistryTool)
 
     id        = 'mimetypes_registry'
     meta_type = 'MimeTypes Registry'
