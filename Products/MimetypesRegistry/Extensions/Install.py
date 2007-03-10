@@ -1,4 +1,6 @@
 import os
+from zope.component import getSiteManager
+
 from Products.CMFCore.DirectoryView import addDirectoryViews
 from Products.CMFCore.utils import getToolByName
 from Globals import package_home
@@ -6,6 +8,7 @@ from OFS.ObjectManager import BadRequestException
 
 from Products.MimetypesRegistry import GLOBALS, skins_dir
 from Products.MimetypesRegistry.interfaces import IMimetypesRegistry
+from Products.MimetypesRegistry.interfaces import IMimetypesRegistryTool
 from Acquisition import aq_base
 from StringIO import StringIO
 
@@ -21,6 +24,9 @@ def install(self):
     if not hasattr(self, id):
         addTool = self.manage_addProduct['MimetypesRegistry'].manage_addTool
         addTool('MimeTypes Registry')
+        mtr = getattr(self, id)
+        sm = getSiteManager()
+        sm.registerUtility(mtr, IMimetypesRegistryTool)
         print >>out, 'Installing mimetypes registry tool'
 
     skinstool=getToolByName(self, 'portal_skins')
