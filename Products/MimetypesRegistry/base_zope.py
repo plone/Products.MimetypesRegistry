@@ -27,34 +27,13 @@ try:
 except ImportError:
     from persistent.list import PersistentList as ListClass
 
-# interfaces
-try:
-    # Zope >= 2.6
-    from Interface import Interface, Attribute
-except ImportError:
-    # Zope < 2.6
-    from Interface import Base as Interface, Attribute
+from Interface import Interface, Attribute
 
 def implements(object, interface):
     return interface.isImplementedBy(object)
 
-# getToolByName
-from Products.CMFCore.utils import getToolByName as _getToolByName
-_marker = []
-
-def getToolByName(context, name, default=_marker):
-    global FB_REGISTRY
-    tool = _getToolByName(context, name, default)
-    if name == 'mimetypes_registry' and tool is default:
-        if FB_REGISTRY is None:
-            from Products.MimetypesRegistry.MimeTypesRegistry \
-                 import MimeTypesRegistry
-            FB_REGISTRY = MimeTypesRegistry()
-        tool = FB_REGISTRY
-    return tool
-
 from zExceptions import BadRequest
 
-__all__ = ('Base', 'log', 'DictClass', 'ListClass', 'getToolByName', 'aq_base',
+__all__ = ('Base', 'log', 'DictClass', 'ListClass', 'aq_base',
            'Interface', 'Attribute', 'implements', 'skins_dir', '_www',
            'BadRequest', )

@@ -1,8 +1,9 @@
 import os
 from zope.component import getSiteManager
+from zope.component import getUtility
 
 from Products.CMFCore.DirectoryView import addDirectoryViews
-from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.interfaces import ISkinsTool
 from Globals import package_home
 from OFS.ObjectManager import BadRequestException
 
@@ -29,7 +30,7 @@ def install(self):
         sm.registerUtility(mtr, IMimetypesRegistryTool)
         print >>out, 'Installing mimetypes registry tool'
 
-    skinstool=getToolByName(self, 'portal_skins')
+    skinstool = getUtility(ISkinsTool)
     fullProductSkinsPath = os.path.join(package_home(GLOBALS), skins_dir)
     try:
         addDirectoryViews(skinstool, 'skins', GLOBALS)
@@ -60,7 +61,7 @@ def install(self):
 def fixUpSMIGlobs(self):
     from Products.MimetypesRegistry.mime_types import smi_mimetypes
     from Products.Archetypes.debug import log
-    mtr = getToolByName(self, 'mimetypes_registry')
+    mtr = getUtility(IMimetypesRegistryTool)
     smi_mimetypes.initialize(mtr)
 
     # Now comes the fun part. For every glob, lookup a extension
