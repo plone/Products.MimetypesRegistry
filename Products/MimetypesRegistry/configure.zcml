@@ -6,6 +6,8 @@
 
   <include file="implements.zcml"/>
 
+  <include file="profiles.zcml"/>
+
   <cmf:registerDirectory
       name="skins"
       directory="skins"
