@@ -3,7 +3,7 @@
    cookie_persistence="False" default_skin="Plone Default"
    request_varname="plone_skin">
  <object name="mimetypes_icons" meta_type="Filesystem Directory View"
-    directory="MimetypesRegistry/skins/mimetypes_icons"/>
+    directory="Products.MimetypesRegistry:skins/mimetypes_icons"/>
   <skin-path name="*">
   <layer name="mimetypes_icons" insert-after="custom"/>
  </skin-path>
