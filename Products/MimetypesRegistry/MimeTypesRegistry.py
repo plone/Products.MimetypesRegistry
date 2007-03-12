@@ -14,6 +14,7 @@ from BTrees.OOBTree import OOBTree
 from Products.CMFCore.permissions import ManagePortal
 
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
+from Products.CMFCore.utils import registerToolInterface
 from Products.CMFCore.utils import UniqueObject
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 
@@ -437,6 +438,8 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
             REQUEST['RESPONSE'].redirect(self.absolute_url()+'/manage_main')
 
 InitializeClass(MimeTypesRegistry)
+registerToolInterface('mimetypes_registry', IMimetypesRegistryTool)
+
 
 def split(name):
     """ split a mime type in a (major / minor) 2-uple """
