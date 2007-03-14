@@ -1,6 +1,11 @@
 1.6.0-b3 - unreleased
 =====================
 
+  * Removed tests/runalltests.py and test/framework.py as they have
+    outlived their usefulness. To run tests use Zope's testrunner:
+    ./bin/zopectl test --nowarn -s Products.MimetypesRegistry
+    [stefan]
+
 1.6.0-b2 - 2007-03-05
 =====================
 
