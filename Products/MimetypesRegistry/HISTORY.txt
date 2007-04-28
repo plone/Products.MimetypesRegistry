@@ -1,5 +1,11 @@
-1.6.0-b4 - unreleased
+trunk - unreleased
+==================
+
+1.6.0-b4 - 2007-04-28
 =====================
+
+  * Go back to using getToolByName for CMF tools.
+    [nouri]
 
 1.6.0-b3 - 2007-03-20
 =====================
