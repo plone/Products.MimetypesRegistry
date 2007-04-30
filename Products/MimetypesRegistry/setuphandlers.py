@@ -2,16 +2,15 @@
 MimetypesRegistry setup handlers.
 """
 
-from zope.component import getUtility
-
-from Products.MimetypesRegistry.interfaces import IMimetypesRegistryTool
+from Products.CMFCore.utils import getToolByName
 
 from StringIO import StringIO
 
-def fixUpSMIGlobs(out):
+def fixUpSMIGlobs(portal, out):
     from Products.MimetypesRegistry.mime_types import smi_mimetypes
     from Products.Archetypes.debug import log
-    mtr = getUtility(IMimetypesRegistryTool)
+    print 100 * 'x-'
+    mtr = getToolByName(portal, 'mimetypes_registry')
     smi_mimetypes.initialize(mtr)
 
     # Now comes the fun part. For every glob, lookup a extension
@@ -33,7 +32,7 @@ def fixUpSMIGlobs(out):
 def installMimetypesRegistry(portal):
     out = StringIO()
 
-    fixUpSMIGlobs(out)
+    fixUpSMIGlobs(portal, out)
 
 
 def setupMimetypesRegistry(context):
