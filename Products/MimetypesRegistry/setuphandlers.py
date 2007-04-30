@@ -9,7 +9,6 @@ from StringIO import StringIO
 def fixUpSMIGlobs(portal, out):
     from Products.MimetypesRegistry.mime_types import smi_mimetypes
     from Products.Archetypes.debug import log
-    print 100 * 'x-'
     mtr = getToolByName(portal, 'mimetypes_registry')
     smi_mimetypes.initialize(mtr)
 
