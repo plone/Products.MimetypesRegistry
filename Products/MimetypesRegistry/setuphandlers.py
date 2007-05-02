@@ -6,7 +6,7 @@ from Products.CMFCore.utils import getToolByName
 
 from StringIO import StringIO
 
-def fixUpSMIGlobs(portal, out):
+def fixUpSMIGlobs(portal, out=None):
     from Products.MimetypesRegistry.mime_types import smi_mimetypes
     from Products.Archetypes.debug import log
     mtr = getToolByName(portal, 'mimetypes_registry')
