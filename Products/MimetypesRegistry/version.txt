@@ -1,1 +1,1 @@
-1.6.0-devel/unreleased
+1.6.0-rc1
