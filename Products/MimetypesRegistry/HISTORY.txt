@@ -1,6 +1,12 @@
 trunk - unreleased
 ==================
 
+1.6.0-rc1 - 2007-07-04
+======================
+
+  * Do not modify the portal_skins tool configuration
+    [wichert]
+
 1.6.0-b5 - 2007-05-05
 =====================
 
