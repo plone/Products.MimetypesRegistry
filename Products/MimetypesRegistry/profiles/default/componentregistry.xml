@@ -4,6 +4,6 @@
  <utilities>
   <utility
      interface="Products.MimetypesRegistry.interfaces.IMimetypesRegistryTool"
-     object="/mimetypes_registry"/>
+     object="mimetypes_registry"/>
  </utilities>
 </componentregistry>
