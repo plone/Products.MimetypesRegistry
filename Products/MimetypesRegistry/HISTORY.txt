@@ -1,6 +1,9 @@
 trunk - unreleased
 ==================
 
+1.6.0-rc2 - 2007-07-27
+======================
+
   * Updated componentregisty.xml to new style.
     [hannosch]
 
