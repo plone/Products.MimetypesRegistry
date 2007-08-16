@@ -1,1 +1,1 @@
-1.6.1-devel/unreleased
+1.6.0
