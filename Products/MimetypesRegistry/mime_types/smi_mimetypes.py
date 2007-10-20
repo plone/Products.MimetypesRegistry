@@ -1,6 +1,6 @@
 import os
 from stat import ST_MTIME
-from cPickle import dumps, loads
+from cPickle import dump, load
 
 from xml.sax import parse
 from xml.sax.handler import ContentHandler
@@ -89,7 +89,7 @@ def readSMIFile():
             result = None
             try:
                 fd = open(SMI_COMPILED_FILE, 'rb')
-                result = loads(fd.read())
+                result = load(fd)
                 fd.close()
             except (IOError, OSError, EOFError):
                 pass
@@ -100,7 +100,7 @@ def readSMIFile():
     result = parseSMIFile(SMI_FILE)
     try:
         fd = open(SMI_COMPILED_FILE, 'wb')
-        fd.write(dumps(result))
+        dump(result, fd, protocol=2)
         fd.close()
     except (IOError, OSError):
         pass
