@@ -1,6 +1,13 @@
 trunk - unreleased
 ==================
 
+  * Compile the 750KiB freedesktop.org.xml file to a binary format which gets
+    loaded on Zope startup instead of reparsing the XML file each time. If the
+    modification time of the source xml file changes, the binary file is
+    automatically recreated. If the binary file cannot be created the xml file
+    is reparsed each time as before.
+    [hannosch]
+
 1.6.0 - 2007-08-16
 ==================
 
