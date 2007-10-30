@@ -1,6 +1,10 @@
 trunk - unreleased
 ==================
 
+  * Changed fixUpSMIGlobs not to reinitialize the smi_mimetypes, when they are
+    already initialized during tool creation.
+    [hannosch]
+
   * Compile the 750KiB freedesktop.org.xml file to a binary format which gets
     loaded on Zope startup instead of reparsing the XML file each time. If the
     modification time of the source xml file changes, the binary file is

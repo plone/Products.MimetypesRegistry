@@ -6,11 +6,14 @@ from Products.CMFCore.utils import getToolByName
 
 from StringIO import StringIO
 
-def fixUpSMIGlobs(portal, out=None):
+def fixUpSMIGlobs(portal, out=None, reinit=True):
+    # This method is used both in migrations where we need the reinit and
+    # during site creation, where the registry has already been initialized.
     from Products.MimetypesRegistry.mime_types import smi_mimetypes
     from Products.Archetypes.debug import log
     mtr = getToolByName(portal, 'mimetypes_registry')
-    smi_mimetypes.initialize(mtr)
+    if reinit:
+        smi_mimetypes.initialize(mtr)
 
     # Now comes the fun part. For every glob, lookup a extension
     # matching the glob and unregister it.
@@ -31,7 +34,7 @@ def fixUpSMIGlobs(portal, out=None):
 def installMimetypesRegistry(portal):
     out = StringIO()
 
-    fixUpSMIGlobs(portal, out)
+    fixUpSMIGlobs(portal, out, reinit=False)
 
 
 def setupMimetypesRegistry(context):
@@ -44,4 +47,3 @@ def setupMimetypesRegistry(context):
     out = []
     site = context.getSite()
     installMimetypesRegistry(site)
-
