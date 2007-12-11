@@ -1,6 +1,9 @@
 trunk - unreleased
 ==================
 
+  * Added metadata.xml file to the profile.
+    [hannosch]
+
   * Changed fixUpSMIGlobs not to reinitialize the smi_mimetypes, when they are
     already initialized during tool creation.
     [hannosch]
