@@ -21,5 +21,6 @@ setup(name='Products.MimetypesRegistry',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'Products.CMFCore',
       ],
       )
