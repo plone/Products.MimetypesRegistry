@@ -7,7 +7,7 @@ setup(name='Products.MimetypesRegistry',
       version=version,
       description="MIME type handling for Zope",
       long_description=open("README.txt").read() + "\n" + \
-              open(os.path.join("docs", "HiSTORY.txt")).read(),
+              open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
         "Framework :: Zope2",
         "Operating System :: OS Independent",
