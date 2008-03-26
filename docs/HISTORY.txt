@@ -4,6 +4,10 @@ Changelog
 trunk - unreleased
 ------------------
 
+* Updated freedesktop.org shared-mime-info from the
+  shared-mime-info-0.23.tar.bz2 file.
+  [hannosch]
+
 * Added metadata.xml file to the profile.
   [hannosch]
 
