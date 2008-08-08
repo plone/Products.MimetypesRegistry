@@ -256,7 +256,11 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
             ext = ext[1:] # remove the dot
         else:
             encoding = None
-        return aq_base(self.extensions.get(ext))
+
+        result = aq_base(self.extensions.get(ext))
+        if result is None:
+            result = aq_base(self.extensions.get(ext.lower()))
+        return result
 
     security.declarePublic('globFilename')
     def globFilename(self, filename):

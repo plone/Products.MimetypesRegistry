@@ -26,6 +26,12 @@ trunk - unreleased
   is reparsed each time as before.
   [hannosch]
 
+1.6.1 (unreleased)
+------------------
+
+* Lookup by extensions (not glob) as submitted and retry it with lower case to
+  catch filenames like 'file.TXT'
+
 1.6.0 - 2007-08-16
 ------------------
 
