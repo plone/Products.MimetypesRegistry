@@ -319,7 +319,9 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
             if not mt:
                 mstr = magic.guessMime(data)
                 if mstr:
-                    mt = self.lookup(mstr)[0]
+                    _mt = self.lookup(mstr)
+                    if len(_mt) > 0:
+                        mt = _mt[0]
         if not mt:
             if not data:
                 mtlist = self.lookup(self.defaultMimetype)
