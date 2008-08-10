@@ -29,8 +29,14 @@ trunk - unreleased
 1.6.1 (unreleased)
 ------------------
 
+* Ensure that lookup doesn't return an empty tuple if asked with a
+  mimetypestring returned by guessMime. 
+  Fixes http://dev.plone.org/plone/ticket/7876
+  [csenger]
+
 * Lookup by extensions (not glob) as submitted and retry it with lower case to
   catch filenames like 'file.TXT'
+  [csenger]
 
 1.6.0 - 2007-08-16
 ------------------
