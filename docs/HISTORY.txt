@@ -29,6 +29,10 @@ trunk - unreleased
 1.6.1 (unreleased)
 ------------------
 
+* Change some mimetypes returnd by guessMime to match the mimetypes
+  registered in mtr (from freedesktop.org's mime database).
+  [csenger]
+
 * Ensure that lookup doesn't return an empty tuple if asked with a
   mimetypestring returned by guessMime. 
   Fixes http://dev.plone.org/plone/ticket/7876
