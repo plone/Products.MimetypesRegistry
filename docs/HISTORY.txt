@@ -1,7 +1,10 @@
 Changelog
 =========
 
-trunk - unreleased
+1.6.2 - unreleased
+------------------
+
+1.6.1 - 2008-09-30
 ------------------
 
 * Updated freedesktop.org shared-mime-info from the
@@ -21,9 +24,6 @@ trunk - unreleased
   automatically recreated. If the binary file cannot be created the xml file
   is reparsed each time as before.
   [hannosch]
-
-1.6.1 (unreleased)
-------------------
 
 * Change some mimetypes returnd by guessMime to match the mimetypes
   registered in mtr (from freedesktop.org's mime database).
