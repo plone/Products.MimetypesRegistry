@@ -4,6 +4,17 @@ Changelog
 1.6.2 - unreleased
 ------------------
 
+* Updated freedesktop.org shared-mime-info from the
+  shared-mime-info-0.51.tar.bz2 file.
+  [sidnei]
+
+* Added Office 2007 mime types to the mime.types file, which was
+  copied from Apache ages ago. The current version of Apache doesn't
+  contain those yet, nor does the shared-mime-info. Care must be taken
+  when this file is updated again to make sure those mime types are
+  not removed accidentally.
+  [sidnei]
+
 1.6.1 - 2008-09-30
 ------------------
 
