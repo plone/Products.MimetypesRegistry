@@ -4,9 +4,23 @@ Changelog
 trunk - unreleased
 ------------------
 
+* Updated freedesktop.org shared-mime-info from the
+  shared-mime-info-0.51.tar.bz2 file.
+  [sidnei]
+
+* Added Office 2007 mime types to the mime.types file, which was
+  copied from Apache ages ago. The current version of Apache doesn't
+  contain those yet, nor does the shared-mime-info. Care must be taken
+  when this file is updated again to make sure those mime types are
+  not removed accidentally.
+  [sidnei]
+
 * Purged old Zope 2 Interface interfaces for Zope 2.12 compatibility.
   Consider branching before this revision if release required before Plone 4.
   [elro]
+
+1.6.1 (2008-09-30)
+------------------
 
 * Updated freedesktop.org shared-mime-info from the
   shared-mime-info-0.23.tar.bz2 file.
@@ -25,9 +39,6 @@ trunk - unreleased
   automatically recreated. If the binary file cannot be created the xml file
   is reparsed each time as before.
   [hannosch]
-
-1.6.1 (unreleased)
-------------------
 
 * Change some mimetypes returnd by guessMime to match the mimetypes
   registered in mtr (from freedesktop.org's mime database).
