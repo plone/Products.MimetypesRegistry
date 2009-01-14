@@ -4,7 +4,8 @@ import urllib
 from Acquisition import Explicit
 from OFS.SimpleItem import Item
 from AccessControl import ClassSecurityInfo
-from Globals import Persistent, InitializeClass
+from Persistence import Persistent
+from App.class_init import InitializeClass
 
 from Products.CMFCore.permissions import ManagePortal
 from Products.MimetypesRegistry.interfaces import IMimetype

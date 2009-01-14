@@ -4,6 +4,10 @@ Changelog
 trunk - unreleased
 ------------------
 
+* Declare package dependencies and fixed deprecation warnings for use
+  of Globals.
+  [hannosch]
+
 * Updated freedesktop.org shared-mime-info from the
   shared-mime-info-0.51.tar.bz2 file.
   [sidnei]

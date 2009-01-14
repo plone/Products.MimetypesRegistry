@@ -6,9 +6,9 @@ from zope.interface import implements
 from zope.contenttype import guess_content_type
 
 from OFS.Folder import Folder
-from Globals import InitializeClass
+from App.class_init import InitializeClass
 from Acquisition import aq_base
-from Globals import PersistentMapping
+from Persistence import PersistentMapping
 from AccessControl import ClassSecurityInfo
 from BTrees.OOBTree import OOBTree
 from Products.CMFCore.permissions import ManagePortal

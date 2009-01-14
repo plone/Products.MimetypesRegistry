@@ -19,8 +19,19 @@ setup(name='Products.MimetypesRegistry',
       namespace_packages=['Products'],
       include_package_data=True,
       zip_safe=False,
+      extras_require=dict(
+        test=[
+            'Products.Archetypes',
+        ]
+      ),
       install_requires=[
           'setuptools',
+          'zope.contenttype',
+          'zope.interface',
           'Products.CMFCore',
+          # 'Acquisition',
+          # 'ExtensionClass',
+          # 'ZODB3',
+          # 'Zope2',
       ],
       )

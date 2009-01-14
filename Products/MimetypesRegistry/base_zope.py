@@ -21,7 +21,7 @@ _www = os.path.join(os.path.dirname(__file__), 'www')
 skins_dir = os.path.join(os.path.dirname(__file__), 'skins')
 
 # list and dict classes to use
-from Globals import PersistentMapping as DictClass
+from Persistence import PersistentMapping as DictClass
 try:
     from ZODB.PersistentList import PersistentList as ListClass
 except ImportError:
