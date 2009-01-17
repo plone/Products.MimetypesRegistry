@@ -1,8 +1,11 @@
 Changelog
 =========
 
-trunk - unreleased
-------------------
+2.0 - unreleased
+----------------
+
+* Cleaned up package metadata and general code.
+  [hannosch]
 
 * Declare package dependencies and fixed deprecation warnings for use
   of Globals.

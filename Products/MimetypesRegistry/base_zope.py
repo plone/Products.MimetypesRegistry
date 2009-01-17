@@ -18,7 +18,6 @@ def log(msg, severity=logging.INFO, id='PortalTransforms'):
 # directory where template for the ZMI are located
 import os.path
 _www = os.path.join(os.path.dirname(__file__), 'www')
-skins_dir = os.path.join(os.path.dirname(__file__), 'skins')
 
 # list and dict classes to use
 from Persistence import PersistentMapping as DictClass
@@ -50,5 +49,5 @@ def getToolByName(context, name, default=_marker):
 from zExceptions import BadRequest
 
 __all__ = ('Base', 'log', 'DictClass', 'ListClass', 'getToolByName', 'aq_base',
-           'Interface', 'Attribute', 'implements', 'skins_dir', '_www',
+           'Interface', 'Attribute', 'implements', '_www',
            'BadRequest', )
