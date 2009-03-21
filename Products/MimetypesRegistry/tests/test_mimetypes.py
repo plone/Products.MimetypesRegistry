@@ -1,5 +1,6 @@
 from Testing import ZopeTestCase
 from Products.Archetypes.tests.atsitetestcase import ATSiteTestCase
+from Products.CMFCore.utils import getToolByName
 
 from Products.MimetypesRegistry.mime_types import text_plain
 from Products.MimetypesRegistry.mime_types import text_xml
@@ -10,7 +11,7 @@ class TestMimeTypesclass(ATSiteTestCase):
 
     def afterSetUp(self):
         ATSiteTestCase.afterSetUp(self)
-        self.registry = self.portal.mimetypes_registry
+        self.registry = getToolByName(self.portal, 'mimetypes_registry')
 
     def testClassify(self):
         reg = self.registry
