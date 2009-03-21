@@ -14,6 +14,7 @@ from BTrees.OOBTree import OOBTree
 from Products.CMFCore.permissions import ManagePortal
 
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
+from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import registerToolInterface
 from Products.CMFCore.utils import UniqueObject
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
@@ -407,7 +408,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         encoding = guess_encoding(data)
         if encoding is None:
             try:
-                site_props = self.portal_properties.site_properties
+                site_props = getToolByName(self, 'portal_properties').site_properties
                 encoding = site_props.getProperty('default_charset', 'UTF-8')
             except:
                 encoding = 'UTF-8'
