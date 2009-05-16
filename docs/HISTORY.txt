@@ -1,7 +1,11 @@
 Changelog
 =========
 
-1.6.2 - unreleased
+1.6.3 - unreleased
+------------------
+
+
+1.6.2 - 2009-05-16
 ------------------
 
 * Updated freedesktop.org shared-mime-info from the
