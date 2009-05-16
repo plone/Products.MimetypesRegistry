@@ -4,6 +4,9 @@ Changelog
 1.6.3 - unreleased
 ------------------
 
+* Fix bug due to removed version.txt in 1.6.2.
+  [wichert]
+
 
 1.6.2 - 2009-05-16
 ------------------
