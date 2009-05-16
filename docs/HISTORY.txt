@@ -1,7 +1,12 @@
 Changelog
 =========
 
-1.6.3 - unreleased
+1.6.4 - UNRELEASED
+------------------
+
+
+
+1.6.3 - 2009-05-16
 ------------------
 
 * Fix bug due to removed version.txt in 1.6.2.
