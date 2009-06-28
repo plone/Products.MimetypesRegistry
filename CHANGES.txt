@@ -17,6 +17,23 @@ Changelog
   of Globals.
   [hannosch]
 
+* Purged old Zope 2 Interface interfaces for Zope 2.12 compatibility.
+  Consider branching before this revision if release required before Plone 4.
+  [elro]
+
+1.6.4 - UNRELEASED
+------------------
+
+
+1.6.3 - 2009-05-16
+------------------
+
+* Fix bug due to removed version.txt in 1.6.2.
+  [wichert]
+
+1.6.2 - 2009-05-16
+------------------
+
 * Updated freedesktop.org shared-mime-info from the
   shared-mime-info-0.51.tar.bz2 file.
   [sidnei]
@@ -28,11 +45,7 @@ Changelog
   not removed accidentally.
   [sidnei]
 
-* Purged old Zope 2 Interface interfaces for Zope 2.12 compatibility.
-  Consider branching before this revision if release required before Plone 4.
-  [elro]
-
-1.6.1 (2008-09-30)
+1.6.1 - 2008-09-30
 ------------------
 
 * Updated freedesktop.org shared-mime-info from the
