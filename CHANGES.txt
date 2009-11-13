@@ -1,8 +1,8 @@
 Changelog
 =========
 
-2.0 - unreleased
-----------------
+2.0a1 - 2009-11-13
+------------------
 
 * Avoid acquiring `mimetypes_registry` and call it via a proper API.
   [hannosch]
