@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-version = '2.0a1'
+version = '2.0b1'
 
 setup(name='Products.MimetypesRegistry',
       version=version,
@@ -14,6 +14,7 @@ setup(name='Products.MimetypesRegistry',
       keywords='Zope catalog index',
       author='Benjamin Saller',
       author_email='plone-developers@lists.sourceforge.net',
+      url='http://pypi.python.org/pypi/Products.MimetypesRegistry',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['Products'],
       include_package_data=True,
