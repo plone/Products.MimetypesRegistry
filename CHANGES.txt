@@ -4,6 +4,11 @@ Changelog
 2.0b1 - Unreleased
 ------------------
 
+* Use standard logging instead of relying on Archetypes helpers.
+  [hannosch]
+
+* Removed BBB code for zope.contenttype.
+  [hannosch]
 
 2.0a1 - 2009-11-13
 ------------------
