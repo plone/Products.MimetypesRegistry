@@ -4,6 +4,8 @@ Changelog
 2.0b2 - unreleased
 ------------------
 
+* Updated icons to a more modern set from Tango and Plone.
+  [limi]
 
 2.0b1 - 2009-12-27
 ------------------
