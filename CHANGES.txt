@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.1 - unreleased
+2.0.1 - 2010-07-15
 ------------------
 
 * Removed the invalid `text/python-source` mime type declaration and replaced
