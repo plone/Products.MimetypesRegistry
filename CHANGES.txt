@@ -4,6 +4,9 @@ Changelog
 2.0.1 - unreleased
 ------------------
 
+* Removed the invalid `text/python-source` mime type declaration and replaced
+  it with the valid but unofficial `text/x-python`.
+  [hannosch]
 
 2.0 - 2010-07-01
 ----------------

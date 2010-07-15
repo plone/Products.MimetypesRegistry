@@ -37,7 +37,7 @@ class text_rest(MimeTypeItem):
 class text_python(MimeTypeItem):
 
     __name__   = "Python Source"
-    mimetypes  = ("text/python-source", "text/x-python",)
+    mimetypes  = ("text/x-python",)
     extensions = ("py",)
     binary     = 0
 
