@@ -4,6 +4,9 @@ Changelog
 2.0.2 - unreleased
 ------------------
 
+* More significant icon for application/msword files.
+  From http://www.famfamfam.com/
+  [thomasdesvenain]
 
 2.0.1 - 2010-07-15
 ------------------
@@ -97,7 +100,7 @@ Changelog
   [csenger]
 
 * Ensure that lookup doesn't return an empty tuple if asked with a
-  mimetypestring returned by guessMime. 
+  mimetypestring returned by guessMime.
   Fixes http://dev.plone.org/plone/ticket/7876
   [csenger]
 
@@ -166,7 +169,7 @@ Changelog
 * Converted usage of zLOG to new Python logging module.
   [hannosch]
 
-* Mime type links are now urllib quoted.  This fixes #682 
+* Mime type links are now urllib quoted.  This fixes #682
   (http://dev.plone.org/archetypes/ticket/682).
   [rocky]
 
@@ -188,12 +191,12 @@ Changelog
 1.4.0-beta1 - 2006-03-26
 ------------------------
 
-* fixed Plone #5027: MimeTypeRegistry.classify doesn't handle 
+* fixed Plone #5027: MimeTypeRegistry.classify doesn't handle
   "no mimetype" gracefully. Returns 'None' now.
   [jensens]
 
 * fixed http://dev.plone.org/archetypes/ticket/622
-  [jensens] 
+  [jensens]
 
 1.4.0-alpha02 - 2006-02-23
 --------------------------
@@ -212,7 +215,7 @@ Changelog
 * removed deprecation warning for ToolInit.
   [jensens]
 
-* skip backward compatibility to the times where MTR where part of 
+* skip backward compatibility to the times where MTR where part of
   PortalTransforms.
   [jensens]
 

@@ -17,4 +17,5 @@ Icons from:
 
   * Plone: http://plone.org
   * Tango: http://tango.freedesktop.org
+  * FamFamFam: http://http://www.famfamfam.com
 
