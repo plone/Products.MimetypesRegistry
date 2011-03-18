@@ -6,7 +6,7 @@ Changelog
 
 * More significant icon for application/msword files.
   From http://www.famfamfam.com/
-  Closes https://dev.plone.org/plone/ticket/11336.
+  Closes http://dev.plone.org/plone/ticket/11336.
   [thomasdesvenain]
 
 2.0.1 - 2010-07-15
