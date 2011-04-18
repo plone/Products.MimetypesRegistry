@@ -8,6 +8,8 @@ Changelog
   From http://www.famfamfam.com/
   Closes http://dev.plone.org/plone/ticket/11336.
   [thomasdesvenain]
+* Convert import step to be registered in ZCML partially fixing #8350
+  [kiorky]
 
 2.0.1 - 2010-07-15
 ------------------
