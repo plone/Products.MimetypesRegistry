@@ -4,10 +4,14 @@ Changelog
 2.0.2 - unreleased
 ------------------
 
+* Optimize images and icon file sizes.
+  [hannosch]
+
 * More significant icon for application/msword files.
   From http://www.famfamfam.com/
   Closes http://dev.plone.org/plone/ticket/11336.
   [thomasdesvenain]
+
 * Convert import step to be registered in ZCML partially fixing #8350
   [kiorky]
 
