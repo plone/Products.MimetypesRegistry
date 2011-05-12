@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.2 - unreleased
+2.0.2 - 2011-05-12
 ------------------
 
 * Optimize images and icon file sizes.
