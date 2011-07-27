@@ -4,6 +4,9 @@ Changelog
 2.0.3 - unreleased
 ------------------
 
+* Allow exception MimetypeRegistry in python scripts.
+  Refs http://dev.plone.org/plone/ticket/12061.
+  [thomasdesvenain]
 
 2.0.2 - 2011-05-12
 ------------------
