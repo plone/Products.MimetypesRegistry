@@ -87,7 +87,7 @@ python:request.RESPONSE.setHeader('Content-Language', lang)"
 """
     )
         # unable to detect a valid encoding
-        self.failUnlessEqual(e, None) 
+        self.failUnlessEqual(e, None)
 
 
 def test_suite():

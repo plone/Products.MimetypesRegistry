@@ -71,7 +71,7 @@ class MimeTypeItem(Persistent, Explicit, Item):
         then self.normalized() will always return the first form.
         """
         return self.mimetypes[0]
-    
+
     security.declarePublic('urlsafe')
     def urlsafe(self):
         """Return a url safe version of the normalized version of this

@@ -13,7 +13,7 @@ samplefiles = [
 ]
 
 class TestGuessMagic(ATSiteTestCase):
-    
+
     def afterSetUp(self):
         ATSiteTestCase.afterSetUp(self)
         self.registry = getToolByName(self.portal, 'mimetypes_registry')
@@ -23,20 +23,20 @@ class TestGuessMagic(ATSiteTestCase):
             file = open(input_file_path(filename))
             data = file.read()
             file.close()
-            
+
             # use method direct
             got = guessMime(data)
             self.failUnlessEqual(got, expected)
-            
+
             # use mtr-tool
             got_from_tool = self.registry.classify(data)
-            self.failUnlessEqual(got_from_tool, expected)            
-            
+            self.failUnlessEqual(got_from_tool, expected)
+
             # now cut it to the first 8k if greater
             if len(data) > 8192:
                 data=data[:8192]
                 got_cutted = self.registry.classify(data)
-                self.failUnlessEqual(got_cutted, expected)          
+                self.failUnlessEqual(got_cutted, expected)
 
 
 def test_suite():

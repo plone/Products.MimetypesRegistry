@@ -29,7 +29,7 @@ class TestMimeTypesclass(ATSiteTestCase):
         data = " <?xml version='1.0'?><foo>bar</foo>"
         mt = reg.classify(data)
         self.failUnless(isinstance(mt, text_xml), str(mt))
-        
+
         # also #622: this is not xml
         data = 'xml > plain text'
         mt = reg.classify(data)
@@ -48,7 +48,7 @@ class TestMimeTypesclass(ATSiteTestCase):
         #Passed in uppercase filename
         mt = reg.classify(data, filename="test.JPG")
         self.failUnlessEqual(str(mt), 'image/jpeg')
-        
+
         # use xml classifier
         mt = reg.classify('<?xml ?>')
         self.failUnless(isinstance(mt, text_xml), str(mt))

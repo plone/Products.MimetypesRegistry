@@ -40,7 +40,7 @@ def initialize(registry):
         initialize()
     except ImportError:
         pass
-    
+
     for ext, mt in pymimetypes.types_map.items():
         if not ext:
             continue

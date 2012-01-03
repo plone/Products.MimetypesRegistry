@@ -9,7 +9,7 @@ CHARSET_RGX = re.compile('charset=([^\s"]*)')
 
 def guess_encoding(buffer):
     """Better guess encoding method
-    
+
     It checks if python supports the encoding
     """
     encoding = _guess_encoding(buffer)
@@ -27,13 +27,13 @@ def guess_encoding(buffer):
     except:
         # XXX log
         result = None
-    
+
     if result:
         # got a valid encoding
         return encoding
     else:
         return None
-    
+
 
 def _guess_encoding(buffer):
     """try to guess encoding from a buffer

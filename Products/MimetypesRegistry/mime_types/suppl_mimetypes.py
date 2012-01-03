@@ -6,7 +6,7 @@ map = {
     # '.extension' : 'mimetype',
     '.svg' : 'image/svg+xml', # scaleable vector graphics
     '.pjpg' : 'image/pjpeg', # scaleable vector graphics
-    
+
 }
 
 def initialize(registry):
@@ -16,7 +16,7 @@ def initialize(registry):
     for ext, mt in map.items():
         if ext[0] == '.':
             ext = ext[1:]
-        
+
         if registry.lookupExtension(ext):
             continue
 

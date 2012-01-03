@@ -302,7 +302,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
            else to application/octet-stream of no filename was provided,
            else to text/plain
 
-        Return an IMimetype object or None 
+        Return an IMimetype object or None
         """
         mt = None
         if mimetype:

@@ -32,24 +32,24 @@ magic = [
     [0L, 'string', '=', 'Rar!', 'application/x-rar'],
     [257L, 'string', '=', 'ustar\0', 'application/x-tar'],
     [257L, 'string', '=', 'ustar\040\040\0', 'application/x-gtar'],
-    # the following detection of OOo is according to 
+    # the following detection of OOo is according to
     # http://books.evc-cit.info/oobook/ch01.html
     # and some heuristics found in hexeditor. if theres a better way to detect,
     # we should replace the signatures below.
     # best would to just read and evaluate the manifest file of the zip, but
-    # the magic tests are running on the first 8kB, so we cant unzip the 
+    # the magic tests are running on the first 8kB, so we cant unzip the
     # manifest in files >8kB.
-    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.writer', 
+    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.writer',
      'application/vnd.sun.xml.writer'],
-    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.calc', 
+    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.calc',
      'application/vnd.sun.xml.calc'],
-    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.draw', 
+    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.draw',
      'application/vnd.sun.xml.draw'],
-    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.impress', 
+    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.impress',
      'application/vnd.sun.xml.impress'],
-    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.chart', 
+    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.chart',
      'application/vnd.sun.xml.chart'],
-    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.global', 
+    [30L, 'string', '=', 'mimetypeapplication/vnd.sun.xml.global',
      'application/vnd.sun.xml.global'],
     # zip works now, after we have it with lower priority than OOo
     [0L, 'string', '=', 'PK\003\004', 'application/zip'],
@@ -336,7 +336,7 @@ class magicTest:
 def guessMime(data):
     for test in magicNumbers:
         m = test.compare(data)
-        if m: 
+        if m:
             return m
     # no matching, magic number.
     return
