@@ -240,7 +240,7 @@ magic = [
     [0L, 'string', '=', 'OTTO', 'application/x-font-otf'],
     [54L, 'string', '=', 'S T O P', 'application/x-ipod-firmware'],
     [0L, 'string', '=', 'BLENDER', 'application/x-blender'],
-    [20L, 'string', '=', 'import', 'text/x-python'],
+    [0L, 'string', '=', 'import ', 'text/x-python'],
 ]
 
 magicNumbers = []
