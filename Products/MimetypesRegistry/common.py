@@ -18,3 +18,9 @@ def log(msg, severity=logging.INFO, id='MimetypesRegistry'):
 # directory where template for the ZMI are located
 import os.path
 _www = os.path.join(os.path.dirname(__file__), 'www')
+
+from AccessControl import ModuleSecurityInfo
+security = ModuleSecurityInfo()
+security.declarePrivate('logging')
+security.declarePrivate('os')
+security.declarePrivate('time')
