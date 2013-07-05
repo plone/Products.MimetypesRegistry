@@ -3,3 +3,4 @@
 *.pyc
 *.pyo
 dist
+Products/MimetypesRegistry/mime_types/freedesktop.org.xml.bin
