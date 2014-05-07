@@ -229,7 +229,6 @@ magic = [
     [0L, 'string', '=', 'Path:', 'message/news'],
     [0L, 'string', '=', 'Xref:', 'message/news'],
     [0L, 'string', '=', 'From:', 'message/rfc822'],
-    [0L, 'string', '=', 'Article', 'message/news'],
     [0L, 'string', '=', 'Received:', 'message/rfc822'],
     [0L, 'string', '=', '[playlist]', 'audio/x-scpls'],
     [0L, 'string', '=', '[Reference]', 'video/x-ms-asf'],
