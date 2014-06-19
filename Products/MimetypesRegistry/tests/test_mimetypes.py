@@ -1,4 +1,3 @@
-from Testing import ZopeTestCase
 from Products.Archetypes.tests.atsitetestcase import ATSiteTestCase
 from Products.CMFCore.utils import getToolByName
 
@@ -6,6 +5,7 @@ from Products.MimetypesRegistry.mime_types import text_plain
 from Products.MimetypesRegistry.mime_types import text_xml
 from Products.MimetypesRegistry.mime_types import application_octet_stream
 from utils import input_file_path
+
 
 class TestMimeTypesclass(ATSiteTestCase):
 
@@ -119,7 +119,7 @@ class TestMimeTypesclass(ATSiteTestCase):
         self.failUnlessEqual(str(mt), 'text/x-authors')
 
         mt = reg.classify(data, filename="INSTALL")
-        self.failUnlessEqual(str(mt), 'text/x-install')
+        self.assertTrue(str(mt) in ['text/x-install', 'application/x-install-instructions'])
 
     def testLookup(self):
         reg = self.registry
