@@ -10,8 +10,13 @@ setup(name='Products.MimetypesRegistry',
       classifiers=[
         "Framework :: Zope2",
         "Operating System :: OS Independent",
+        "Framework :: Plone",
+        "Framework :: Plone :: 5.0",
+        "License :: OSI Approved :: GNU General Public License (GPL)",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 2.7",
         ],
-      keywords='Zope catalog index',
+      keywords='Zope mimetype registry',
       author='Benjamin Saller',
       author_email='plone-developers@lists.sourceforge.net',
       url='http://pypi.python.org/pypi/Products.MimetypesRegistry',
@@ -21,7 +26,7 @@ setup(name='Products.MimetypesRegistry',
       zip_safe=False,
       extras_require=dict(
         test=[
-            'Products.Archetypes',
+            'plone.app.testing',
         ]
       ),
       install_requires=[
