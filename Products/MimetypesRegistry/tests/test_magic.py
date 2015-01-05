@@ -1,5 +1,4 @@
-from Testing import ZopeTestCase
-from Products.Archetypes.tests.atsitetestcase import ATSiteTestCase
+from plone.app.testing.bbb import PloneTestCase as ATSiteTestCase
 from Products.CMFCore.utils import getToolByName
 
 from Products.MimetypesRegistry.mime_types.magic import guessMime
@@ -37,10 +36,3 @@ class TestGuessMagic(ATSiteTestCase):
                 data=data[:8192]
                 got_cutted = self.registry.classify(data)
                 self.failUnlessEqual(got_cutted, expected)
-
-
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestGuessMagic))
-    return suite

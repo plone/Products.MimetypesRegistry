@@ -1,6 +1,4 @@
-
-from Testing import ZopeTestCase
-from Products.Archetypes.tests.atsitetestcase import ATSiteTestCase
+from plone.app.testing.bbb import PloneTestCase as ATSiteTestCase
 
 from Products.MimetypesRegistry.encoding import guess_encoding
 
@@ -88,10 +86,3 @@ python:request.RESPONSE.setHeader('Content-Language', lang)"
     )
         # unable to detect a valid encoding
         self.failUnlessEqual(e, None)
-
-
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestGuessEncoding))
-    return suite

@@ -1,4 +1,4 @@
-from Products.Archetypes.tests.atsitetestcase import ATSiteTestCase
+from plone.app.testing.bbb import PloneTestCase as ATSiteTestCase
 from Products.CMFCore.utils import getToolByName
 
 from Products.MimetypesRegistry.mime_types import text_plain
@@ -156,10 +156,3 @@ class TestMimeTypesclass(ATSiteTestCase):
         self.failUnlessEqual(data, '<?xml ?>')
         self.failUnlessEqual(filename, None)
         self.failUnless(isinstance(mt, text_xml), str(mt))
-
-
-def test_suite():
-    from unittest import TestSuite, makeSuite
-    suite = TestSuite()
-    suite.addTest(makeSuite(TestMimeTypesclass))
-    return suite
