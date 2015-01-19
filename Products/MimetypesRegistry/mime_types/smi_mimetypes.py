@@ -78,7 +78,9 @@ def readSMIFile():
         pass
 
     if os.path.exists(SMI_COMPILED_FILE):
-        # Update file?
+        # If SMI_COMPILED_FILE has equal or newer modification time than the
+        # xml file, use the binary one for performance reasons.
+
         bin_mtime = 0
         try:
             bin_mtime = os.stat(SMI_COMPILED_FILE)[ST_MTIME]
@@ -100,6 +102,7 @@ def readSMIFile():
 
     result = parseSMIFile(SMI_FILE)
     try:
+        # Write the SMI_COMPILED_FILE from the parsed xml file.
         fd = open(SMI_COMPILED_FILE, 'wb')
         dump(result, fd, protocol=2)
         fd.close()
