@@ -11,9 +11,9 @@ Changelog
    ``application/zip``.
    [thet]
    
- For ogg files, use ``audio/ogg`` content type per default instead of. This is
-   recommended since 2007 by Xiph.Org.
-   [thet]
+ - Upgrade test infrastructure to plone.testing.
+   [tomgross]
+
 
 
 2.0.6 (2014-09-07)
