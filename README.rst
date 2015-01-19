@@ -6,6 +6,15 @@ Provide a registry of mimetypes, accessible via the ``mimetypes_registry``
 tool. 
 
 
+Upgrade from older versions
+===========================
+
+If you want to use the updated mimetypes registry database from the version
+after 2.0.6 and you don't have important customizations you need to keep, just
+delete the old ``mimetypes_registry`` tool from ZMI and import all steps from
+the ``MimetypesRegistry`` profile.
+
+
 How to update the mimetypes registry from freedesktop.org
 =========================================================
 
