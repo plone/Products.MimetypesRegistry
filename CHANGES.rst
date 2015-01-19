@@ -1,6 +1,21 @@
 Changelog
 =========
 
+2.0.7 (unreleased)
+------------------
+
+ - Update ``freedesktop.org.xml`` file from
+   http://cgit.freedesktop.org/xdg/shared-mime-info/
+   This should fix outdated mimetype recognition like ``.ogg`` being
+   ``application/ogg`` rather than ``audio/ogg`` or ``docx`` being
+   ``application/zip``.
+   [thet]
+   
+ For ogg files, use ``audio/ogg`` content type per default instead of. This is
+   recommended since 2007 by Xiph.Org.
+   [thet]
+
+
 2.0.6 (2014-09-07)
 ------------------
 

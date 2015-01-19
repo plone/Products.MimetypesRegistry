@@ -49,7 +49,6 @@ application/ocsp-request
 application/ocsp-response
 application/octet-stream			bin
 application/oda					oda
-application/ogg					ogg
 application/onenote 				onetoc onetoc2 onetmp onepkg
 application/parityfec
 application/pdf					pdf
@@ -452,6 +451,7 @@ audio/mp4a-latm
 audio/mpa-robust
 audio/mpeg					mpga mpega mp2 mp3 m4a
 audio/mpegurl					m3u
+audio/ogg					ogg
 audio/parityfec
 audio/prs.sid					sid
 audio/telephone-event
