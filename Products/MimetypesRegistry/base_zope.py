@@ -1,23 +1,11 @@
-"""some common utilities
-"""
-
-FB_REGISTRY = None
-
-# base class
-from ExtensionClass import Base
 from Acquisition import aq_base
-
-# logging function
+from ExtensionClass import Base
+from Products.CMFCore.utils import getToolByName as _getToolByName
+from zExceptions import BadRequest
+from zope.interface import Attribute
+from zope.interface import Interface
 import logging
-
-logger = logging.getLogger('PortalTransforms')
-
-def log(msg, severity=logging.INFO, id='PortalTransforms'):
-    logger.log(severity, msg)
-
-# directory where template for the ZMI are located
 import os.path
-_www = os.path.join(os.path.dirname(__file__), 'www')
 
 # list and dict classes to use
 from Persistence import PersistentMapping as DictClass
@@ -26,14 +14,24 @@ try:
 except ImportError:
     from persistent.list import PersistentList as ListClass
 
-from zope.interface import Interface, Attribute
+
+# directory where template for the ZMI are located
+_www = os.path.join(os.path.dirname(__file__), 'www')
+
+FB_REGISTRY = None
+_marker = []
+
+
+logger = logging.getLogger('PortalTransforms')
+
+
+def log(msg, severity=logging.INFO, id='PortalTransforms'):
+    logger.log(severity, msg)
+
 
 def implements(object, interface):
     return interface.providedBy(object)
 
-# getToolByName
-from Products.CMFCore.utils import getToolByName as _getToolByName
-_marker = []
 
 def getToolByName(context, name, default=_marker):
     global FB_REGISTRY
@@ -46,7 +44,6 @@ def getToolByName(context, name, default=_marker):
         tool = FB_REGISTRY
     return tool
 
-from zExceptions import BadRequest
 
 __all__ = ('Base', 'log', 'DictClass', 'ListClass', 'getToolByName', 'aq_base',
            'Interface', 'Attribute', 'implements', '_www',

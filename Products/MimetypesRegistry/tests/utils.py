@@ -1,8 +1,10 @@
-import re
+from os.path import abspath
+from os.path import basename
+from os.path import dirname
+from os.path import join
 import glob
-from unittest import TestSuite
-from sys import modules
-from os.path import join, abspath, dirname, basename
+import re
+
 
 def normalize_html(s):
     s = re.sub(r"\s+", " ", s)
@@ -13,14 +15,23 @@ def normalize_html(s):
 
 PREFIX = abspath(dirname(__file__))
 
+
 def input_file_path(file):
     return join(PREFIX, 'input', file)
+
 
 def output_file_path(file):
     return join(PREFIX, 'output', file)
 
+
 def matching_inputs(pattern):
-    return [basename(path) for path in glob.glob(join(PREFIX, "input", pattern))]
+    return [
+        basename(path) for path in glob.glob(
+            join(
+                PREFIX,
+                "input",
+                pattern))]
+
 
 def load(dotted_name, globals=None):
     """ load a python module from it's name """

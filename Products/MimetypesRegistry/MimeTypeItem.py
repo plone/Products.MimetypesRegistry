@@ -1,16 +1,13 @@
-import os
-import urllib
-
-from Acquisition import Explicit
-from OFS.SimpleItem import Item
 from AccessControl import ClassSecurityInfo
-from Persistence import Persistent
+from Acquisition import Explicit
 from App.class_init import InitializeClass
-
+from OFS.SimpleItem import Item
+from Persistence import Persistent
 from Products.CMFCore.permissions import ManagePortal
 from Products.MimetypesRegistry.interfaces import IMimetype
-from Products.MimetypesRegistry.common import MimeTypeException
 from zope.interface import implements
+import os
+import urllib
 
 
 class MimeTypeItem(Persistent, Explicit, Item):
@@ -49,21 +46,25 @@ class MimeTypeItem(Persistent, Explicit, Item):
         return hash(self.name())
 
     security.declarePublic('name')
+
     def name(self):
         """ The name of this object """
         return self.__name__
 
     security.declarePublic('major')
+
     def major(self):
         """ return the major part of the RFC-2046 name for this mime type """
         return self.normalized().split('/', 1)[0]
 
     security.declarePublic('minor')
+
     def minor(self):
         """ return the minor part of the RFC-2046 name for this mime type """
         return self.normalized().split('/', 1)[1]
 
     security.declarePublic('normalized')
+
     def normalized(self):
         """ return the main RFC-2046 name for this mime type
 
@@ -73,6 +74,7 @@ class MimeTypeItem(Persistent, Explicit, Item):
         return self.mimetypes[0]
 
     security.declarePublic('urlsafe')
+
     def urlsafe(self):
         """Return a url safe version of the normalized version of this
         mime type.
@@ -80,6 +82,7 @@ class MimeTypeItem(Persistent, Explicit, Item):
         return urllib.quote(self.normalized())
 
     security.declareProtected(ManagePortal, 'edit')
+
     def edit(self, name, mimetypes, extensions, icon_path,
              binary=0, globs=None, REQUEST=None):
         """edit this mime type"""
@@ -101,12 +104,13 @@ class MimeTypeItem(Persistent, Explicit, Item):
         self.binary = binary
         self.icon_path = icon_path
         if REQUEST is not None:
-            REQUEST['RESPONSE'].redirect(self.absolute_url()+'/manage_main')
+            REQUEST['RESPONSE'].redirect(self.absolute_url() + '/manage_main')
 
 InitializeClass(MimeTypeItem)
 
 
 ICONS_DIR = os.path.join(os.path.dirname(__file__), 'skins', 'mimetypes_icons')
+
 
 def guess_icon_path(mimetype, icons_dir=ICONS_DIR, icon_ext='png'):
     if mimetype.extensions:

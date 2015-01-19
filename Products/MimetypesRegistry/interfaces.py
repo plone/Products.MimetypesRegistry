@@ -1,14 +1,14 @@
 from zope.interface import Interface
 
+
 class IMimetype(Interface):
     """Specification for dealing with mimetypes RFC-2046 style"""
 
-#     mimetypes = Attribute("List of mimetypes in the RFC-2046 format")
-#     extensions = Attribute("""List of extensions mapped to this
-#     mimetype w/o the leading .""")
-
-#     binary = Attribute("""Boolean indicating if the mimetype should be
-#     treated as binary (and not human readable)""")
+    # mimetypes = Attribute("List of mimetypes in the RFC-2046 format")
+    # extensions = Attribute("""List of extensions mapped to this
+    # mimetype w/o the leading .""")
+    # binary = Attribute("""Boolean indicating if the mimetype should be
+    # treated as binary (and not human readable)""")
 
     def name(self):
         """return the Human readable name of the mimetype"""
@@ -25,6 +25,7 @@ class IMimetype(Interface):
         e.g. if this object has names ('text/restructured', 'text-x-rst')
         then self.normalized() will always return the first form.
         """
+
 
 class IClassifier(Interface):
     """Optional mixin interface for imimetype, code to test if the
@@ -64,7 +65,8 @@ class IMimetypesRegistry(Interface):
         """ return the mimetypes object associated with the file's extension
         return None if it is not known.
 
-        filename maybe a file name like 'content.txt' or an extension like 'rest'
+        filename maybe a file name like 'content.txt' or an extension like
+        'rest'
         """
 
     def mimetypes():
@@ -73,6 +75,7 @@ class IMimetypesRegistry(Interface):
 
     def list_mimetypes():
         """return all defined mime types, as string"""
+
 
 class IMimetypesRegistryTool(Interface):
     """Marker interface for the mimetypes_registry tool."""

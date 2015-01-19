@@ -25,4 +25,5 @@
       description="MimetypesRegistry installation step.">
     <depends name="componentregistry" />
   </genericsetup:importStep>
+
 </configure>

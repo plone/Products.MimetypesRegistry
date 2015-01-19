@@ -1,11 +1,6 @@
-"""
-MimetypesRegistry setup handlers.
-"""
-
-import logging
-from StringIO import StringIO
-
 from Products.CMFCore.utils import getToolByName
+from StringIO import StringIO
+import logging
 
 logger = logging.getLogger('MimetypesRegistry')
 
@@ -21,8 +16,9 @@ def fixUpSMIGlobs(portal, out=None, reinit=True):
     # Now comes the fun part. For every glob, lookup a extension
     # matching the glob and unregister it.
     for glob in mtr.globs.keys():
-        if mtr.extensions.has_key(glob):
-            logger.debug('Found glob %s in extensions registry, removing.' % glob)
+        if glob in mtr.extensions:
+            logger.debug(
+                'Found glob %s in extensions registry, removing.' % glob)
             mti = mtr.extensions[glob]
             del mtr.extensions[glob]
             if glob in mti.extensions:
@@ -36,17 +32,12 @@ def fixUpSMIGlobs(portal, out=None, reinit=True):
 
 def installMimetypesRegistry(portal):
     out = StringIO()
-
     fixUpSMIGlobs(portal, out, reinit=False)
 
 
 def setupMimetypesRegistry(context):
-    """
-    Setup MimetypesRegistry step.
-    """
     # Only run step if a flag file is present (e.g. not an extension profile)
     if context.readDataFile('mimetypes-registry-various.txt') is None:
         return
-    out = []
     site = context.getSite()
     installMimetypesRegistry(site)

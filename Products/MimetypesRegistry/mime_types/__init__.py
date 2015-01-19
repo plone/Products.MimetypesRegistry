@@ -2,9 +2,9 @@ import mtr_mimetypes
 import py_mimetypes
 import smi_mimetypes
 import suppl_mimetypes
-import magic
 
 from mtr_mimetypes import *
+
 
 def initialize(registry):
     smi_mimetypes.initialize(registry)

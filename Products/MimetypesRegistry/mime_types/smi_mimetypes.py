@@ -1,15 +1,16 @@
-import os
-from stat import ST_MTIME
 from cPickle import dump, load
-
+from stat import ST_MTIME
 from xml.sax import parse
 from xml.sax.handler import ContentHandler
+import os
+
 
 DIR = os.path.dirname(__file__)
 SMI_NAME = "freedesktop.org.xml"
 SMI_COMPILED_NAME = "freedesktop.org.xml.bin"
 SMI_FILE = os.path.join(DIR, SMI_NAME)
 SMI_COMPILED_FILE = os.path.join(DIR, SMI_COMPILED_NAME)
+
 
 class SharedMimeInfoHandler(ContentHandler):
 
@@ -109,6 +110,7 @@ def readSMIFile():
 
 mimetypes = readSMIFile()
 
+
 def initialize(registry):
     global mimetypes
     from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
@@ -122,7 +124,7 @@ def initialize(registry):
 
         # check the mime type
         try:
-            mto =  registry.lookup(mt)
+            mto = registry.lookup(mt)
         except MimeTypeException:
             # malformed MIME type
             continue
@@ -140,11 +142,11 @@ def initialize(registry):
         if mto:
             mto = mto[0]
             for glob in globs:
-                if not glob in mto.globs:
+                if glob not in mto.globs:
                     mto.globs = list(mto.globs) + [glob]
                     registry.register_glob(glob, mto)
             for mt in mts:
-                if not mt in mto.mimetypes:
+                if mt not in mto.mimetypes:
                     mto.mimetypes = list(mto.mimetypes) + [mt]
                     registry.register_mimetype(mt, mto)
         else:

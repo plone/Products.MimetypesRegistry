@@ -1,15 +1,15 @@
-from plone.app.testing.bbb import PloneTestCase as ATSiteTestCase
+from .utils import input_file_path
 from Products.CMFCore.utils import getToolByName
-
 from Products.MimetypesRegistry.mime_types.magic import guessMime
-from utils import input_file_path
+from plone.app.testing.bbb import PloneTestCase as ATSiteTestCase
 
 samplefiles = [
     ('OOoWriter', 'application/vnd.sun.xml.writer'),
     ('OOoCalc', 'application/vnd.sun.xml.calc'),
-    ('sxw-ooo-trolltech', 'application/vnd.sun.xml.writer'), # file from limi
+    ('sxw-ooo-trolltech', 'application/vnd.sun.xml.writer'),  # file from limi
     ('simplezip', 'application/zip'),
 ]
+
 
 class TestGuessMagic(ATSiteTestCase):
 
@@ -33,6 +33,6 @@ class TestGuessMagic(ATSiteTestCase):
 
             # now cut it to the first 8k if greater
             if len(data) > 8192:
-                data=data[:8192]
+                data = data[:8192]
                 got_cutted = self.registry.classify(data)
                 self.failUnlessEqual(got_cutted, expected)

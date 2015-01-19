@@ -1,10 +1,9 @@
-from plone.app.testing.bbb import PloneTestCase as ATSiteTestCase
+from .utils import input_file_path
 from Products.CMFCore.utils import getToolByName
-
+from Products.MimetypesRegistry.mime_types import application_octet_stream
 from Products.MimetypesRegistry.mime_types import text_plain
 from Products.MimetypesRegistry.mime_types import text_xml
-from Products.MimetypesRegistry.mime_types import application_octet_stream
-from utils import input_file_path
+from plone.app.testing.bbb import PloneTestCase as ATSiteTestCase
 
 
 class TestMimeTypesclass(ATSiteTestCase):
@@ -19,7 +18,7 @@ class TestMimeTypesclass(ATSiteTestCase):
         self.failUnless(c[0].name().startswith("Extensible Markup Language"),
                         c[0].name())
 
-        #Real XML
+        # Real XML
         data = "<?xml version='1.0'?><foo>bar</foo>"
         mt = reg.classify(data)
         self.failUnless(isinstance(mt, text_xml), str(mt))
@@ -35,17 +34,17 @@ class TestMimeTypesclass(ATSiteTestCase):
         mt = reg.classify(data)
         self.failUnless(str(mt) != 'text/xml')
 
-        #Passed in MT
+        # Passed in MT
         mt = reg.classify(data, mimetype="text/plain")
         self.failUnless(isinstance(mt, text_plain), str(mt))
 
-        #Passed in filename
+        # Passed in filename
         mt = reg.classify(data, filename="test.xml")
         self.failUnless(isinstance(mt, text_xml), str(mt))
         mt = reg.classify(data, filename="test.jpg")
         self.failUnlessEqual(str(mt), 'image/jpeg')
 
-        #Passed in uppercase filename
+        # Passed in uppercase filename
         mt = reg.classify(data, filename="test.JPG")
         self.failUnlessEqual(str(mt), 'image/jpeg')
 
@@ -119,7 +118,10 @@ class TestMimeTypesclass(ATSiteTestCase):
         self.failUnlessEqual(str(mt), 'text/x-authors')
 
         mt = reg.classify(data, filename="INSTALL")
-        self.assertTrue(str(mt) in ['text/x-install', 'application/x-install-instructions'])
+        self.assertTrue(
+            str(mt) in [
+                'text/x-install',
+                'application/x-install-instructions'])
 
     def testLookup(self):
         reg = self.registry

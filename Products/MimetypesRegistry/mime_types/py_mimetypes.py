@@ -1,14 +1,13 @@
-import os.path
-
-from zope.contenttype import add_files
-
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 from Products.MimetypesRegistry.MimeTypeItem import guess_icon_path
 from Products.MimetypesRegistry.common import MimeTypeException
-
+from zope.contenttype import add_files
 import mimetypes as pymimetypes
+import os.path
+
 
 mimes_initialized = False
+
 
 def mimes_initialize():
     global mimes_initialized
@@ -21,8 +20,8 @@ def mimes_initialize():
 
 # don't register the mimetype from python mimetypes if matching on of
 # this extensions.
-skip_extensions = (
-    )
+skip_extensions = ()
+
 
 def initialize(registry):
     # Find things that are not in the specially registered mimetypes
@@ -36,7 +35,7 @@ def initialize(registry):
     # Initialize from registry known mimetypes if we are on Windows
     # and pywin32 is available.
     try:
-        from windows_mimetypes import initialize
+        from .windows_mimetypes import initialize
         initialize()
     except ImportError:
         pass
@@ -52,13 +51,13 @@ def initialize(registry):
             continue
 
         try:
-            mto =  registry.lookup(mt)
+            mto = registry.lookup(mt)
         except MimeTypeException:
             # malformed MIME type
             continue
         if mto:
             mto = mto[0]
-            if not ext in mto.extensions:
+            if ext not in mto.extensions:
                 registry.register_extension(ext, mto)
                 mto.extensions += (ext, )
                 # here we guess icon path again, to find icon match the new ext

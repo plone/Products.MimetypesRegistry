@@ -1,11 +1,12 @@
 import re
 import encodings
-from Products.MimetypesRegistry.common import log
+
 
 EMACS_ENCODING_RGX = re.compile('[^#]*[#\s]*-\*-\s*coding: ([^\s]*)\s*-\*-\s*')
 VIM_ENCODING_RGX = re.compile('[^#]*[#\s]*vim:fileencoding=\s*([^\s]*)\s*')
-XML_ENCODING_RGX = re.compile('<\?xml version=[^\s]*\s*encoding=([^\s]*)\s*\?>')
+XML_ENCODING_RGX = re.compile('<\?xml version=[^\s]*\s*encoding=([^\s]*)\s*\?>')  # noqa
 CHARSET_RGX = re.compile('charset=([^\s"]*)')
+
 
 def guess_encoding(buffer):
     """Better guess encoding method
@@ -16,7 +17,7 @@ def guess_encoding(buffer):
     # step 1: if the encoding was detected, use the lower() because python
     # is using lower case names for encodings
     if encoding and isinstance(encoding, basestring):
-        #encoding = encoding.lower()
+        # encoding = encoding.lower()
         pass
     else:
         return None
@@ -40,7 +41,7 @@ def _guess_encoding(buffer):
 
     FIXME: it could be mime type driven but it seems less painful like that
     """
-    assert type(buffer) is type(''), type(buffer)
+    assert isinstance(buffer, type('')), type(buffer)
     # default to ascii on empty buffer
     if not buffer:
         return 'ascii'
