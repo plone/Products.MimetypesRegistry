@@ -120,6 +120,7 @@ class TestMimeTypesclass(ATSiteTestCase):
         self.failUnlessEqual(str(mt), 'text/x-makefile')
 
         # Updated freedesktop.org.xml changed "Makefile" glob to "Makefile."
+        # See: https://bugs.freedesktop.org/show_bug.cgi?id=88625
         # mt = reg.classify(data, filename="Makefile")
         # self.failUnlessEqual(str(mt), 'text/x-makefile')
 
