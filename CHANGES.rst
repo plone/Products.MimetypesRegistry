@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.7 (unreleased)
+2.0.7 (2015-03-21)
 ------------------
 
  - Update ``freedesktop.org.xml`` file from
