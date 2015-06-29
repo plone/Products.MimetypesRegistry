@@ -4,7 +4,8 @@ Changelog
 2.0.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use doc icon for docx, xls for xlsx, ppt for pptx
+  [gotcha]
 
 
 2.0.7 (2015-03-21)
