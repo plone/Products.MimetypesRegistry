@@ -36,10 +36,10 @@ How to update the mimetypes registry from freedesktop.org
 Authors
 =======
 
-Benjamin Saller <bcsaller@yahoo.com>
-Sidnei da Silva  <sidnei@x3ng.com>
-Sylvain Thenault <sylvain.thenault@logilab.fr>
-Christian Heimes <tiran@cheimes.de>
+- Benjamin Saller <bcsaller@yahoo.com>
+- Sidnei da Silva  <sidnei@x3ng.com>
+- Sylvain Thenault <sylvain.thenault@logilab.fr>
+- Christian Heimes <tiran@cheimes.de>
 
 Credits
 =======
