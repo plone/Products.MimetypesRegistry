@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.8 (unreleased)
+2.0.8 (2015-06-29)
 ------------------
 
 - Use doc icon for docx, xls for xlsx, ppt for pptx
