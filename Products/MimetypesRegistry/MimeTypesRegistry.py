@@ -422,7 +422,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
             portal_props = getToolByName(self, 'portal_properties')
             if portal_props \
                and 'site_properties' in portal_props \
-               and 'default_charset' in portal_props.site_properties:
+               and hasattr(portal_props.site_properties, 'default_charset'):
                 encoding = portal_props.site_properties.getProperty(
                     'default_charset', 'UTF-8')
             else:
