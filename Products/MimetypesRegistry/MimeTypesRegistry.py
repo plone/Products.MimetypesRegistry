@@ -23,6 +23,7 @@ from Products.MimetypesRegistry.mime_types import initialize
 from Products.MimetypesRegistry.mime_types import magic
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from types import UnicodeType
+from zope.component import getUtility
 from zope.contenttype import guess_content_type
 from zope.interface import implements
 import fnmatch
@@ -418,13 +419,19 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
             data = data.encode('UTF-8')
         encoding = guess_encoding(data)
         if encoding is None:
-            try:
-                site_props = getToolByName(
-                    self,
-                    'portal_properties').site_properties
-                encoding = site_props.getProperty('default_charset', 'UTF-8')
-            except:
-                encoding = 'UTF-8'
+            portal_props = getToolByName(self, 'portal_properties')
+            if portal_props \
+               and 'site_properties' in portal_props \
+               and 'default_charset' in portal_props.site_properties:
+                encoding = portal_props.site_properties.getProperty(
+                    'default_charset', 'UTF-8')
+            else:
+                try:
+                    from plone.registry.interfaces import IRegistry
+                    registry = getUtility(IRegistry)
+                    registry.get('plone.default_charset', 'UTF-8')
+                except ImportError:
+                    encoding = 'UTF-8'
         return encoding
 
     security.declareProtected(ManagePortal, 'manage_delObjects')
