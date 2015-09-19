@@ -429,7 +429,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
                 try:
                     from plone.registry.interfaces import IRegistry
                     registry = getUtility(IRegistry)
-                    registry.get('plone.default_charset', 'UTF-8')
+                    encoding = registry.get('plone.default_charset', 'UTF-8')
                 except ImportError:
                     encoding = 'UTF-8'
         return encoding
