@@ -7,7 +7,6 @@ from Persistence import PersistentMapping
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import UniqueObject
-from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import registerToolInterface
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 from Products.MimetypesRegistry.common import MimeTypeException
@@ -418,13 +417,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
             data = data.encode('UTF-8')
         encoding = guess_encoding(data)
         if encoding is None:
-            try:
-                site_props = getToolByName(
-                    self,
-                    'portal_properties').site_properties
-                encoding = site_props.getProperty('default_charset', 'UTF-8')
-            except:
-                encoding = 'UTF-8'
+            encoding = 'utf-8'
         return encoding
 
     security.declareProtected(ManagePortal, 'manage_delObjects')

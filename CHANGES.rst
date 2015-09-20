@@ -4,7 +4,8 @@ Changelog
 2.0.9 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Use registry to look up default_charset value when available.
+  [esteele]
 
 
 2.0.8 (2015-06-29)
