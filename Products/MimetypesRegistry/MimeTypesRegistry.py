@@ -7,7 +7,6 @@ from Persistence import PersistentMapping
 from Products.CMFCore.ActionProviderBase import ActionProviderBase
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import UniqueObject
-from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.utils import registerToolInterface
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 from Products.MimetypesRegistry.common import MimeTypeException
@@ -23,7 +22,6 @@ from Products.MimetypesRegistry.mime_types import initialize
 from Products.MimetypesRegistry.mime_types import magic
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from types import UnicodeType
-from zope.component import getUtility
 from zope.contenttype import guess_content_type
 from zope.interface import implements
 import fnmatch
@@ -419,19 +417,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
             data = data.encode('UTF-8')
         encoding = guess_encoding(data)
         if encoding is None:
-            portal_props = getToolByName(self, 'portal_properties')
-            if portal_props \
-               and 'site_properties' in portal_props \
-               and hasattr(portal_props.site_properties, 'default_charset'):
-                encoding = portal_props.site_properties.getProperty(
-                    'default_charset', 'UTF-8')
-            else:
-                try:
-                    from plone.registry.interfaces import IRegistry
-                    registry = getUtility(IRegistry)
-                    encoding = registry.get('plone.default_charset', 'UTF-8')
-                except ImportError:
-                    encoding = 'UTF-8'
+            encoding = 'utf-8'
         return encoding
 
     security.declareProtected(ManagePortal, 'manage_delObjects')
