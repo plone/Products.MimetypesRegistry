@@ -4,6 +4,8 @@ Changelog
 2.0.9 (unreleased)
 ------------------
 
+Fixes:
+
 - Use registry to look up default_charset value when available.
   [esteele]
 
@@ -24,7 +26,7 @@ Changelog
   ``application/ogg`` rather than ``audio/ogg`` or ``docx`` being
   ``application/zip``.
   [thet]
-   
+
 - Upgrade test infrastructure to plone.testing.
   [tomgross]
 
