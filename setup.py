@@ -21,7 +21,7 @@ setup(
     keywords='Zope mimetype registry',
     author='Benjamin Saller',
     author_email='plone-developers@lists.sourceforge.net',
-    url='http://pypi.python.org/pypi/Products.MimetypesRegistry',
+    url='https://pypi.python.org/pypi/Products.MimetypesRegistry',
     packages=find_packages(exclude=['ez_setup']),
     namespace_packages=['Products'],
     include_package_data=True,
