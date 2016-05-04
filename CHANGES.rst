@@ -6,8 +6,8 @@ Changelog
 
 Fixes:
 
-- Use registry to look up default_charset value when available.
-  [esteele]
+- In ``guess_encoding`` fall back to ``utf-8`` instead of trying to
+  read a portal property or the registry.  [esteele]
 
 
 2.0.8 (2015-06-29)
@@ -29,7 +29,6 @@ Fixes:
 
 - Upgrade test infrastructure to plone.testing.
   [tomgross]
-
 
 
 2.0.6 (2014-09-07)

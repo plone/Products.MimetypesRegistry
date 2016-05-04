@@ -406,11 +406,9 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
     security.declarePublic('guess_encoding')
 
     def guess_encoding(self, data):
-        """ Try to guess encoding from a text value if no encoding
-        guessed, used the default charset from site properties (Zope)
-        with a fallback to UTF-8 (should never happen with correct
-        site_properties, but always raise Attribute error without
-        Zope)
+        """ Try to guess encoding from a text value.
+
+        If no encoding can be guessed, fall back to utf-8.
         """
         if isinstance(data, type(u'')):
             # data maybe unicode but with another encoding specified
