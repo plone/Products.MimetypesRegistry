@@ -23,7 +23,7 @@ from Products.MimetypesRegistry.mime_types import magic
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from types import UnicodeType
 from zope.contenttype import guess_content_type
-from zope.interface import implements
+from zope.interface import implementer
 import fnmatch
 import os
 import re
@@ -41,14 +41,13 @@ encodings_map = {
 }
 
 
+@implementer(IMimetypesRegistry, ISourceAdapter)
 class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
     """Mimetype registry that deals with
     a) registering types
     b) wildcarding of rfc-2046 types
     c) classifying data into a given type
     """
-
-    implements(IMimetypesRegistry, ISourceAdapter)
 
     id = 'mimetypes_registry'
     meta_type = 'MimeTypes Registry'
