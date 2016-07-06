@@ -1,7 +1,7 @@
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 from Products.MimetypesRegistry.interfaces import IClassifier
 from types import InstanceType
-from zope.interface import implements
+from zope.interface import implementer
 import re
 
 
@@ -69,8 +69,8 @@ class application_msword(MimeTypeItem):
     binary = 1
 
 
+@implementer(IClassifier)
 class text_xml(MimeTypeItem):
-    implements(IClassifier)
 
     __name__ = "Extensible Markup Language (XML)"
     mimetypes = ('text/xml',)

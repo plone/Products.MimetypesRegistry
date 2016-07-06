@@ -5,14 +5,14 @@ from OFS.SimpleItem import Item
 from Persistence import Persistent
 from Products.CMFCore.permissions import ManagePortal
 from Products.MimetypesRegistry.interfaces import IMimetype
-from zope.interface import implements
+from zope.interface import implementer
 import os
 import urllib
 
 
+@implementer(IMimetype)
 class MimeTypeItem(Persistent, Explicit, Item):
     security = ClassSecurityInfo()
-    implements(IMimetype)
 
     extensions = ()
     globs = ()
