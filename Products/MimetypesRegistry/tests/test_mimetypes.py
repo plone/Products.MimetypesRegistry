@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from .utils import input_file_path
 from Products.CMFCore.utils import getToolByName
 from Products.MimetypesRegistry.mime_types import application_octet_stream

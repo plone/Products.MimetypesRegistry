@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Utilities for mime-types and the Windows registry.
 import _winreg
 import win32api

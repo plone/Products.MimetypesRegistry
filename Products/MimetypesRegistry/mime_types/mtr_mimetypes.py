@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 from Products.MimetypesRegistry.interfaces import IClassifier
 from types import InstanceType

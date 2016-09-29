@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from AccessControl.SecurityInfo import allow_module, allow_class
 from Products.MimetypesRegistry import MimeTypesRegistry
 from Products.MimetypesRegistry.common import MimeTypeException

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import mtr_mimetypes
 import py_mimetypes
 import smi_mimetypes

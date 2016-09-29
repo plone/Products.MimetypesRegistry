@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from cPickle import dump, load
 from stat import ST_MTIME
 from xml.sax import parse

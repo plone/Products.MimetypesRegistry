@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from AccessControl import ModuleSecurityInfo
 from types import StringType
 from types import UnicodeType
