@@ -10,7 +10,6 @@ from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import registerToolInterface
 from Products.CMFCore.utils import UniqueObject
 from Products.MimetypesRegistry.common import _www
-from Products.MimetypesRegistry.common import log
 from Products.MimetypesRegistry.common import MimeTypeException
 from Products.MimetypesRegistry.encoding import guess_encoding
 from Products.MimetypesRegistry.interfaces import IClassifier
@@ -27,8 +26,12 @@ from zope.contenttype import guess_content_type
 from zope.interface import implementer
 
 import fnmatch
+import logging
 import os
 import re
+
+
+logger = logging.getLogger(__name__)
 
 
 suffix_map = {
@@ -122,8 +125,12 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         group = self._mimetypes.setdefault(major, PersistentMapping())
         if minor in group:
             if group.get(minor) != mimetype:
-                log('Warning: redefining mime type %s (%s)' % (
-                    mt, mimetype.__class__))
+                logger.warn(
+                    'Redefining mime type {0} ({1})'.format(
+                        mt,
+                        mimetype.__class__
+                    )
+                )
         group[minor] = mimetype
 
     @security.protected(ManagePortal)
@@ -136,8 +143,13 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         mimetype = aq_base(mimetype)
         if extension in self.extensions:
             if self.extensions.get(extension) != mimetype:
-                log('Warning: redefining extension %s from %s to %s' % (
-                    extension, self.extensions[extension], mimetype))
+                logger.warn(
+                    'Redefining extension {0} from {1} to {2}'.format(
+                        extension,
+                        self.extensions[extension],
+                        mimetype
+                    )
+                )
         # we don't validate fmt yet, but its ["txt", "html"]
         self.extensions[extension] = mimetype
 
@@ -157,8 +169,13 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         if existing is not None:
             regex, mt = existing
             if mt != mimetype:
-                log('Warning: redefining glob %s from %s to %s' % (
-                    glob, mt, mimetype))
+                logger.warn(
+                    'Redefining glob {0} from {1} to {2}'.format(
+                        glob,
+                        mt,
+                        mimetype
+                    )
+                )
         # we don't validate fmt yet, but its ["txt", "html"]
         pattern = re.compile(fnmatch.translate(glob))
         globs[glob] = (pattern, mimetype)

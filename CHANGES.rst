@@ -17,7 +17,7 @@ New features:
 
 Bug fixes:
 
-- Cleanup: isort, autopep8, utf8 headers, manula cleanup.
+- Cleanup: isort, autopep8, utf8 headers, manual cleanup, security decorators.
   [jensens]
 
 - Remove outdated and unused (whole plone core) STRING_TYPES declaration form ``common.py``.
