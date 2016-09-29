@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.11 (unreleased)
+2.1.0 (unreleased)
 -------------------
 
 Breaking changes:
@@ -10,7 +10,10 @@ Breaking changes:
 
 New features:
 
-- *add item here*
+- Update ``freedesktop.org.xml`` file.
+  Uses version 1.7 tagged at 2016-09-05.
+  Downloaded tarball at https://freedesktop.org/wiki/Software/shared-mime-info/
+  [jensens]
 
 Bug fixes:
 
