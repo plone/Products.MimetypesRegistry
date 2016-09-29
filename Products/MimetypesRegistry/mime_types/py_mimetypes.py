@@ -20,6 +20,7 @@ def mimes_initialize():
     here = os.path.dirname(os.path.abspath(__file__))
     add_files([os.path.join(here, 'mime.types')])
 
+
 # don't register the mimetype from python mimetypes if matching on of
 # this extensions.
 skip_extensions = ()
