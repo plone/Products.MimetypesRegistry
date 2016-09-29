@@ -54,9 +54,9 @@ class IMimetypesRegistry(Interface):
     def lookup(mimetypestring):
         """Lookup for imimetypes object matching mimetypestring
 
-        mimetypestring may have an empty minor part or containing a wildcard (*)
-        mimetypestring may be an imimetype object (in this case it will be
-        returned unchanged, else it should be a RFC-2046 name
+        mimetypestring may have an empty minor part or containing a
+        wildcard (*) mimetypestring may be an imimetype object (in this case
+        it will be returned unchanged, else it should be a RFC-2046 name
 
         return a list of mimetypes objects associated with the RFC-2046 name
         return an empty list if no one is known.

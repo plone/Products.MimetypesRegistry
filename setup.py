@@ -39,6 +39,7 @@ setup(
         ]
     ),
     install_requires=[
+        'AccessControl>=3.0.0'
         'setuptools',
         'zope.contenttype',
         'zope.interface',

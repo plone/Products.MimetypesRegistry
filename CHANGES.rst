@@ -17,7 +17,11 @@ New features:
 
 Bug fixes:
 
-- *add item here*
+- Cleanup: isort, autopep8, utf8 headers, manula cleanup.
+  [jensens]
+
+- Remove outdated and unused (whole plone core) STRING_TYPES declaration form ``common.py``.
+  [jensens]
 
 
 2.0.10 (2016-08-09)

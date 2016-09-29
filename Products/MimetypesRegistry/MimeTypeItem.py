@@ -47,26 +47,22 @@ class MimeTypeItem(Persistent, Explicit, Item):
     def __hash__(self):
         return hash(self.name())
 
-    security.declarePublic('name')
-
+    @security.public
     def name(self):
         """ The name of this object """
         return self.__name__
 
-    security.declarePublic('major')
-
+    @security.public
     def major(self):
         """ return the major part of the RFC-2046 name for this mime type """
         return self.normalized().split('/', 1)[0]
 
-    security.declarePublic('minor')
-
+    @security.public
     def minor(self):
         """ return the minor part of the RFC-2046 name for this mime type """
         return self.normalized().split('/', 1)[1]
 
-    security.declarePublic('normalized')
-
+    @security.public
     def normalized(self):
         """ return the main RFC-2046 name for this mime type
 
@@ -75,16 +71,14 @@ class MimeTypeItem(Persistent, Explicit, Item):
         """
         return self.mimetypes[0]
 
-    security.declarePublic('urlsafe')
-
+    @security.public
     def urlsafe(self):
         """Return a url safe version of the normalized version of this
         mime type.
         """
         return urllib.quote(self.normalized())
 
-    security.declareProtected(ManagePortal, 'edit')
-
+    @security.protected(ManagePortal)
     def edit(self, name, mimetypes, extensions, icon_path,
              binary=0, globs=None, REQUEST=None):
         """edit this mime type"""
@@ -107,6 +101,7 @@ class MimeTypeItem(Persistent, Explicit, Item):
         self.icon_path = icon_path
         if REQUEST is not None:
             REQUEST['RESPONSE'].redirect(self.absolute_url() + '/manage_main')
+
 
 InitializeClass(MimeTypeItem)
 

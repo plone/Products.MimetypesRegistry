@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
-from Products.CMFCore.utils import getToolByName
 from StringIO import StringIO
+from zope.componet import getUtility
 
 import logging
 
 
-logger = logging.getLogger('MimetypesRegistry')
+logger = logging.getLogger(__name__)
 
 
 def fixUpSMIGlobs(portal, out=None, reinit=True):
     # This method is used both in migrations where we need the reinit and
     # during site creation, where the registry has already been initialized.
     from Products.MimetypesRegistry.mime_types import smi_mimetypes
-    mtr = getToolByName(portal, 'mimetypes_registry')
+    mtr = getUtility('mimetypes_registry')
     if reinit:
         smi_mimetypes.initialize(mtr)
 
