@@ -2,6 +2,7 @@
 from AccessControl import ModuleSecurityInfo
 from types import StringType
 from types import UnicodeType
+
 import logging
 import os.path
 

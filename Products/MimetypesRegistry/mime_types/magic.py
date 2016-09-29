@@ -11,8 +11,8 @@ magic.py
 """
 __version__ = '$Revision: 1.2 $'[11:-2]
 
-import struct
 import string
+import struct
 
 
 magic = [

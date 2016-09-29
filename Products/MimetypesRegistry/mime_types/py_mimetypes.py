@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
-from Products.MimetypesRegistry.MimeTypeItem import guess_icon_path
 from Products.MimetypesRegistry.common import MimeTypeException
+from Products.MimetypesRegistry.MimeTypeItem import guess_icon_path
+from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 from zope.contenttype import add_files
+
 import mimetypes as pymimetypes
 import os.path
 

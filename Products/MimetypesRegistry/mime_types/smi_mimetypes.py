@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-from cPickle import dump, load
+from cPickle import dump
+from cPickle import load
 from stat import ST_MTIME
 from xml.sax import parse
 from xml.sax.handler import ContentHandler
+
 import os
 
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from Products.MimetypesRegistry.encoding import guess_encoding
 from plone.app.testing.bbb import PloneTestCase as ATSiteTestCase
+from Products.MimetypesRegistry.encoding import guess_encoding
 
 
 class TestGuessEncoding(ATSiteTestCase):

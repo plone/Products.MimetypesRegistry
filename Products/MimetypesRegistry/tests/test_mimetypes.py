@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from .utils import input_file_path
+from plone.app.testing.bbb import PloneTestCase as ATSiteTestCase
 from Products.CMFCore.utils import getToolByName
 from Products.MimetypesRegistry.mime_types import application_octet_stream
 from Products.MimetypesRegistry.mime_types import text_plain
 from Products.MimetypesRegistry.mime_types import text_xml
-from plone.app.testing.bbb import PloneTestCase as ATSiteTestCase
 
 
 class TestMimeTypesclass(ATSiteTestCase):

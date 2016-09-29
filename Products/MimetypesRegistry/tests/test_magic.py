@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from .utils import input_file_path
+from plone.app.testing.bbb import PloneTestCase as ATSiteTestCase
 from Products.CMFCore.utils import getToolByName
 from Products.MimetypesRegistry.mime_types.magic import guessMime
-from plone.app.testing.bbb import PloneTestCase as ATSiteTestCase
+
 
 samplefiles = [
     ('OOoWriter', 'application/vnd.sun.xml.writer'),

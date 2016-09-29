@@ -7,6 +7,7 @@ from Persistence import Persistent
 from Products.CMFCore.permissions import ManagePortal
 from Products.MimetypesRegistry.interfaces import IMimetype
 from zope.interface import implementer
+
 import os
 import urllib
 

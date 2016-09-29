@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 # Utilities for mime-types and the Windows registry.
 import _winreg
+import logging
+import mimetypes
 import win32api
 import win32con
-import mimetypes
 
-import logging
+
 logger = logging.getLogger('mimetypes.win32')
 
 # "safely" query a value, returning a default when it doesn't exist.

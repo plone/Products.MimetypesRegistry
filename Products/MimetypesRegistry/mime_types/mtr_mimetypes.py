@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 from Products.MimetypesRegistry.interfaces import IClassifier
+from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 from types import InstanceType
 from zope.interface import implementer
+
 import re
 
 

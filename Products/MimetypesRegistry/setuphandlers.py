@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 from StringIO import StringIO
+
 import logging
+
 
 logger = logging.getLogger('MimetypesRegistry')
 

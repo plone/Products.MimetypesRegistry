@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import re
 import encodings
+import re
 
 
 EMACS_ENCODING_RGX = re.compile('[^#]*[#\s]*-\*-\s*coding: ([^\s]*)\s*-\*-\s*')
