@@ -1,13 +1,9 @@
 # -*- coding: utf-8 -*-
 from AccessControl import ModuleSecurityInfo
-from types import StringType
-from types import UnicodeType
 
 import logging
 import os.path
 
-
-STRING_TYPES = (UnicodeType, StringType)
 # directory where template for the ZMI are located
 _www = os.path.join(os.path.dirname(__file__), 'www')
 
