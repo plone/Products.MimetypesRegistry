@@ -2,6 +2,10 @@
 from zope.interface import Interface
 
 
+class MimeTypeException(Exception):
+    pass
+
+
 class IMimetype(Interface):
     """Specification for dealing with mimetypes RFC-2046 style"""
 

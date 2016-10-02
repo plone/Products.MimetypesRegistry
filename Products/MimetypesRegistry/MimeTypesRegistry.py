@@ -9,7 +9,6 @@ from Products.CMFCore.ActionProviderBase import ActionProviderBase
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import registerToolInterface
 from Products.CMFCore.utils import UniqueObject
-from Products.MimetypesRegistry.common import _www
 from Products.MimetypesRegistry.common import MimeTypeException
 from Products.MimetypesRegistry.encoding import guess_encoding
 from Products.MimetypesRegistry.interfaces import IClassifier
@@ -21,7 +20,6 @@ from Products.MimetypesRegistry.mime_types import initialize
 from Products.MimetypesRegistry.mime_types import magic
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
-from types import UnicodeType
 from zope.contenttype import guess_content_type
 from zope.interface import implementer
 
@@ -44,6 +42,8 @@ encodings_map = {
     'gz': 'gzip',
     'Z': 'compress',
 }
+
+_www = os.path.join(os.path.dirname(__file__), 'www')
 
 
 @implementer(IMimetypesRegistry, ISourceAdapter)
@@ -257,6 +257,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         Return an IMimetype object associated with the file's
         extension or None
         """
+        base = None
         if filename.find('.') != -1:
             base, ext = os.path.splitext(filename)
             ext = ext[1:]  # remove the dot
@@ -265,11 +266,8 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
                 ext = ext[1:]  # remove the dot
         else:
             ext = filename
-            base = None
 
-        # XXX This code below make no sense and may break because base
-        # isn't defined.
-        if ext in self.encodings_map and base:
+        if base is not None and ext in self.encodings_map:
             base, ext = os.path.splitext(base)
             ext = ext[1:]  # remove the dot
 
@@ -286,10 +284,8 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
 
         Return an IMimetype object associated with the glob's or None
         """
-        globs = getattr(self, 'globs', None)
-        if globs is None:
-            return None
-        for key in globs.keys():
+        globs = getattr(self, 'globs', {})
+        for key in globs:
             glob, mimetype = globs[key]
             if glob.match(filename):
                 return aq_base(mimetype)
@@ -298,9 +294,8 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
     @security.public
     def lookupGlob(self, glob):
         globs = getattr(self, 'globs', None)
-        if globs is None:
-            return None
-        return aq_base(globs.get(glob))
+        if globs is not None:
+            return aq_base(globs.get(glob))
 
     def _classifiers(self):
         return [mt for mt in self.mimetypes() if IClassifier.providedBy(mt)]
@@ -385,7 +380,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         # it is
         mt = self.classify(data, mimetype=mimetype, filename=filename)
 
-        if not mt.binary and not isinstance(data, UnicodeType):
+        if not mt.binary and not isinstance(data, unicode):
             # if no encoding specified, try to guess it from data
             if encoding is None:
                 encoding = self.guess_encoding(data)
@@ -415,7 +410,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
 
         If no encoding can be guessed, fall back to utf-8.
         """
-        if isinstance(data, type(u'')):
+        if isinstance(data, unicode):
             # data maybe unicode but with another encoding specified
             data = data.encode('UTF-8')
         encoding = guess_encoding(data)
