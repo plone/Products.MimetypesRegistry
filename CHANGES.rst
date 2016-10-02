@@ -15,6 +15,9 @@ New features:
   Downloaded tarball at https://freedesktop.org/wiki/Software/shared-mime-info/
   [jensens]
 
+- Add font/woff2 to supplemtn type, since its not in SMI.
+  [jensens]
+
 Bug fixes:
 
 - Cleanup: isort, autopep8, utf8 headers, manual cleanup, security decorators.

@@ -16,14 +16,8 @@
       directory="profiles/default"
       description="Extension profile for default MimetypesRegistry setup."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.post_install"
     />
 
-  <genericsetup:importStep
-      name="mimetypes-registry-various"
-      handler="Products.MimetypesRegistry.setuphandlers.setupMimetypesRegistry"
-      title="MimetypesRegistry setup"
-      description="MimetypesRegistry installation step.">
-    <depends name="componentregistry" />
-  </genericsetup:importStep>
 
 </configure>

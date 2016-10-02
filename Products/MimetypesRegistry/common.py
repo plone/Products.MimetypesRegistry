@@ -4,6 +4,6 @@ zope.deferredimport.initialize()
 
 zope.deferredimport.deprecated(
     "Import from Products.MimetypesRegistry.interfaces instead",
-    MimeTypeException='Products.MimetypesRegistry:'
-                      'interfaces.MimeTypeException',
+    MimeTypeException='Products.MimetypesRegistry.interfaces:'
+                      'MimeTypeException',
 )
