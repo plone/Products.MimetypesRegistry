@@ -2,20 +2,19 @@
 from AccessControl.SecurityInfo import allow_class
 from AccessControl.SecurityInfo import allow_module
 from Products.MimetypesRegistry import MimeTypesRegistry
-from Products.MimetypesRegistry.common import MimeTypeException
+from Products.MimetypesRegistry.interfaces import MimeTypeException  # noqa
 
 
-GLOBALS = globals()
-PKG_NAME = 'MimetypesRegistry'
-tools = (MimeTypesRegistry.MimeTypesRegistry, )
+# remove when Archetypes are removed:
 allow_module('Products.MimetypesRegistry.common')
 allow_class(MimeTypeException)
+# end remove
 
 
 def initialize(context):
     from Products.CMFCore import utils
     utils.ToolInit(
-        "%s Tool" % PKG_NAME,
-        tools=tools,
-        icon="tool.gif",
+        'MimetypesRegistry Tool',
+        tools=(MimeTypesRegistry.MimeTypesRegistry, ),
+        icon='tool.gif',
     ).initialize(context)
