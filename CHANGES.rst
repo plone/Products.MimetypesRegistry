@@ -15,9 +15,20 @@ New features:
   Downloaded tarball at https://freedesktop.org/wiki/Software/shared-mime-info/
   [jensens]
 
+- Add font/woff2 to supplement type, since its not in SMI.
+  [jensens]
+
+- Move icons from skins folder to a browser resourceDirectory nameed "mimetype.icons".
+  Adopt guess_icon_path to return the new location.
+  [jensens]
+
 Bug fixes:
 
-- *add item here*
+- Cleanup: isort, autopep8, utf8 headers, manual cleanup, security decorators.
+  [jensens]
+
+- Remove outdated and unused (whole plone core) STRING_TYPES declaration from ``common.py``.
+  [jensens]
 
 
 2.0.10 (2016-08-09)

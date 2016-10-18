@@ -1,11 +1,12 @@
-from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
+# -*- coding: utf-8 -*-
 from Products.MimetypesRegistry.common import MimeTypeException
+from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 
 
 map = {
     # '.extension' : 'mimetype',
-    '.svg': 'image/svg+xml',  # scaleable vector graphics
-    '.pjpg': 'image/pjpeg',  # scaleable vector graphics
+    '.pjpg': 'image/pjpeg',  # progressive jpeg - is this is still a thing?
+    '.woff2': 'font/woff2'
 }
 
 

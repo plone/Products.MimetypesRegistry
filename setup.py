@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from setuptools import find_packages
 from setuptools import setup
 
@@ -13,9 +14,6 @@ setup(
         "Framework :: Zope2",
         "Operating System :: OS Independent",
         "Framework :: Plone",
-        "Framework :: Plone :: 4.0",
-        "Framework :: Plone :: 4.1",
-        "Framework :: Plone :: 4.2",
         "Framework :: Plone :: 4.3",
         "Framework :: Plone :: 5.0",
         "Framework :: Plone :: 5.1",
@@ -32,18 +30,20 @@ setup(
     namespace_packages=['Products'],
     include_package_data=True,
     zip_safe=False,
+    install_requires=[
+        'AccessControl>=3.0.0'
+        'Acquisition',
+        'Products.CMFCore',
+        'setuptools',
+        'ZODB3',
+        'zope.contenttype',
+        'zope.deferredimport',
+        'zope.interface',
+        'Zope2',
+    ],
     extras_require=dict(
         test=[
             'plone.app.testing',
         ]
     ),
-    install_requires=[
-        'setuptools',
-        'zope.contenttype',
-        'zope.interface',
-        'Products.CMFCore',
-        'Acquisition',
-        'ZODB3',
-        'Zope2',
-    ],
 )

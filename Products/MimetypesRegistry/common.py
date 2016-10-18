@@ -1,25 +1,10 @@
-from AccessControl import ModuleSecurityInfo
-from types import StringType
-from types import UnicodeType
-import logging
-import os.path
+# -*- coding: utf-8 -*-
+# this code is needed by Archetypes only
+import zope.deferredimport
 
-
-STRING_TYPES = (UnicodeType, StringType)
-# directory where template for the ZMI are located
-_www = os.path.join(os.path.dirname(__file__), 'www')
-
-security = ModuleSecurityInfo()
-security.declarePrivate('logging')
-security.declarePrivate('os')
-security.declarePrivate('time')
-
-logger = logging.getLogger('MimetypesRegistry')
-
-
-def log(msg, severity=logging.INFO, id='MimetypesRegistry'):
-    logger.log(severity, msg)
-
-
-class MimeTypeException(Exception):
-    pass
+zope.deferredimport.initialize()
+zope.deferredimport.deprecated(
+    "Import from Products.MimetypesRegistry.interfaces instead",
+    MimeTypeException='Products.MimetypesRegistry.interfaces:'
+                      'MimeTypeException',
+)

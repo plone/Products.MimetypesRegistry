@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from AccessControl import ClassSecurityInfo
 from Acquisition import Explicit
 from App.class_init import InitializeClass
@@ -6,6 +7,7 @@ from Persistence import Persistent
 from Products.CMFCore.permissions import ManagePortal
 from Products.MimetypesRegistry.interfaces import IMimetype
 from zope.interface import implementer
+
 import os
 import urllib
 
@@ -45,26 +47,22 @@ class MimeTypeItem(Persistent, Explicit, Item):
     def __hash__(self):
         return hash(self.name())
 
-    security.declarePublic('name')
-
+    @security.public
     def name(self):
         """ The name of this object """
         return self.__name__
 
-    security.declarePublic('major')
-
+    @security.public
     def major(self):
         """ return the major part of the RFC-2046 name for this mime type """
         return self.normalized().split('/', 1)[0]
 
-    security.declarePublic('minor')
-
+    @security.public
     def minor(self):
         """ return the minor part of the RFC-2046 name for this mime type """
         return self.normalized().split('/', 1)[1]
 
-    security.declarePublic('normalized')
-
+    @security.public
     def normalized(self):
         """ return the main RFC-2046 name for this mime type
 
@@ -73,16 +71,14 @@ class MimeTypeItem(Persistent, Explicit, Item):
         """
         return self.mimetypes[0]
 
-    security.declarePublic('urlsafe')
-
+    @security.public
     def urlsafe(self):
         """Return a url safe version of the normalized version of this
         mime type.
         """
         return urllib.quote(self.normalized())
 
-    security.declareProtected(ManagePortal, 'edit')
-
+    @security.protected(ManagePortal)
     def edit(self, name, mimetypes, extensions, icon_path,
              binary=0, globs=None, REQUEST=None):
         """edit this mime type"""
@@ -106,10 +102,12 @@ class MimeTypeItem(Persistent, Explicit, Item):
         if REQUEST is not None:
             REQUEST['RESPONSE'].redirect(self.absolute_url() + '/manage_main')
 
+
 InitializeClass(MimeTypeItem)
 
 
-ICONS_DIR = os.path.join(os.path.dirname(__file__), 'skins', 'mimetypes_icons')
+ICONS_DIR = os.path.join(os.path.dirname(__file__), 'icons')
+PREFIX = '++resource++mimetype.icons/'
 
 
 def guess_icon_path(mimetype, icons_dir=ICONS_DIR, icon_ext='png'):
@@ -117,8 +115,8 @@ def guess_icon_path(mimetype, icons_dir=ICONS_DIR, icon_ext='png'):
         for ext in mimetype.extensions:
             icon_path = '%s.%s' % (ext, icon_ext)
             if os.path.exists(os.path.join(icons_dir, icon_path)):
-                return icon_path
+                return PREFIX + icon_path
     icon_path = '%s.png' % mimetype.major()
     if os.path.exists(os.path.join(icons_dir, icon_path)):
-        return icon_path
-    return 'unknown.png'
+        return PREFIX + icon_path
+    return PREFIX + 'unknown.png'
