@@ -4,10 +4,6 @@ Changelog
 2.1.0 (unreleased)
 -------------------
 
-Breaking changes:
-
-- *add item here*
-
 New features:
 
 - Update ``freedesktop.org.xml`` file.
