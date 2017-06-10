@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from Products.MimetypesRegistry.common import MimeTypeException
+from Products.MimetypesRegistry.interfaces import MimeTypeException
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 
 

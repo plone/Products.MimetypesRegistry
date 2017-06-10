@@ -9,13 +9,13 @@ from Products.CMFCore.ActionProviderBase import ActionProviderBase
 from Products.CMFCore.permissions import ManagePortal
 from Products.CMFCore.utils import registerToolInterface
 from Products.CMFCore.utils import UniqueObject
-from Products.MimetypesRegistry.common import MimeTypeException
 from Products.MimetypesRegistry.encoding import guess_encoding
 from Products.MimetypesRegistry.interfaces import IClassifier
 from Products.MimetypesRegistry.interfaces import IMimetype
 from Products.MimetypesRegistry.interfaces import IMimetypesRegistry
 from Products.MimetypesRegistry.interfaces import IMimetypesRegistryTool
 from Products.MimetypesRegistry.interfaces import ISourceAdapter
+from Products.MimetypesRegistry.interfaces import MimeTypeException
 from Products.MimetypesRegistry.mime_types import initialize
 from Products.MimetypesRegistry.mime_types import magic
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
