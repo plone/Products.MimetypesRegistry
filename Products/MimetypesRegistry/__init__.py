@@ -2,7 +2,7 @@
 from AccessControl.SecurityInfo import allow_class
 from AccessControl.SecurityInfo import allow_module
 from Products.MimetypesRegistry import MimeTypesRegistry
-from Products.MimetypesRegistry.interfaces import MimeTypeException  # noqa
+from Products.MimetypesRegistry.interfaces import MimeTypeException
 
 
 # remove when Archetypes are removed:
