@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import encodings
 import re
+import six
 
 
 EMACS_ENCODING_RGX = re.compile('[^#]*[#\s]*-\*-\s*coding: ([^\s]*)\s*-\*-\s*')
@@ -17,7 +18,7 @@ def guess_encoding(buffer):
     encoding = _guess_encoding(buffer)
     # step 1: if the encoding was detected, use the lower() because python
     # is using lower case names for encodings
-    if encoding and isinstance(encoding, basestring):
+    if encoding and isinstance(encoding, six.string_types):
         # encoding = encoding.lower()
         pass
     else:

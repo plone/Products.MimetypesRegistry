@@ -279,12 +279,12 @@ magicNumbers = []
 
 def strToNum(n):
     val = 0
-    col = long(1)
+    col = 1
     if n[:1] == 'x':
         n = '0' + n
     if n[:2] == '0x':
         # hex
-        n = string.lower(n[2:])
+        n = n[2:].lower()
         while len(n) > 0:
             l = n[len(n) - 1]
             val = val + string.hexdigits.index(l) * col
@@ -301,7 +301,7 @@ def strToNum(n):
             col = col * 8
             n = n[:len(n) - 1]
     else:
-        val = string.atol(n)
+        val = int(n)
     return val
 
 
@@ -339,7 +339,7 @@ class magicTest:
         return None
 
     def compare(self, data):
-        # print str([self.type, self.value, self.msg])
+        # print(str([self.type, self.value, self.msg]))
         try:
             if self.type == 'string':
                 c = ''
@@ -384,7 +384,7 @@ class magicTest:
         except:
             return None
 
-#    print str([self.msg, self.value, data])
+#    print(str([self.msg, self.value, data]))
         return self.test(data)
 
 
