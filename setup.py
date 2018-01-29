@@ -29,6 +29,7 @@ setup(
     packages=find_packages(exclude=['ez_setup']),
     namespace_packages=['Products'],
     include_package_data=True,
+    license='GPL',
     zip_safe=False,
     install_requires=[
         'AccessControl>=3.0.0'
