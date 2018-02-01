@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from AccessControl import ClassSecurityInfo
 from Acquisition import Explicit
 from App.class_init import InitializeClass
@@ -6,10 +7,11 @@ from OFS.SimpleItem import Item
 from Persistence import Persistent
 from Products.CMFCore.permissions import ManagePortal
 from Products.MimetypesRegistry.interfaces import IMimetype
+from six.moves import urllib
 from zope.interface import implementer
 
 import os
-import urllib
+import six
 
 
 @implementer(IMimetype)
@@ -76,7 +78,7 @@ class MimeTypeItem(Persistent, Explicit, Item):
         """Return a url safe version of the normalized version of this
         mime type.
         """
-        return urllib.quote(self.normalized())
+        return urllib.parse.quote(self.normalized())
 
     @security.protected(ManagePortal)
     def edit(self, name, mimetypes, extensions, icon_path,
@@ -84,13 +86,13 @@ class MimeTypeItem(Persistent, Explicit, Item):
         """edit this mime type"""
         # if mimetypes and extensions are string instead of lists,
         # split them on new lines
-        if isinstance(mimetypes, basestring):
+        if isinstance(mimetypes, six.string_types):
             mimetypes = [mts.strip() for mts in mimetypes.split('\n')
                          if mts.strip()]
-        if isinstance(extensions, basestring):
+        if isinstance(extensions, six.string_types):
             extensions = [mts.strip() for mts in extensions.split('\n')
                           if mts.strip()]
-        if isinstance(globs, basestring):
+        if isinstance(globs, six.string_types):
             globs = [glob.strip() for glob in globs.split('\n')
                      if glob.strip()]
         self.__name__ = self.id = name

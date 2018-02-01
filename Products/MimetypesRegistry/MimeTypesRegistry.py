@@ -27,6 +27,7 @@ import fnmatch
 import logging
 import os
 import re
+import six
 
 
 logger = logging.getLogger(__name__)
@@ -380,7 +381,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         # it is
         mt = self.classify(data, mimetype=mimetype, filename=filename)
 
-        if not mt.binary and not isinstance(data, unicode):
+        if not mt.binary and not isinstance(data, six.text_type):
             # if no encoding specified, try to guess it from data
             if encoding is None:
                 encoding = self.guess_encoding(data)
@@ -395,12 +396,12 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
 
             try:
                 try:
-                    data = unicode(data, encoding, self.unicodePolicy)
+                    data = six.text_type(data, encoding, self.unicodePolicy)
                 except (ValueError, LookupError):
                     # wrong unicodePolicy
-                    data = unicode(data, encoding)
+                    data = six.text_type(data, encoding)
             except:
-                data = unicode(data, self.fallbackEncoding)
+                data = six.text_type(data, self.fallbackEncoding)
 
         return (data, filename, aq_base(mt))
 
@@ -410,7 +411,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
 
         If no encoding can be guessed, fall back to utf-8.
         """
-        if isinstance(data, unicode):
+        if isinstance(data, six.text_type):
             # data maybe unicode but with another encoding specified
             data = data.encode('UTF-8')
         encoding = guess_encoding(data)

@@ -30,7 +30,7 @@ def get_desc_for_mimetype(mime_type):
         hk = win32api.RegOpenKey(win32con.HKEY_CLASSES_ROOT,
                                  r"MIME\Database\Content Type\\" + mime_type)
         desc = _RegQueryValue(hk, "")
-    except win32api.error, details:
+    except win32api.error as details:
         logger.info("win32api error fetching description for mime-type %r: %s",
                     mime_type, details)
         desc = None
@@ -43,7 +43,7 @@ def get_ext_for_mimetype(mime_type):
         hk = win32api.RegOpenKey(win32con.HKEY_CLASSES_ROOT,
                                  r"MIME\Database\Content Type\\" + mime_type)
         ext = _RegQueryValue(hk, "Extension")
-    except win32api.error, details:
+    except win32api.error as details:
         logger.info("win32api error fetching extension for mime-type %r: %s",
                     mime_type, details)
         ext = None
@@ -56,7 +56,7 @@ def get_mime_types():
         hk = win32api.RegOpenKey(win32con.HKEY_CLASSES_ROOT,
                                  r"MIME\Database\Content Type")
         items = win32api.RegEnumKeyEx(hk)
-    except win32api.error, details:
+    except win32api.error as details:
         logger.info("win32api error fetching mimetypes: %s",
                     details)
         items = []
