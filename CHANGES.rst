@@ -4,17 +4,9 @@ Changelog
 2.1.2 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
 New features:
 
 - Add Python 2 / 3 compatibility [davilima6]
-
-Bug fixes:
-
-- *add item here*
 
 
 2.1.1 (2017-06-26)
