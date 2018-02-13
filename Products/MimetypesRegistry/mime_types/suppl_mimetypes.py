@@ -6,6 +6,7 @@ map = {
     # '.extension' : 'mimetype',
     '.svg': 'image/svg+xml',  # scaleable vector graphics
     '.pjpg': 'image/pjpeg',  # scaleable vector graphics
+    '.woff2': 'font/woff2',
 }
 
 
