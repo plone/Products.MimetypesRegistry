@@ -4,7 +4,7 @@ Changelog
 2.0.11 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Backport add woff2 mimetype. [fredvd, jensens]
 
 
 2.0.10 (2016-08-09)
