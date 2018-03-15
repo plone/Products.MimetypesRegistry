@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from Products.MimetypesRegistry.interfaces import IClassifier
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
-from types import InstanceType
+# from types import InstanceType
 from zope.interface import implementer
 
 import re
@@ -155,8 +155,8 @@ reg_types = [
 
 def initialize(registry):
     for mt in reg_types:
-        if not isinstance(mt, InstanceType):
-            mt = mt()
+        # if not isinstance(mt, InstanceType):
+        #     mt = mt()
         registry.register(mt)
 
 
