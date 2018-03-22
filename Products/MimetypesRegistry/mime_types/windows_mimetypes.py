@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Utilities for mime-types and the Windows registry.
-import _winreg
+import six.moves.winreg
 import logging
 import mimetypes
 import win32api
@@ -84,6 +84,6 @@ if __name__ == '__main__':
     for mt in get_mime_types():
         ext = get_ext_for_mimetype(mt)
         desc = get_desc_for_mimetype(mt)
-        print "%s (%s) - %s" % (mt.lower(), desc, ext)
+        print("%s (%s) - %s" % (mt.lower(), desc, ext))
     import code
     code.interact(local=locals())
