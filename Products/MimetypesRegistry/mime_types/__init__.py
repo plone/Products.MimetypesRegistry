@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from mtr_mimetypes import *
+from .mtr_mimetypes import *
 
-import mtr_mimetypes
-import py_mimetypes
-import smi_mimetypes
-import suppl_mimetypes
+from . import mtr_mimetypes
+from . import py_mimetypes
+from . import smi_mimetypes
+from . import suppl_mimetypes
 
 
 def initialize(registry):
