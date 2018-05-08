@@ -35,7 +35,6 @@ setup(
         'Products.CMFCore',
         'setuptools',
         'six',
-        'ZODB3',
         'zope.contenttype',
         'zope.deferredimport',
         'zope.interface',
