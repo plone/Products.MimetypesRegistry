@@ -4,14 +4,6 @@ Changelog
 2.1.4 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
-New features:
-
-- *add item here*
-
 Bug fixes:
 
 - Don't depend on ZODB version directly. Rely on Zope dependency 
