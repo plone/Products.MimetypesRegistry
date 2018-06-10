@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
-from plone.app.testing.bbb import PloneTestCase as ATSiteTestCase
 from Products.MimetypesRegistry.encoding import guess_encoding
+from Products.MimetypesRegistry.testing import PRODUCTS_MIMETYPESREGISTRY_INTEGRATION_TESTING
+
+import unittest
 
 
-class TestGuessEncoding(ATSiteTestCase):
+class TestGuessEncoding(unittest.TestCase):
+
+    layer = PRODUCTS_MIMETYPESREGISTRY_INTEGRATION_TESTING
+
 
     def testUTF8(self):
         e = guess_encoding('\xef\xbb\xbf any UTF-8 data')

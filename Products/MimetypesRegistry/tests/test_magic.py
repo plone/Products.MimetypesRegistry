@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
-from .utils import input_file_path
-from plone.app.testing.bbb import PloneTestCase as ATSiteTestCase
+from Products.MimetypesRegistry.tests.utils import input_file_path
 from Products.CMFCore.utils import getToolByName
 from Products.MimetypesRegistry.mime_types.magic import guessMime
+from Products.MimetypesRegistry.testing import PRODUCTS_MIMETYPESREGISTRY_INTEGRATION_TESTING
+
+import unittest
 
 
 samplefiles = [
@@ -13,15 +15,17 @@ samplefiles = [
 ]
 
 
-class TestGuessMagic(ATSiteTestCase):
+class TestGuessMagic(unittest.TestCase):
 
-    def afterSetUp(self):
-        ATSiteTestCase.afterSetUp(self)
+    layer = PRODUCTS_MIMETYPESREGISTRY_INTEGRATION_TESTING
+
+    def setUp(self):
+        self.portal = self.layer['portal']
         self.registry = getToolByName(self.portal, 'mimetypes_registry')
 
     def test_guessMime(self):
         for filename, expected in samplefiles:
-            file = open(input_file_path(filename))
+            file = open(input_file_path(filename), 'rb')
             data = file.read()
             file.close()
 
