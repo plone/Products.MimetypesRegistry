@@ -344,7 +344,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
                 failed = 'text/x-unknown-content-type'
                 filename = filename or ''
                 data = data or ''
-                ct, enc = guess_content_type(filename, data, None)
+                ct, enc = guess_content_type(filename, data.encode(), None)
                 if ct == failed:
                     ct = 'text/plain'
                 mtlist = self.lookup(ct)

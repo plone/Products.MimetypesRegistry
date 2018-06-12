@@ -3,6 +3,7 @@ from Products.MimetypesRegistry.tests.utils import input_file_path
 from Products.CMFCore.utils import getToolByName
 from Products.MimetypesRegistry.mime_types.magic import guessMime
 from Products.MimetypesRegistry.testing import PRODUCTS_MIMETYPESREGISTRY_INTEGRATION_TESTING
+from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 
 import unittest
 
@@ -35,10 +36,12 @@ class TestGuessMagic(unittest.TestCase):
 
             # use mtr-tool
             got_from_tool = self.registry.classify(data)
-            self.failUnlessEqual(got_from_tool, expected)
+            self.assertTrue(isinstance(got_from_tool, MimeTypeItem))
+            self.failUnlessEqual(str(got_from_tool), expected)
 
             # now cut it to the first 8k if greater
             if len(data) > 8192:
                 data = data[:8192]
                 got_cutted = self.registry.classify(data)
-                self.failUnlessEqual(got_cutted, expected)
+                self.assertTrue(isinstance(got_from_tool, MimeTypeItem))
+                self.failUnlessEqual(str(got_cutted), expected)

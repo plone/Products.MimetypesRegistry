@@ -80,7 +80,8 @@ class text_xml(MimeTypeItem):
     binary = 0
 
     def classify(self, data):
-        m = re.search(b'^\\s*<\\?xml.*\\?>', data)
+        pat = b'^\\s*<\\?xml.*\\?>' if isinstance(data, bytes) else '^\\s*<\\?xml.*\\?>'
+        m = re.search(pat, data)
         if m:
             return 1  # True
         return None  # False
