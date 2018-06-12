@@ -4,17 +4,10 @@ Changelog
 2.1.5 (unreleased)
 ------------------
 
-Breaking changes:
-
-- *add item here*
-
 New features:
 
-- *add item here*
-
-Bug fixes:
-
-- *add item here*
+- Python 3 compatibility.
+  [rnix]
 
 
 2.1.4 (2018-06-04)
