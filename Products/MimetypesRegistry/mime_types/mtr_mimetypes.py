@@ -82,9 +82,7 @@ class text_xml(MimeTypeItem):
     def classify(self, data):
         pat = b'^\\s*<\\?xml.*\\?>' if isinstance(data, bytes) else '^\\s*<\\?xml.*\\?>'
         m = re.search(pat, data)
-        if m:
-            return 1  # True
-        return None  # False
+        return 1 if re.search(pat, data) else None
 
 
 class application_octet_stream(MimeTypeItem):
