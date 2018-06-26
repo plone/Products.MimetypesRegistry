@@ -126,7 +126,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         group = self._mimetypes.setdefault(major, PersistentMapping())
         if minor in group:
             if group.get(minor) != mimetype:
-                logger.warn(
+                logger.warning(
                     'Redefining mime type {0} ({1})'.format(
                         mt,
                         mimetype.__class__
@@ -144,7 +144,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         mimetype = aq_base(mimetype)
         if extension in self.extensions:
             if self.extensions.get(extension) != mimetype:
-                logger.warn(
+                logger.warning(
                     'Redefining extension {0} from {1} to {2}'.format(
                         extension,
                         self.extensions[extension],
@@ -170,7 +170,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         if existing is not None:
             regex, mt = existing
             if mt != mimetype:
-                logger.warn(
+                logger.warning(
                     'Redefining glob {0} from {1} to {2}'.format(
                         glob,
                         mt,
