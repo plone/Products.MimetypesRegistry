@@ -12,49 +12,49 @@ class TestGuessEncoding(unittest.TestCase):
 
     def testUTF8(self):
         e = guess_encoding('\xef\xbb\xbf any UTF-8 data')
-        self.failUnlessEqual(e, 'UTF-8')
+        self.assertEqual(e, 'UTF-8')
         e = guess_encoding(' any UTF-8 data \xef\xbb\xbf')
-        self.failUnlessEqual(e, None)
+        self.assertEqual(e, None)
 
     def testEmacs(self):
         e = guess_encoding('# -*- coding: UTF-8  -*-')
-        self.failUnlessEqual(e, 'UTF-8')
+        self.assertEqual(e, 'UTF-8')
         e = guess_encoding('''
         ### -*- coding: ISO-8859-1  -*-
         ''')
-        self.failUnlessEqual(e, 'ISO-8859-1')
+        self.assertEqual(e, 'ISO-8859-1')
         e = guess_encoding('''
 
         ### -*- coding: ISO-8859-1  -*-
         ''')
-        self.failUnlessEqual(e, None)
+        self.assertEqual(e, None)
 
     def testVim(self):
         e = guess_encoding('# vim:fileencoding=UTF-8')
-        self.failUnlessEqual(e, 'UTF-8')
+        self.assertEqual(e, 'UTF-8')
         e = guess_encoding('''
         ### vim:fileencoding=ISO-8859-1
         ''')
-        self.failUnlessEqual(e, 'ISO-8859-1')
+        self.assertEqual(e, 'ISO-8859-1')
         e = guess_encoding('''
 
         ### vim:fileencoding= ISO-8859-1
         ''')
-        self.failUnlessEqual(e, None)
+        self.assertEqual(e, None)
 
     def testXML(self):
         e = guess_encoding('<?xml?>')
-        self.failUnlessEqual(e, 'UTF-8')
+        self.assertEqual(e, 'UTF-8')
         e = guess_encoding('''<?xml version="1.0" encoding="ISO-8859-1" ?>
         ''')
-        self.failUnlessEqual(e, 'ISO-8859-1')
+        self.assertEqual(e, 'ISO-8859-1')
         e = guess_encoding('''<?xml version="1.0" encoding="ISO-8859-1"?>
         ''')
-        self.failUnlessEqual(e, 'ISO-8859-1')
+        self.assertEqual(e, 'ISO-8859-1')
         e = guess_encoding('''<?xml version="1.0" encoding="ISO-8859-1"?><truc encoding="UTF-8">
         </truc>
         ''')
-        self.failUnlessEqual(e, 'ISO-8859-1')
+        self.assertEqual(e, 'ISO-8859-1')
 
     def testHTML(self):
         e = guess_encoding('''<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -74,7 +74,7 @@ class TestGuessEncoding(unittest.TestCase):
 charset=utf-8
 </body>
 </html> ''')
-        self.failUnlessEqual(e, 'iso-8859-1')
+        self.assertEqual(e, 'iso-8859-1')
 
     def test_broken_percent(self):
         e = guess_encoding(
@@ -90,4 +90,4 @@ python:request.RESPONSE.setHeader('Content-Language', lang)"
 """
         )
         # unable to detect a valid encoding
-        self.failUnlessEqual(e, None)
+        self.assertEqual(e, None)

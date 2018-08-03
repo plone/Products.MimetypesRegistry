@@ -32,16 +32,16 @@ class TestGuessMagic(unittest.TestCase):
 
             # use method direct
             got = guessMime(data)
-            self.failUnlessEqual(got, expected)
+            self.assertEqual(got, expected)
 
             # use mtr-tool
             got_from_tool = self.registry.classify(data)
             self.assertTrue(isinstance(got_from_tool, MimeTypeItem))
-            self.failUnlessEqual(str(got_from_tool), expected)
+            self.assertEqual(str(got_from_tool), expected)
 
             # now cut it to the first 8k if greater
             if len(data) > 8192:
                 data = data[:8192]
                 got_cutted = self.registry.classify(data)
                 self.assertTrue(isinstance(got_from_tool, MimeTypeItem))
-                self.failUnlessEqual(str(got_cutted), expected)
+                self.assertEqual(str(got_cutted), expected)
