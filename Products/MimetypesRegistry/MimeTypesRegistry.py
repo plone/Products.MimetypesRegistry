@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
-from App.class_init import InitializeClass
+from AccessControl.class_init import InitializeClass
 from BTrees.OOBTree import OOBTree
 from OFS.Folder import Folder
 from Persistence import PersistentMapping
@@ -126,7 +126,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         group = self._mimetypes.setdefault(major, PersistentMapping())
         if minor in group:
             if group.get(minor) != mimetype:
-                logger.warn(
+                logger.warning(
                     'Redefining mime type {0} ({1})'.format(
                         mt,
                         mimetype.__class__
@@ -144,7 +144,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         mimetype = aq_base(mimetype)
         if extension in self.extensions:
             if self.extensions.get(extension) != mimetype:
-                logger.warn(
+                logger.warning(
                     'Redefining extension {0} from {1} to {2}'.format(
                         extension,
                         self.extensions[extension],
@@ -170,7 +170,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         if existing is not None:
             regex, mt = existing
             if mt != mimetype:
-                logger.warn(
+                logger.warning(
                     'Redefining glob {0} from {1} to {2}'.format(
                         glob,
                         mt,
@@ -344,6 +344,8 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
                 failed = 'text/x-unknown-content-type'
                 filename = filename or ''
                 data = data or ''
+                if six.PY3:
+                    data = data.encode()
                 ct, enc = guess_content_type(filename, data, None)
                 if ct == failed:
                     ct = 'text/plain'

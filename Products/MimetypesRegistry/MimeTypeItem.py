@@ -2,7 +2,7 @@
 
 from AccessControl import ClassSecurityInfo
 from Acquisition import Explicit
-from App.class_init import InitializeClass
+from AccessControl.class_init import InitializeClass
 from OFS.SimpleItem import Item
 from Persistence import Persistent
 from Products.CMFCore.permissions import ManagePortal
