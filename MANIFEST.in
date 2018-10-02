@@ -6,3 +6,6 @@ recursive-include Products *
 global-exclude *pyc .DS_Store
 exclude Products/MimetypesRegistry/mime_types/freedesktop.org.xml.bin
 exclude .installed.cfg
+include pyproject.toml
+recursive-exclude news *
+exclude news
