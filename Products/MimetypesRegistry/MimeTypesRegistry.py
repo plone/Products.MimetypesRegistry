@@ -393,7 +393,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
             # covered by
             # https://sourceforge.net/tracker/?func=detail&atid=355470&aid=843590&group_id=5470
             # dont remove this code unless python is fixed.
-            if encoding is "macintosh":
+            if encoding == "macintosh":
                 encoding = 'mac_roman'
 
             try:
