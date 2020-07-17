@@ -8,6 +8,15 @@ Changelog
 
 .. towncrier release notes start
 
+2.1.7 (2020-07-17)
+------------------
+
+Bug fixes:
+
+
+- Fixed SyntaxWarning ("is" vs. "==").  [ajung] (#1)
+
+
 2.1.6 (2020-04-23)
 ------------------
 
