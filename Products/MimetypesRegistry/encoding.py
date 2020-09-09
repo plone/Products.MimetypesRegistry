@@ -4,10 +4,10 @@ import re
 import six
 
 
-EMACS_ENCODING_RGX = re.compile('[^#]*[#\s]*-\*-\s*coding: ([^\s]*)\s*-\*-\s*')
-VIM_ENCODING_RGX = re.compile('[^#]*[#\s]*vim:fileencoding=\s*([^\s]*)\s*')
-XML_ENCODING_RGX = re.compile('<\?xml version=[^\s]*\s*encoding=([^\s]*)\s*\?>')  # noqa
-CHARSET_RGX = re.compile('charset=([^\s"]*)')
+EMACS_ENCODING_RGX = re.compile(r'[^#]*[#\s]*-\*-\s*coding: ([^\s]*)\s*-\*-\s*')
+VIM_ENCODING_RGX = re.compile(r'[^#]*[#\s]*vim:fileencoding=\s*([^\s]*)\s*')
+XML_ENCODING_RGX = re.compile(r'<\?xml version=[^\s]*\s*encoding=([^\s]*)\s*\?>')
+CHARSET_RGX = re.compile(r'charset=([^\s"]*)')
 
 
 def guess_encoding(buffer):
