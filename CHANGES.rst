@@ -8,6 +8,16 @@ Changelog
 
 .. towncrier release notes start
 
+2.1.8 (2020-09-21)
+------------------
+
+Bug fixes:
+
+
+- Fixed invalid escape sequences.
+  [maurits] (#3130)
+
+
 2.1.7 (2020-07-17)
 ------------------
 
