@@ -15,8 +15,8 @@ from Products.MimetypesRegistry.interfaces import IMimetypesRegistry
 from Products.MimetypesRegistry.interfaces import IMimetypesRegistryTool
 from Products.MimetypesRegistry.interfaces import ISourceAdapter
 from Products.MimetypesRegistry.interfaces import MimeTypeException
+from Products.MimetypesRegistry.mime_types import guessMime
 from Products.MimetypesRegistry.mime_types import initialize
-from Products.MimetypesRegistry.mime_types import magic
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 from zope.contenttype import guess_content_type
@@ -308,7 +308,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
                     mt = c
                     break
             if not mt:
-                mstr = magic.guessMime(data)
+                mstr = guessMime(data)
                 if mstr:
                     _mt = self.lookup(mstr)
                     if len(_mt) > 0:

@@ -38,6 +38,7 @@ setup(
     python_requires=">=3.10",
     install_requires=[
         "Products.CMFCore",
+        "python-magic",
         'pywin32 ; platform_system=="Windows"',
         "Zope",
     ],
