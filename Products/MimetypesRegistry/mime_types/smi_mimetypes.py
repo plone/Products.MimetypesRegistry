@@ -136,7 +136,7 @@ def initialize(registry):
             # malformed MIME type
             continue
 
-        name = str(res['comments'].get(u'en', mt))
+        name = res['comments'].get(u'en', mt).encode('utf8')
 
         # build a list of globs
         globs = []
