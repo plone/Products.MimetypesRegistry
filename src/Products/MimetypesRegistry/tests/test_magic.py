@@ -1,5 +1,5 @@
 from Products.CMFCore.utils import getToolByName
-from Products.MimetypesRegistry.mime_types.magic import guessMime
+from Products.MimetypesRegistry.mime_types import guessMime
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 from Products.MimetypesRegistry.testing import (
     PRODUCTS_MIMETYPESREGISTRY_INTEGRATION_TESTING,
