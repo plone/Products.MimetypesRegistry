@@ -6,8 +6,9 @@ dist
 Products/MimetypesRegistry/mime_types/freedesktop.org.xml.bin
 bin/
 lib/
+lib64/
 include/
 parts
 develop-eggs
 .installed.cfg
-
+pyvenv.cfg
