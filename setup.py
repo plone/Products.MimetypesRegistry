@@ -39,6 +39,7 @@ setup(
         'AccessControl>=3.0.0'
         'Acquisition',
         'Products.CMFCore',
+        'python-magic',
         'setuptools',
         'six',
         'zope.contenttype',
