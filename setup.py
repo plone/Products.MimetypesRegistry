@@ -36,7 +36,7 @@ setup(
     license='GPL',
     zip_safe=False,
     install_requires=[
-        'AccessControl>=3.0.0'
+        'AccessControl>=3.0.0',
         'Acquisition',
         'Products.CMFCore',
         'setuptools',
