@@ -8,6 +8,16 @@ Changelog
 
 .. towncrier release notes start
 
+2.1.9 (2022-01-19)
+------------------
+
+Bug fixes:
+
+
+- Fix missing comma in install_requires.
+  [maurits] (#21)
+
+
 2.1.8 (2020-09-21)
 ------------------
 
