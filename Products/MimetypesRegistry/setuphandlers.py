@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 def fixUpSMIGlobs(context, reinit=True):
     # This method is used both in migrations where we need the reinit and
     # during site creation, where the registry has already been initialized.
-    mtr = getToolByName(context, 'mimetypes_registry')
+    mtr = getToolByName(context, "mimetypes_registry")
     if reinit:
         smi_mimetypes.initialize(mtr)
 
@@ -19,14 +19,13 @@ def fixUpSMIGlobs(context, reinit=True):
     for glob in mtr.globs.keys():
         if glob not in mtr.extensions:
             continue
-        logger.debug(
-            'Found glob %s in extensions registry, removing.' % glob
-        )
+        logger.debug("Found glob %s in extensions registry, removing." % glob)
         mti = mtr.extensions[glob]
         del mtr.extensions[glob]
         if glob in mti.extensions:
-            logger.debug('Found glob %s in mimetype %s extensions, '
-                         'removing.' % (glob, mti))
+            logger.debug(
+                "Found glob %s in mimetype %s extensions, " "removing." % (glob, mti)
+            )
             exts = list(mti.extensions)
             exts.remove(glob)
             mti.extensions = tuple(exts)

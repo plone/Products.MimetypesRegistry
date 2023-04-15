@@ -7,7 +7,6 @@ import Products.MimetypesRegistry
 
 
 class ProductsMimetypesregistryLayer(PloneSandboxLayer):
-
     defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
@@ -17,7 +16,7 @@ class ProductsMimetypesregistryLayer(PloneSandboxLayer):
         self.loadZCML(package=Products.MimetypesRegistry)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'Products.MimetypesRegistry:MimetypesRegistry')
+        applyProfile(portal, "Products.MimetypesRegistry:MimetypesRegistry")
 
 
 PRODUCTS_MIMETYPESREGISTRY_FIXTURE = ProductsMimetypesregistryLayer()
@@ -25,5 +24,5 @@ PRODUCTS_MIMETYPESREGISTRY_FIXTURE = ProductsMimetypesregistryLayer()
 
 PRODUCTS_MIMETYPESREGISTRY_INTEGRATION_TESTING = IntegrationTesting(
     bases=(PRODUCTS_MIMETYPESREGISTRY_FIXTURE,),
-    name='ProductsMimetypesregistryLayer:IntegrationTesting',
+    name="ProductsMimetypesregistryLayer:IntegrationTesting",
 )

@@ -7,39 +7,37 @@ import re
 
 
 class text_plain(MimeTypeItem):
-
     __name__ = "Plain Text"
-    mimetypes = ('text/plain',)
-    extensions = ('txt',)
+    mimetypes = ("text/plain",)
+    extensions = ("txt",)
     binary = 0
 
 
 class text_pre_plain(MimeTypeItem):
-
     __name__ = "Pre-formatted Text (<pre>)"
-    mimetypes = ('text/plain-pre',)
+    mimetypes = ("text/plain-pre",)
     extensions = ()
     binary = 0
 
 
 class text_structured(MimeTypeItem):
-
     __name__ = "Structured Text"
-    mimetypes = ('text/structured',)
-    extensions = ('stx',)
+    mimetypes = ("text/structured",)
+    extensions = ("stx",)
     binary = 0
 
 
 class text_rest(MimeTypeItem):
-
     __name__ = "reStructured Text"
-    mimetypes = ("text/x-rst", "text/restructured",)
+    mimetypes = (
+        "text/x-rst",
+        "text/restructured",
+    )
     extensions = ("rst", "rest", "restx")  # txt?
     binary = 0
 
 
 class text_python(MimeTypeItem):
-
     __name__ = "Python Source"
     mimetypes = ("text/x-python",)
     extensions = ("py",)
@@ -47,7 +45,6 @@ class text_python(MimeTypeItem):
 
 
 class text_wiki(MimeTypeItem):
-
     __name__ = "Wiki text"
     mimetypes = ("text/wiki",)
     extensions = ()
@@ -55,31 +52,28 @@ class text_wiki(MimeTypeItem):
 
 
 class application_rtf(MimeTypeItem):
-
-    __name__ = 'Rich Text Format (RTF)'
-    mimetypes = ('application/rtf',)
-    extensions = ('rtf',)
+    __name__ = "Rich Text Format (RTF)"
+    mimetypes = ("application/rtf",)
+    extensions = ("rtf",)
     binary = 1
 
 
 class application_msword(MimeTypeItem):
-
     __name__ = "Microsoft Word Document"
-    mimetypes = ('application/msword',)
-    extensions = ('doc',)
+    mimetypes = ("application/msword",)
+    extensions = ("doc",)
     binary = 1
 
 
 @implementer(IClassifier)
 class text_xml(MimeTypeItem):
-
     __name__ = "Extensible Markup Language (XML)"
-    mimetypes = ('text/xml',)
-    extensions = ('xml',)
+    mimetypes = ("text/xml",)
+    extensions = ("xml",)
     binary = 0
 
     def classify(self, data):
-        pat = b'^\\s*<\\?xml.*\\?>' if isinstance(data, bytes) else '^\\s*<\\?xml.*\\?>'
+        pat = b"^\\s*<\\?xml.*\\?>" if isinstance(data, bytes) else "^\\s*<\\?xml.*\\?>"
         m = re.search(pat, data)
         return 1 if re.search(pat, data) else None
 
@@ -87,48 +81,43 @@ class text_xml(MimeTypeItem):
 class application_octet_stream(MimeTypeItem):
     # we need to be sure this one exists
     __name__ = "Octet Stream"
-    mimetypes = ('application/octet-stream',)
+    mimetypes = ("application/octet-stream",)
     binary = 1
     extensions = ()
 
 
 class text_html(MimeTypeItem):
-
     __name__ = "HTML"
-    mimetypes = ('text/html',)
-    extensions = ('html', 'htm')
+    mimetypes = ("text/html",)
+    extensions = ("html", "htm")
     binary = 0
 
 
 class text_html_safe(MimeTypeItem):
-
     __name__ = "Safe HTML"
-    mimetypes = ('text/x-html-safe',)
+    mimetypes = ("text/x-html-safe",)
     extensions = ()
     binary = 0
 
 
 class text_web_intelligent(MimeTypeItem):
-
     __name__ = "Web Intelligent Plain Text"
-    mimetypes = ('text/x-web-intelligent',)
+    mimetypes = ("text/x-web-intelligent",)
     extensions = ()
     binary = 0
 
 
 class text_web_markdown(MimeTypeItem):
-
     __name__ = "Markdown"
-    mimetypes = ('text/x-web-markdown',)
-    extensions = ('markdown',)
+    mimetypes = ("text/x-web-markdown",)
+    extensions = ("markdown",)
     binary = 0
 
 
 class text_web_textile(MimeTypeItem):
-
     __name__ = "Textile"
-    mimetypes = ('text/x-web-textile',)
-    extensions = ('textile',)
+    mimetypes = ("text/x-web-textile",)
+    extensions = ("textile",)
     binary = 0
 
 

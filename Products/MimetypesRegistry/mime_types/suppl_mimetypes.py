@@ -4,8 +4,8 @@ from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 
 map = {
     # '.extension' : 'mimetype',
-    '.pjpg': 'image/pjpeg',  # progressive jpeg - is this is still a thing?
-    '.woff2': 'font/woff2'
+    ".pjpg": "image/pjpeg",  # progressive jpeg - is this is still a thing?
+    ".woff2": "font/woff2",
 }
 
 
@@ -14,7 +14,7 @@ def initialize(registry):
     # and add them using some default policy, none of these will impl
     # iclassifier
     for ext, mt in map.items():
-        if ext[0] == '.':
+        if ext[0] == ".":
             ext = ext[1:]
 
         if registry.lookupExtension(ext):
@@ -29,7 +29,7 @@ def initialize(registry):
             mto = mto[0]
             if ext not in mto.extensions:
                 registry.register_extension(ext, mto)
-                mto.extensions += (ext, )
+                mto.extensions += (ext,)
             continue
-        isBin = mt.split('/', 1)[0] != "text"
+        isBin = mt.split("/", 1)[0] != "text"
         registry.register(MimeTypeItem(mt, (mt,), (ext,), isBin))
