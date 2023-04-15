@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 magic.py
 
@@ -314,7 +313,7 @@ class magicTest:
         if t.count('&') > 0:
             mask = strToNum(t[t.index('&') + 1:])
             t = t[:t.index('&')]
-        if isinstance(offset, type('a')):
+        if isinstance(offset, str):
             self.offset = strToNum(offset)
         else:
             self.offset = offset

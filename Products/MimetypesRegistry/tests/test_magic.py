@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Products.MimetypesRegistry.tests.utils import input_file_path
 from Products.CMFCore.utils import getToolByName
 from Products.MimetypesRegistry.mime_types.magic import guessMime

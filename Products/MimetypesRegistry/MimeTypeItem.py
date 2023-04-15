@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from AccessControl import ClassSecurityInfo
 from Acquisition import Explicit
 from AccessControl.class_init import InitializeClass
@@ -86,13 +84,13 @@ class MimeTypeItem(Persistent, Explicit, Item):
         """edit this mime type"""
         # if mimetypes and extensions are string instead of lists,
         # split them on new lines
-        if isinstance(mimetypes, six.string_types):
+        if isinstance(mimetypes, str):
             mimetypes = [mts.strip() for mts in mimetypes.split('\n')
                          if mts.strip()]
-        if isinstance(extensions, six.string_types):
+        if isinstance(extensions, str):
             extensions = [mts.strip() for mts in extensions.split('\n')
                           if mts.strip()]
-        if isinstance(globs, six.string_types):
+        if isinstance(globs, str):
             globs = [glob.strip() for glob in globs.split('\n')
                      if glob.strip()]
         self.__name__ = self.id = name
@@ -115,7 +113,7 @@ PREFIX = '++resource++mimetype.icons/'
 def guess_icon_path(mimetype, icons_dir=ICONS_DIR, icon_ext='png'):
     if mimetype.extensions:
         for ext in mimetype.extensions:
-            icon_path = '%s.%s' % (ext, icon_ext)
+            icon_path = f'{ext}.{icon_ext}'
             if os.path.exists(os.path.join(icons_dir, icon_path)):
                 return PREFIX + icon_path
     icon_path = '%s.png' % mimetype.major()

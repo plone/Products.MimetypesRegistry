@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import encodings
 import re
 import six
@@ -18,7 +17,7 @@ def guess_encoding(buffer):
     encoding = _guess_encoding(buffer)
     # step 1: if the encoding was detected, use the lower() because python
     # is using lower case names for encodings
-    if encoding and isinstance(encoding, six.string_types):
+    if encoding and isinstance(encoding, str):
         # encoding = encoding.lower()
         pass
     else:
@@ -43,7 +42,7 @@ def _guess_encoding(buffer):
 
     FIXME: it could be mime type driven but it seems less painful like that
     """
-    assert isinstance(buffer, type('')), type(buffer)
+    assert isinstance(buffer, str), type(buffer)
     # default to ascii on empty buffer
     if not buffer:
         return 'ascii'

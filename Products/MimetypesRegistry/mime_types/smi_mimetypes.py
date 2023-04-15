@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-from six.moves.cPickle import dump
-from six.moves.cPickle import load
+from pickle import dump
+from pickle import load
 from stat import ST_MTIME
 from xml.sax import parse
 from xml.sax.handler import ContentHandler
@@ -55,7 +54,7 @@ class SharedMimeInfoHandler(ContentHandler):
         if self.collect_comment and name in ('comment',):
             self.collect_comment = False
             lang = self.__comment_lang
-            comment = u''.join(self.__comment_buffer)
+            comment = ''.join(self.__comment_buffer)
             if not comment:
                 comment = self.current['type']
             self.current['comments'][lang] = comment
@@ -77,7 +76,7 @@ def readSMIFile():
     mtime = 0
     try:
         mtime = os.stat(SMI_FILE)[ST_MTIME]
-    except (IOError, OSError):
+    except OSError:
         pass
 
     if os.path.exists(SMI_COMPILED_FILE):
@@ -87,7 +86,7 @@ def readSMIFile():
         bin_mtime = 0
         try:
             bin_mtime = os.stat(SMI_COMPILED_FILE)[ST_MTIME]
-        except (IOError, OSError):
+        except OSError:
             pass
 
         if mtime <= bin_mtime:
@@ -97,7 +96,7 @@ def readSMIFile():
                 fd = open(SMI_COMPILED_FILE, 'rb')
                 result = load(fd)
                 fd.close()
-            except (IOError, OSError, EOFError):
+            except (OSError, EOFError):
                 pass
 
             if result:
@@ -109,7 +108,7 @@ def readSMIFile():
         fd = open(SMI_COMPILED_FILE, 'wb')
         dump(result, fd, protocol=2)
         fd.close()
-    except (IOError, OSError):
+    except OSError:
         pass
 
     return result
@@ -136,7 +135,7 @@ def initialize(registry):
             # malformed MIME type
             continue
 
-        name = str(res['comments'].get(u'en', mt))
+        name = str(res['comments'].get('en', mt))
 
         # build a list of globs
         globs = []

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Products.MimetypesRegistry.interfaces import MimeTypeException
 from Products.MimetypesRegistry.MimeTypeItem import guess_icon_path
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem

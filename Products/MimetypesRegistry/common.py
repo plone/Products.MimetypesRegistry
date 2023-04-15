@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # this code is needed by Archetypes only
 import zope.deferredimport
 

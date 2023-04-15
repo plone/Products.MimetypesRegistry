@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from AccessControl import ClassSecurityInfo
 from Acquisition import aq_base
 from AccessControl.class_init import InitializeClass
@@ -127,7 +126,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         if minor in group:
             if group.get(minor) != mimetype:
                 logger.warning(
-                    'Redefining mime type {0} ({1})'.format(
+                    'Redefining mime type {} ({})'.format(
                         mt,
                         mimetype.__class__
                     )
@@ -145,7 +144,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         if extension in self.extensions:
             if self.extensions.get(extension) != mimetype:
                 logger.warning(
-                    'Redefining extension {0} from {1} to {2}'.format(
+                    'Redefining extension {} from {} to {}'.format(
                         extension,
                         self.extensions[extension],
                         mimetype
@@ -171,7 +170,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
             regex, mt = existing
             if mt != mimetype:
                 logger.warning(
-                    'Redefining glob {0} from {1} to {2}'.format(
+                    'Redefining glob {} from {} to {}'.format(
                         glob,
                         mt,
                         mimetype
@@ -344,8 +343,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
                 failed = 'text/x-unknown-content-type'
                 filename = filename or ''
                 data = data or ''
-                if six.PY3:
-                    data = data.encode()
+                data = data.encode()
                 ct, enc = guess_content_type(filename, data, None)
                 if ct == failed:
                     ct = 'text/plain'
@@ -383,7 +381,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         # it is
         mt = self.classify(data, mimetype=mimetype, filename=filename)
 
-        if not mt.binary and not isinstance(data, six.text_type):
+        if not mt.binary and not isinstance(data, str):
             # if no encoding specified, try to guess it from data
             if encoding is None:
                 encoding = self.guess_encoding(data)
@@ -398,12 +396,12 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
 
             try:
                 try:
-                    data = six.text_type(data, encoding, self.unicodePolicy)
+                    data = str(data, encoding, self.unicodePolicy)
                 except (ValueError, LookupError):
                     # wrong unicodePolicy
-                    data = six.text_type(data, encoding)
+                    data = str(data, encoding)
             except:
-                data = six.text_type(data, self.fallbackEncoding)
+                data = str(data, self.fallbackEncoding)
 
         return (data, filename, aq_base(mt))
 
@@ -413,7 +411,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
 
         If no encoding can be guessed, fall back to utf-8.
         """
-        if isinstance(data, six.text_type):
+        if isinstance(data, str):
             # data maybe unicode but with another encoding specified
             data = data.encode('UTF-8')
         encoding = guess_encoding(data)

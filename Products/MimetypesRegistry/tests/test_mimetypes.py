@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Products.CMFCore.utils import getToolByName
 from Products.MimetypesRegistry.mime_types import application_octet_stream
 from Products.MimetypesRegistry.mime_types import text_plain
