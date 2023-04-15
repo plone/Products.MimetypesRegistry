@@ -156,7 +156,7 @@ class TestMimeTypesclass(unittest.TestCase):
 
     def testAdaptMt(self):
         data, filename, mt = self.registry("bar", mimetype="text/xml")
-        # this test that data has been adaped and file seeked to 0
+        # this test that data has been adapted and file seeked to 0
         self.assertEqual(data, "bar")
         self.assertEqual(filename, None)
         self.assertTrue(isinstance(mt, text_xml), str(mt))
@@ -164,7 +164,7 @@ class TestMimeTypesclass(unittest.TestCase):
     def testAdaptFile(self):
         file = open(input_file_path("rest1.rst"))
         data, filename, mt = self.registry(file)
-        # this test that data has been adaped and file seeked to 0
+        # this test that data has been adapted and file seeked to 0
         self.assertEqual(data, file.read())
         file.close()
         self.assertEqual(filename, "rest1.rst")
@@ -172,7 +172,7 @@ class TestMimeTypesclass(unittest.TestCase):
 
     def testAdaptData(self):
         data, filename, mt = self.registry("<?xml ?>")
-        # this test that data has been adaped and file seeked to 0
+        # this test that data has been adapted and file seeked to 0
         self.assertEqual(data, "<?xml ?>")
         self.assertEqual(filename, None)
         self.assertTrue(isinstance(mt, text_xml), str(mt))

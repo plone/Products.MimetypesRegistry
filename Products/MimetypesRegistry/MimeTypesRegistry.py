@@ -338,7 +338,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
 
     def __call__(self, data, **kwargs):
         """Return a triple (data, filename, mimetypeobject) given
-        some raw data and optional paramters
+        some raw data and optional parameters
 
         method from the isourceAdapter interface
         """
@@ -457,7 +457,7 @@ registerToolInterface("mimetypes_registry", IMimetypesRegistryTool)
 
 
 def split(name):
-    """split a mime type in a (major / minor) 2-uple"""
+    """split a mime type in a (major / minor) 2-tuple"""
     try:
         major, minor = name.split("/", 1)
     except:

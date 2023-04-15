@@ -29,10 +29,10 @@ magic = [
     [257, "string", "=", b"ustar\040\040\0", "application/x-gtar"],
     # the following detection of OOo is according to
     # http://books.evc-cit.info/oobook/ch01.html
-    # and some heuristics found in hexeditor. if theres a better way to detect,
+    # and some heuristics found in hexeditor. if there is a better way to detect,
     # we should replace the signatures below.
     # best would to just read and evaluate the manifest file of the zip, but
-    # the magic tests are running on the first 8kB, so we cant unzip the
+    # the magic tests are running on the first 8kB, so we can't unzip the
     # manifest in files >8kB.
     [
         30,
@@ -324,7 +324,7 @@ def strToNum(n):
 
 class magicTest:
     def __init__(self, offset, t, op, value, msg, mask=None):
-        # XXX: ``mask`` not used inside this package. Check wether used from
+        # XXX: ``mask`` not used inside this package. Check whether used from
         #      outside somewhere in plone. If so, write test, else remove.
         if t.count("&") > 0:
             mask = strToNum(t[t.index("&") + 1 :])
@@ -375,23 +375,23 @@ class magicTest:
                     [c] = struct.unpack("c", d)
                 data = s
             elif self.type == "short":
-                # XXX: not used inside this package. Check wether used from
+                # XXX: not used inside this package. Check whether used from
                 #      outside somewhere in plone. If so, write test, else remove.
                 [data] = struct.unpack("h", data[self.offset : self.offset + 2])
             elif self.type == "leshort":
-                # XXX: not used inside this package. Check wether used from
+                # XXX: not used inside this package. Check whether used from
                 #      outside somewhere in plone. If so, write test, else remove.
                 [data] = struct.unpack("<h", data[self.offset : self.offset + 2])
             elif self.type == "beshort":
-                # XXX: not used inside this package. Check wether used from
+                # XXX: not used inside this package. Check whether used from
                 #      outside somewhere in plone. If so, write test, else remove.
                 [data] = struct.unpack(">H", data[self.offset : self.offset + 2])
             elif self.type == "long":
-                # XXX: not used inside this package. Check wether used from
+                # XXX: not used inside this package. Check whether used from
                 #      outside somewhere in plone. If so, write test, else remove.
                 [data] = struct.unpack("l", data[self.offset : self.offset + 4])
             elif self.type == "lelong":
-                # XXX: not used inside this package. Check wether used from
+                # XXX: not used inside this package. Check whether used from
                 #      outside somewhere in plone. If so, write test, else remove.
                 [data] = struct.unpack("<l", data[self.offset : self.offset + 4])
             elif self.type == "belong":
