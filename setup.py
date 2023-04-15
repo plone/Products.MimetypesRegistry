@@ -35,17 +35,13 @@ setup(
     zip_safe=False,
     python_requires=">=3.8",
     install_requires=[
-        "AccessControl>=3.0.0",
-        "Acquisition",
         "Products.CMFCore",
         "setuptools",
-        "zope.contenttype",
-        "zope.deferredimport",
-        "zope.interface",
-        "Zope2",
+        'pywin32 ; platform_system=="Windows"',
     ],
     extras_require=dict(
         test=[
+            "plone.app.contenttypes[test]",
             "plone.app.testing",
         ]
     ),
