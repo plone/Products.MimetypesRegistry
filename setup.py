@@ -33,6 +33,7 @@ setup(
     include_package_data=True,
     license="GPL",
     zip_safe=False,
+    python_requires=">=3.8",
     install_requires=[
         "AccessControl>=3.0.0",
         "Acquisition",
