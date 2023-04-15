@@ -25,7 +25,7 @@ def guess_encoding(buffer):
     # if None is returned or an exception is raised the encoding is invalid
     try:
         result = encodings.search_function(encoding.lower())
-    except:
+    except Exception:
         # XXX log
         result = None
 

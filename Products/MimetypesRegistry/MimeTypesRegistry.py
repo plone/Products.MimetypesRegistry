@@ -379,7 +379,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
                 except (ValueError, LookupError):
                     # wrong unicodePolicy
                     data = str(data, encoding)
-            except:
+            except Exception:
                 data = str(data, self.fallbackEncoding)
 
         return (data, filename, aq_base(mt))
@@ -459,6 +459,6 @@ def split(name):
     """split a mime type in a (major / minor) 2-tuple"""
     try:
         major, minor = name.split("/", 1)
-    except:
+    except Exception:
         raise MimeTypeException("Malformed MIME type (%s)" % name)
     return major, minor

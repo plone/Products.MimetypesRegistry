@@ -302,18 +302,18 @@ def strToNum(n):
         # hex
         n = n[2:].lower()
         while len(n) > 0:
-            l = n[len(n) - 1]
-            val = val + string.hexdigits.index(l) * col
+            char = n[len(n) - 1]
+            val = val + string.hexdigits.index(char) * col
             col = col * 16
             n = n[: len(n) - 1]
     elif n[0] == "\\":
         # octal
         n = n[1:]
         while len(n) > 0:
-            l = n[len(n) - 1]
-            if ord(l) < 48 or ord(l) > 57:
+            char = n[len(n) - 1]
+            if ord(char) < 48 or ord(char) > 57:
                 break
-            val = val + int(l) * col
+            val = val + int(char) * col
             col = col * 8
             n = n[: len(n) - 1]
     else:
@@ -397,7 +397,7 @@ class magicTest:
                 [data] = struct.unpack(">l", data[self.offset : self.offset + 4])
             else:
                 pass
-        except:
+        except Exception:
             return None
 
         return self.test(data)
