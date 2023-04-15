@@ -118,9 +118,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         group = self._mimetypes.setdefault(major, PersistentMapping())
         if minor in group:
             if group.get(minor) != mimetype:
-                logger.warning(
-                    f"Redefining mime type {mt} ({mimetype.__class__})"
-                )
+                logger.warning(f"Redefining mime type {mt} ({mimetype.__class__})")
         group[minor] = mimetype
 
     @security.protected(ManagePortal)
@@ -157,9 +155,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         if existing is not None:
             regex, mt = existing
             if mt != mimetype:
-                logger.warning(
-                    f"Redefining glob {glob} from {mt} to {mimetype}"
-                )
+                logger.warning(f"Redefining glob {glob} from {mt} to {mimetype}")
         # we don't validate fmt yet, but its ["txt", "html"]
         pattern = re.compile(fnmatch.translate(glob))
         globs[glob] = (pattern, mimetype)
