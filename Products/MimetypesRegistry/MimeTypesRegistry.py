@@ -119,7 +119,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
         if minor in group:
             if group.get(minor) != mimetype:
                 logger.warning(
-                    "Redefining mime type {} ({})".format(mt, mimetype.__class__)
+                    f"Redefining mime type {mt} ({mimetype.__class__})"
                 )
         group[minor] = mimetype
 
@@ -158,7 +158,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
             regex, mt = existing
             if mt != mimetype:
                 logger.warning(
-                    "Redefining glob {} from {} to {}".format(glob, mt, mimetype)
+                    f"Redefining glob {glob} from {mt} to {mimetype}"
                 )
         # we don't validate fmt yet, but its ["txt", "html"]
         pattern = re.compile(fnmatch.translate(glob))
