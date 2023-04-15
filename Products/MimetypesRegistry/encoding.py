@@ -1,6 +1,5 @@
 import encodings
 import re
-import six
 
 
 EMACS_ENCODING_RGX = re.compile(r"[^#]*[#\s]*-\*-\s*coding: ([^\s]*)\s*-\*-\s*")

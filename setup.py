@@ -39,7 +39,6 @@ setup(
         "Acquisition",
         "Products.CMFCore",
         "setuptools",
-        "six",
         "zope.contenttype",
         "zope.deferredimport",
         "zope.interface",

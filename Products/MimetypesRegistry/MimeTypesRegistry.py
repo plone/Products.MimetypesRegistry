@@ -26,7 +26,6 @@ import fnmatch
 import logging
 import os
 import re
-import six
 
 
 logger = logging.getLogger(__name__)

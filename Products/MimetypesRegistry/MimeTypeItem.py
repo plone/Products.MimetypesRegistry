@@ -5,11 +5,10 @@ from OFS.SimpleItem import Item
 from Persistence import Persistent
 from Products.CMFCore.permissions import ManagePortal
 from Products.MimetypesRegistry.interfaces import IMimetype
-from six.moves import urllib
 from zope.interface import implementer
 
 import os
-import six
+import urllib
 
 
 @implementer(IMimetype)

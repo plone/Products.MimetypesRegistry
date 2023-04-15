@@ -10,7 +10,6 @@ magic.py
 """
 __version__ = "$Revision: 1.2 $"[11:-2]
 
-import six
 import string
 import struct
 
@@ -371,7 +370,7 @@ class magicTest:
                         break
                     s = s + c
                     d = data[self.offset + i]
-                    d = d if six.PY2 else bytes([d])
+                    d = bytes([d])
                     [c] = struct.unpack("c", d)
                 data = s
             elif self.type == "short":
