@@ -1,9 +1,8 @@
-from .mtr_mimetypes import *
-
 from . import mtr_mimetypes
 from . import py_mimetypes
 from . import smi_mimetypes
 from . import suppl_mimetypes
+from .mtr_mimetypes import *
 
 
 def initialize(registry):

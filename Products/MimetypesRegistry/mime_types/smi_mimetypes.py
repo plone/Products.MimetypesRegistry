@@ -121,6 +121,7 @@ def initialize(registry):
     global mimetypes
     from Products.MimetypesRegistry.interfaces import MimeTypeException
     from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
+
     # Find things that are not in the specially registered mimetypes
     # and add them using some default policy, none of these will impl
     # iclassifier

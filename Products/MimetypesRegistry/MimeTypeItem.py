@@ -1,6 +1,6 @@
 from AccessControl import ClassSecurityInfo
-from Acquisition import Explicit
 from AccessControl.class_init import InitializeClass
+from Acquisition import Explicit
 from OFS.SimpleItem import Item
 from Persistence import Persistent
 from Products.CMFCore.permissions import ManagePortal

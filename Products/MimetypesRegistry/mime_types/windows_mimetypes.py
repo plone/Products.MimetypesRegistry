@@ -1,7 +1,7 @@
 # Utilities for mime-types and the Windows registry.
-import six.moves.winreg
 import logging
 import mimetypes
+import six.moves.winreg
 import win32api
 import win32con
 

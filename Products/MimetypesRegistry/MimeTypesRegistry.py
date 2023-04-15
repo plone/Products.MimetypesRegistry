@@ -1,6 +1,6 @@
 from AccessControl import ClassSecurityInfo
-from Acquisition import aq_base
 from AccessControl.class_init import InitializeClass
+from Acquisition import aq_base
 from BTrees.OOBTree import OOBTree
 from OFS.Folder import Folder
 from Persistence import PersistentMapping

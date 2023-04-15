@@ -1,8 +1,10 @@
-from Products.MimetypesRegistry.tests.utils import input_file_path
 from Products.CMFCore.utils import getToolByName
 from Products.MimetypesRegistry.mime_types.magic import guessMime
-from Products.MimetypesRegistry.testing import PRODUCTS_MIMETYPESREGISTRY_INTEGRATION_TESTING
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
+from Products.MimetypesRegistry.testing import (
+    PRODUCTS_MIMETYPESREGISTRY_INTEGRATION_TESTING,
+)
+from Products.MimetypesRegistry.tests.utils import input_file_path
 
 import unittest
 
