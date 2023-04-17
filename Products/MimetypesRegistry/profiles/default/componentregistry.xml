@@ -1,10 +1,9 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <componentregistry>
-  <adapters/>
+  <adapters />
   <utilities>
-    <utility
-        interface="Products.MimetypesRegistry.interfaces.IMimetypesRegistryTool"
-        object="mimetypes_registry"
+    <utility interface="Products.MimetypesRegistry.interfaces.IMimetypesRegistryTool"
+             object="mimetypes_registry"
     />
   </utilities>
 </componentregistry>

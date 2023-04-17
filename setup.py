@@ -1,54 +1,47 @@
-# -*- coding: utf-8 -*-
 from setuptools import find_packages
 from setuptools import setup
 
-version = '2.1.10.dev0'
+
+version = "2.1.10.dev0"
 
 setup(
-    name='Products.MimetypesRegistry',
+    name="Products.MimetypesRegistry",
     version=version,
     description="MIME type handling for Zope",
-    long_description=open("README.rst").read() + "\n" +
-    open("CHANGES.rst").read(),
+    long_description=open("README.rst").read() + "\n" + open("CHANGES.rst").read(),
     classifiers=[
         "Development Status :: 5 - Production/Stable",
-        "Framework :: Zope2",
-        "Framework :: Zope :: 4",
+        "Framework :: Zope :: 5",
         "Operating System :: OS Independent",
         "Framework :: Plone",
-        "Framework :: Plone :: 5.1",
-        "Framework :: Plone :: 5.2",
+        "Framework :: Plone :: 6.0",
         "Framework :: Plone :: Core",
         "License :: OSI Approved :: GNU General Public License (GPL)",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
     ],
-    keywords='Zope mimetype registry',
-    author='Benjamin Saller',
-    author_email='plone-developers@lists.sourceforge.net',
-    url='https://pypi.org/project/Products.MimetypesRegistry',
+    keywords="Zope mimetype registry",
+    author="Benjamin Saller",
+    author_email="plone-developers@lists.sourceforge.net",
+    url="https://pypi.org/project/Products.MimetypesRegistry",
     packages=find_packages(),
-    namespace_packages=['Products'],
+    namespace_packages=["Products"],
     include_package_data=True,
-    license='GPL',
+    license="GPL",
     zip_safe=False,
+    python_requires=">=3.8",
     install_requires=[
-        'AccessControl>=3.0.0',
-        'Acquisition',
-        'Products.CMFCore',
-        'setuptools',
-        'six',
-        'zope.contenttype',
-        'zope.deferredimport',
-        'zope.interface',
-        'Zope2',
+        "Products.CMFCore",
+        "setuptools",
+        'pywin32 ; platform_system=="Windows"',
     ],
     extras_require=dict(
         test=[
-            'plone.app.testing',
+            "plone.app.contenttypes[test]",
+            "plone.app.testing",
         ]
     ),
 )

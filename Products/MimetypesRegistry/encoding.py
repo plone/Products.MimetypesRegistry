@@ -1,12 +1,10 @@
-# -*- coding: utf-8 -*-
 import encodings
 import re
-import six
 
 
-EMACS_ENCODING_RGX = re.compile(r'[^#]*[#\s]*-\*-\s*coding: ([^\s]*)\s*-\*-\s*')
-VIM_ENCODING_RGX = re.compile(r'[^#]*[#\s]*vim:fileencoding=\s*([^\s]*)\s*')
-XML_ENCODING_RGX = re.compile(r'<\?xml version=[^\s]*\s*encoding=([^\s]*)\s*\?>')
+EMACS_ENCODING_RGX = re.compile(r"[^#]*[#\s]*-\*-\s*coding: ([^\s]*)\s*-\*-\s*")
+VIM_ENCODING_RGX = re.compile(r"[^#]*[#\s]*vim:fileencoding=\s*([^\s]*)\s*")
+XML_ENCODING_RGX = re.compile(r"<\?xml version=[^\s]*\s*encoding=([^\s]*)\s*\?>")
 CHARSET_RGX = re.compile(r'charset=([^\s"]*)')
 
 
@@ -18,7 +16,7 @@ def guess_encoding(buffer):
     encoding = _guess_encoding(buffer)
     # step 1: if the encoding was detected, use the lower() because python
     # is using lower case names for encodings
-    if encoding and isinstance(encoding, six.string_types):
+    if encoding and isinstance(encoding, str):
         # encoding = encoding.lower()
         pass
     else:
@@ -27,7 +25,7 @@ def guess_encoding(buffer):
     # if None is returned or an exception is raised the encoding is invalid
     try:
         result = encodings.search_function(encoding.lower())
-    except:
+    except Exception:
         # XXX log
         result = None
 
@@ -43,16 +41,16 @@ def _guess_encoding(buffer):
 
     FIXME: it could be mime type driven but it seems less painful like that
     """
-    assert isinstance(buffer, type('')), type(buffer)
+    assert isinstance(buffer, str), type(buffer)
     # default to ascii on empty buffer
     if not buffer:
-        return 'ascii'
+        return "ascii"
 
     # check for UTF-8 byte-order mark
-    if buffer.startswith('\xef\xbb\xbf'):
-        return 'UTF-8'
+    if buffer.startswith("\xef\xbb\xbf"):
+        return "UTF-8"
 
-    first_lines = buffer.split('\n')[:2]
+    first_lines = buffer.split("\n")[:2]
     for line in first_lines:
         # check for emacs encoding declaration
         m = EMACS_ENCODING_RGX.match(line)
@@ -64,12 +62,12 @@ def _guess_encoding(buffer):
             return m.group(1)
 
     # check for xml encoding declaration
-    if first_lines[0].startswith('<?xml'):
+    if first_lines[0].startswith("<?xml"):
         m = XML_ENCODING_RGX.match(first_lines[0])
         if m is not None:
             return m.group(1)[1:-1]
         # xml files with no encoding declaration default to UTF-8
-        return 'UTF-8'
+        return "UTF-8"
 
     # try to get charset declaration
     # FIXME: should we check it's html before ?

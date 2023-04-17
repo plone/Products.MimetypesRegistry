@@ -1,6 +1,5 @@
-# -*- coding: utf-8 -*-
-from six.moves.cPickle import dump
-from six.moves.cPickle import load
+from pickle import dump
+from pickle import load
 from stat import ST_MTIME
 from xml.sax import parse
 from xml.sax.handler import ContentHandler
@@ -16,7 +15,6 @@ SMI_COMPILED_FILE = os.path.join(DIR, SMI_COMPILED_NAME)
 
 
 class SharedMimeInfoHandler(ContentHandler):
-
     current = None
     collect_comment = None
 
@@ -25,40 +23,42 @@ class SharedMimeInfoHandler(ContentHandler):
         self.mimes = []
 
     def startElement(self, name, attrs):
-        if name in ('mime-type',):
-            current = {'type': attrs['type'],
-                       'comments': {},
-                       'globs': [],
-                       'aliases': []}
+        if name in ("mime-type",):
+            current = {
+                "type": attrs["type"],
+                "comments": {},
+                "globs": [],
+                "aliases": [],
+            }
             self.mimes.append(current)
             self.current = current
             return
-        if name in ('comment',):
+        if name in ("comment",):
             # If no lang, assume 'en'
-            lang = attrs.get('xml:lang', 'en')
-            if lang not in ('en',):
+            lang = attrs.get("xml:lang", "en")
+            if lang not in ("en",):
                 # Ignore for now.
                 return
             self.__comment_buffer = []
             self.__comment_lang = lang
             self.collect_comment = True
             return
-        if name in ('glob',):
-            globs = self.current['globs']
-            globs.append(attrs['pattern'])
+        if name in ("glob",):
+            globs = self.current["globs"]
+            globs.append(attrs["pattern"])
             return
-        if name in ('alias',):
-            aliases = self.current['aliases']
-            aliases.append(attrs['type'])
+        if name in ("alias",):
+            aliases = self.current["aliases"]
+            aliases.append(attrs["type"])
 
     def endElement(self, name):
-        if self.collect_comment and name in ('comment',):
+        if self.collect_comment and name in ("comment",):
             self.collect_comment = False
             lang = self.__comment_lang
-            comment = u''.join(self.__comment_buffer)
+            comment = "".join(self.__comment_buffer)
             if not comment:
-                comment = self.current['type']
-            self.current['comments'][lang] = comment
+                comment = self.current["type"]
+            self.current["comments"][lang] = comment
 
     def characters(self, contents):
         if self.collect_comment:
@@ -72,12 +72,11 @@ def parseSMIFile(infofile):
 
 
 def readSMIFile():
-    """Reads a shared mime info XML file
-    """
+    """Reads a shared mime info XML file"""
     mtime = 0
     try:
         mtime = os.stat(SMI_FILE)[ST_MTIME]
-    except (IOError, OSError):
+    except OSError:
         pass
 
     if os.path.exists(SMI_COMPILED_FILE):
@@ -87,17 +86,17 @@ def readSMIFile():
         bin_mtime = 0
         try:
             bin_mtime = os.stat(SMI_COMPILED_FILE)[ST_MTIME]
-        except (IOError, OSError):
+        except OSError:
             pass
 
         if mtime <= bin_mtime:
             # file is current
             result = None
             try:
-                fd = open(SMI_COMPILED_FILE, 'rb')
+                fd = open(SMI_COMPILED_FILE, "rb")
                 result = load(fd)
                 fd.close()
-            except (IOError, OSError, EOFError):
+            except (OSError, EOFError):
                 pass
 
             if result:
@@ -106,10 +105,10 @@ def readSMIFile():
     result = parseSMIFile(SMI_FILE)
     try:
         # Write the SMI_COMPILED_FILE from the parsed xml file.
-        fd = open(SMI_COMPILED_FILE, 'wb')
+        fd = open(SMI_COMPILED_FILE, "wb")
         dump(result, fd, protocol=2)
         fd.close()
-    except (IOError, OSError):
+    except OSError:
         pass
 
     return result
@@ -122,12 +121,13 @@ def initialize(registry):
     global mimetypes
     from Products.MimetypesRegistry.interfaces import MimeTypeException
     from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
+
     # Find things that are not in the specially registered mimetypes
     # and add them using some default policy, none of these will impl
     # iclassifier
     for res in mimetypes:
-        mt = str(res['type'])
-        mts = (mt,) + tuple(res['aliases'])
+        mt = str(res["type"])
+        mts = (mt,) + tuple(res["aliases"])
 
         # check the mime type
         try:
@@ -136,11 +136,11 @@ def initialize(registry):
             # malformed MIME type
             continue
 
-        name = str(res['comments'].get(u'en', mt))
+        name = str(res["comments"].get("en", mt))
 
         # build a list of globs
         globs = []
-        for glob in res['globs']:
+        for glob in res["globs"]:
             if registry.lookupGlob(glob):
                 continue
             else:
@@ -157,8 +157,6 @@ def initialize(registry):
                     mto.mimetypes = list(mto.mimetypes) + [mt]
                     registry.register_mimetype(mt, mto)
         else:
-            isBin = mt.split('/', 1)[0] != "text"
-            mti = MimeTypeItem(name, mimetypes=mts,
-                               binary=isBin,
-                               globs=globs)
+            isBin = mt.split("/", 1)[0] != "text"
+            mti = MimeTypeItem(name, mimetypes=mts, binary=isBin, globs=globs)
             registry.register(mti)

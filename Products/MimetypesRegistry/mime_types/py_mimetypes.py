@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from Products.MimetypesRegistry.interfaces import MimeTypeException
 from Products.MimetypesRegistry.MimeTypeItem import guess_icon_path
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
@@ -18,7 +17,7 @@ def mimes_initialize():
     mimes_initialized = True
     # Augment known mime-types.
     here = os.path.dirname(os.path.abspath(__file__))
-    add_files([os.path.join(here, 'mime.types')])
+    add_files([os.path.join(here, "mime.types")])
 
 
 # don't register the mimetype from python mimetypes if matching on of
@@ -39,6 +38,7 @@ def initialize(registry):
     # and pywin32 is available.
     try:
         from .windows_mimetypes import initialize
+
         initialize()
     except ImportError:
         pass
@@ -46,7 +46,7 @@ def initialize(registry):
     for ext, mt in pymimetypes.types_map.items():
         if not ext:
             continue
-        if ext.startswith('.'):
+        if ext.startswith("."):
             ext = ext[1:]
         if registry.lookupExtension(ext):
             continue
@@ -62,9 +62,9 @@ def initialize(registry):
             mto = mto[0]
             if ext not in mto.extensions:
                 registry.register_extension(ext, mto)
-                mto.extensions += (ext, )
+                mto.extensions += (ext,)
                 # here we guess icon path again, to find icon match the new ext
                 mto.icon_path = guess_icon_path(mto)
             continue
-        isBin = mt.split('/', 1)[0] != "text"
+        isBin = mt.split("/", 1)[0] != "text"
         registry.register(MimeTypeItem(mt, (mt,), (ext,), isBin))

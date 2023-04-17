@@ -291,7 +291,7 @@ Fixes:
   is reparsed each time as before.
   [hannosch]
 
-- Change some mimetypes returnd by guessMime to match the mimetypes
+- Change some mimetypes returned by guessMime to match the mimetypes
   registered in mtr (from freedesktop.org's mime database).
   [csenger]
 
@@ -496,7 +496,7 @@ Fixes:
   [yenzenz]
 
 - added a method to detect mimetypes of zipped files,
-  here specialy for OOo now all Openofice files and zip
+  here specially for OOo now all Openoffice files and zip
   files are detected properly.  my simple tests are working:
   a OOo-Writer and a simpe zipfile are detected.
   [yenzenz]
@@ -602,7 +602,7 @@ Fixes:
 - Added text/x-html-safe mime type for new transformation
   [tiran]
 
-- Don't return acquisition wrapped mimetype items beause they may lead to
+- Don't return acquisition wrapped mimetype items because they may lead to
   memory leaks.
   [tiran]
 
@@ -613,7 +613,7 @@ Fixes:
 - Added text/wiki mime type
   [tiran]
 
-- Don't log redefine warning if the currrent and the new object are equal
+- Don't log redefine warning if the current and the new object are equal
   [tiran]
 
 - initialize() MTR on __setstate__ aka when the MTR is loaded from ZODB.

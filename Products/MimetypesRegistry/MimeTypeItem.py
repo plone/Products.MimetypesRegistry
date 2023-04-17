@@ -1,17 +1,14 @@
-# -*- coding: utf-8 -*-
-
 from AccessControl import ClassSecurityInfo
-from Acquisition import Explicit
 from AccessControl.class_init import InitializeClass
+from Acquisition import Explicit
 from OFS.SimpleItem import Item
 from Persistence import Persistent
 from Products.CMFCore.permissions import ManagePortal
 from Products.MimetypesRegistry.interfaces import IMimetype
-from six.moves import urllib
 from zope.interface import implementer
 
 import os
-import six
+import urllib
 
 
 @implementer(IMimetype)
@@ -21,8 +18,15 @@ class MimeTypeItem(Persistent, Explicit, Item):
     extensions = ()
     globs = ()
 
-    def __init__(self, name='', mimetypes=None, extensions=None,
-                 binary=None, icon_path='', globs=None):
+    def __init__(
+        self,
+        name="",
+        mimetypes=None,
+        extensions=None,
+        binary=None,
+        icon_path="",
+        globs=None,
+    ):
         if name:
             self.__name__ = self.id = name
         if mimetypes is not None:
@@ -51,22 +55,22 @@ class MimeTypeItem(Persistent, Explicit, Item):
 
     @security.public
     def name(self):
-        """ The name of this object """
+        """The name of this object"""
         return self.__name__
 
     @security.public
     def major(self):
-        """ return the major part of the RFC-2046 name for this mime type """
-        return self.normalized().split('/', 1)[0]
+        """return the major part of the RFC-2046 name for this mime type"""
+        return self.normalized().split("/", 1)[0]
 
     @security.public
     def minor(self):
-        """ return the minor part of the RFC-2046 name for this mime type """
-        return self.normalized().split('/', 1)[1]
+        """return the minor part of the RFC-2046 name for this mime type"""
+        return self.normalized().split("/", 1)[1]
 
     @security.public
     def normalized(self):
-        """ return the main RFC-2046 name for this mime type
+        """return the main RFC-2046 name for this mime type
 
         e.g. if this object has names ('text/restructured', 'text-x-rst')
         then self.normalized() will always return the first form.
@@ -81,20 +85,18 @@ class MimeTypeItem(Persistent, Explicit, Item):
         return urllib.parse.quote(self.normalized())
 
     @security.protected(ManagePortal)
-    def edit(self, name, mimetypes, extensions, icon_path,
-             binary=0, globs=None, REQUEST=None):
+    def edit(
+        self, name, mimetypes, extensions, icon_path, binary=0, globs=None, REQUEST=None
+    ):
         """edit this mime type"""
         # if mimetypes and extensions are string instead of lists,
         # split them on new lines
-        if isinstance(mimetypes, six.string_types):
-            mimetypes = [mts.strip() for mts in mimetypes.split('\n')
-                         if mts.strip()]
-        if isinstance(extensions, six.string_types):
-            extensions = [mts.strip() for mts in extensions.split('\n')
-                          if mts.strip()]
-        if isinstance(globs, six.string_types):
-            globs = [glob.strip() for glob in globs.split('\n')
-                     if glob.strip()]
+        if isinstance(mimetypes, str):
+            mimetypes = [mts.strip() for mts in mimetypes.split("\n") if mts.strip()]
+        if isinstance(extensions, str):
+            extensions = [mts.strip() for mts in extensions.split("\n") if mts.strip()]
+        if isinstance(globs, str):
+            globs = [glob.strip() for glob in globs.split("\n") if glob.strip()]
         self.__name__ = self.id = name
         self.mimetypes = mimetypes
         self.globs = globs
@@ -102,23 +104,23 @@ class MimeTypeItem(Persistent, Explicit, Item):
         self.binary = binary
         self.icon_path = icon_path
         if REQUEST is not None:
-            REQUEST['RESPONSE'].redirect(self.absolute_url() + '/manage_main')
+            REQUEST["RESPONSE"].redirect(self.absolute_url() + "/manage_main")
 
 
 InitializeClass(MimeTypeItem)
 
 
-ICONS_DIR = os.path.join(os.path.dirname(__file__), 'icons')
-PREFIX = '++resource++mimetype.icons/'
+ICONS_DIR = os.path.join(os.path.dirname(__file__), "icons")
+PREFIX = "++resource++mimetype.icons/"
 
 
-def guess_icon_path(mimetype, icons_dir=ICONS_DIR, icon_ext='png'):
+def guess_icon_path(mimetype, icons_dir=ICONS_DIR, icon_ext="png"):
     if mimetype.extensions:
         for ext in mimetype.extensions:
-            icon_path = '%s.%s' % (ext, icon_ext)
+            icon_path = f"{ext}.{icon_ext}"
             if os.path.exists(os.path.join(icons_dir, icon_path)):
                 return PREFIX + icon_path
-    icon_path = '%s.png' % mimetype.major()
+    icon_path = "%s.png" % mimetype.major()
     if os.path.exists(os.path.join(icons_dir, icon_path)):
         return PREFIX + icon_path
-    return PREFIX + 'unknown.png'
+    return PREFIX + "unknown.png"

@@ -2,9 +2,10 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    i18n_domain="Products.MimetypesRegistry">
+    i18n_domain="Products.MimetypesRegistry"
+    >
 
- <browser:resourceDirectory
+  <browser:resourceDirectory
       name="mimetype.icons"
       directory="icons"
       />
@@ -12,10 +13,10 @@
   <genericsetup:registerProfile
       name="MimetypesRegistry"
       title="MimetypesRegistry"
-      directory="profiles/default"
       description="Extension profile for default MimetypesRegistry setup."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/default"
       post_handler=".setuphandlers.post_install"
-    />
+      />
 
 </configure>
