@@ -12,7 +12,9 @@
         action string:${here/absolute_url}/manage_addMimeType;
       "
 >
-  <div class="form-title">
+  <div class="form-title"
+       i18n:translate=""
+  >
     Add a new mime type
   </div>
 
@@ -26,7 +28,9 @@
 
   <table width="50%">
     <tr>
-      <td class="form-label">Name</td>
+      <td class="form-label"
+          i18n:translate=""
+      >Name</td>
       <td class="form-element">
         <input name="id"
                tal:attributes="
@@ -35,7 +39,9 @@
         />
       </td>
     </tr><tr>
-      <td class="form-label">Icon path</td>
+      <td class="form-label"
+          i18n:translate=""
+      >Icon path</td>
       <td class="form-element">
         <input name="icon_path"
                tal:attributes="
@@ -44,7 +50,9 @@
         />
       </td>
     </tr><tr>
-      <td class="form-label">Binary?
+      <td class="form-label"
+          i18n:translate=""
+      >Binary?
       </td>
       <td class="form-element">
         <input name="binary"
@@ -55,7 +63,9 @@
         />
       </td>
     </tr><tr>
-      <td class="form-label">Mime-types
+      <td class="form-label"
+          i18n:translate=""
+      >Mime-types
       </td>
       <td class="form-element">
         <textarea name="mimetypes:list"
@@ -63,7 +73,9 @@
         ></textarea>
       </td>
     </tr><tr>
-      <td class="form-label">Extensions
+      <td class="form-label"
+          i18n:translate=""
+      >Extensions
       </td>
       <td class="form-element">
         <textarea name="extensions:list"
@@ -71,7 +83,9 @@
         ></textarea>
       </td>
     </tr><tr>
-      <td class="form-label">Globs
+      <td class="form-label"
+          i18n:translate=""
+      >Globs
       </td>
       <td class="form-element">
         <textarea name="globs:list"

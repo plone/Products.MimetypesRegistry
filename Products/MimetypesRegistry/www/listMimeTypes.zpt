@@ -9,7 +9,9 @@
              mimetypes here/list_mimetypes;
            ">
 
-  <div class="form-title">
+  <div class="form-title"
+       i18n:translate=""
+  >
     Registered MIME types (<span tal:replace="python:len(mimetypes)"></span>).
   </div>
 
@@ -19,6 +21,7 @@
     >
       <input type="submit"
              value="Add a new MIME type"
+             i18n:attributes="value"
       />
     </form>
   </div>
@@ -40,11 +43,13 @@
 
     <table width="90%">
       <tr class="form-label">
-        <th colspan="3">Name</th>
-        <th>Mime-types</th>
-        <th>Extensions</th>
-        <th>Globs</th>
-        <th>Binary?</th>
+        <th colspan="3"
+            i18n:translate=""
+        >Name</th>
+        <th i18n:translate="">Mime-types</th>
+        <th i18n:translate="">Extensions</th>
+        <th i18n:translate="">Globs</th>
+        <th i18n:translate="">Binary?</th>
       </tr>
 
       <tr class="form-element"
@@ -83,6 +88,7 @@
 
     <input type="submit"
            value="Delete Selected Items"
+           i18n:attributes="value"
     />
 
   </form>

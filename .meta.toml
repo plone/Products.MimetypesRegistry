@@ -1,5 +1,20 @@
 # Generated from:
 # https://github.com/plone/meta/tree/master/config/default
+# See the inline comments on how to expand/tweak this configuration file
 [meta]
 template = "default"
-commit-id = "5cc689e5"
+commit-id = "cfffba8c"
+
+[pre_commit]
+zpretty_extra_lines = """
+        exclude: Products/MimetypesRegistry/mime_types/freedesktop.org.xml
+"""
+codespell_extra_lines = """
+        exclude: (freedesktop.org.xml|mime.types)
+"""
+
+[pyproject]
+dependencies_mappings = [
+    "'pywin32' = ['win32api', 'win32con']",
+    ]
+dependencies_ignores = "['pywin32', 'win32api', 'win32con']"
