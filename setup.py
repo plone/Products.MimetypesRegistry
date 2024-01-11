@@ -44,6 +44,7 @@ setup(
     install_requires=[
         "Products.CMFCore",
         "setuptools",
+        "python-magic",
         'pywin32 ; platform_system=="Windows"',
     ],
     extras_require=dict(

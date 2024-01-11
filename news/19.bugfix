@@ -1,0 +1,3 @@
+Fix parsing of freedesktop.org.xml, so it works with newer versions.
+[pgrunewald]
+
