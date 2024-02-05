@@ -8,6 +8,7 @@ magic.py
     with magic data from gnome-vfs-mime-magic
 
 """
+
 __version__ = "$Revision: 1.2 $"[11:-2]
 
 import string
