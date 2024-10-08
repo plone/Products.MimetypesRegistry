@@ -58,6 +58,10 @@ class TestMimeTypesclass(unittest.TestCase):
         mt = reg.classify("<?xml ?>")
         self.assertTrue(isinstance(mt, text_xml), str(mt))
 
+        # test magic classifiers
+        mt = reg.classify("BEGIN:VCARD\n")
+        self.assertEqual(str(mt), "text/vcard")
+
         # test no data return default
         mt = reg.classify("")
         self.assertTrue(isinstance(mt, text_plain), str(mt))
@@ -71,6 +75,10 @@ class TestMimeTypesclass(unittest.TestCase):
 
         # test unclassifiable data and file flag
         mt = reg.classify("baz", filename="xxx")
+        self.assertTrue(isinstance(mt, application_octet_stream), str(mt))
+
+        # test unclassifiable binary data
+        mt = reg.classify(b"\x01")
         self.assertTrue(isinstance(mt, application_octet_stream), str(mt))
 
     def testExtension(self):
