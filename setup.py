@@ -45,6 +45,7 @@ setup(
         "Products.CMFCore",
         "setuptools",
         'pywin32 ; platform_system=="Windows"',
+        "Zope",
     ],
     extras_require=dict(
         test=[
