@@ -118,7 +118,6 @@ mimetypes = readSMIFile()
 
 
 def initialize(registry):
-    global mimetypes
     from Products.MimetypesRegistry.interfaces import MimeTypeException
     from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 
