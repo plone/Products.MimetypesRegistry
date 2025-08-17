@@ -119,6 +119,7 @@ Zope = [
   'Products.CMFCore', 'Products.CMFDynamicViewFTI',
 ]
 python-dateutil = ['dateutil']
+python-magic = ['magic']
 pytest-plone = ['pytest', 'zope.pytestlayer', 'plone.testing', 'plone.app.testing']
 ignore-packages = ['pywin32', 'win32api', 'win32con']
 'pywin32' = ['win32api', 'win32con']

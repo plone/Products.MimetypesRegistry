@@ -51,7 +51,6 @@ setup(
     ],
     extras_require=dict(
         test=[
-            "plone.app.contenttypes[test]",
             "plone.app.testing",
         ]
     ),
