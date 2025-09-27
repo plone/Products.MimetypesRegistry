@@ -17,6 +17,12 @@ class TestMimeTypesclass(unittest.TestCase):
         self.portal = self.layer["portal"]
         self.registry = getToolByName(self.portal, "mimetypes_registry")
 
+    def testClassifyHTML(self):
+        reg = self.registry
+        data = "<form><label>Hello</label></form>"
+        mt = reg.classify(data)
+        self.assertEqual(str(mt), "text/html")
+
     def testClassify(self):
         reg = self.registry
         c = reg._classifiers()
