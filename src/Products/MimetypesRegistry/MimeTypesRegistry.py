@@ -313,7 +313,7 @@ class MimeTypesRegistry(UniqueObject, ActionProviderBase, Folder):
                     _mt = self.lookup(mstr)
                     if len(_mt) > 0:
                         mt = _mt[0]
-        if not mt:
+        if not mt or mt and str(mt) == "text/plain":
             if not data:
                 mtlist = self.lookup(self.defaultMimetype)
             elif filename:
