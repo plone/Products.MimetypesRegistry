@@ -7,6 +7,7 @@ from Products.MimetypesRegistry.testing import (
 )
 from Products.MimetypesRegistry.tests.utils import input_file_path
 
+import os
 import unittest
 
 
@@ -16,6 +17,12 @@ class TestMimeTypesclass(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer["portal"]
         self.registry = getToolByName(self.portal, "mimetypes_registry")
+
+    def testClassifyHTML(self):
+        reg = self.registry
+        data = "<form><label>Hello</label></form>"
+        mt = reg.classify(data)
+        self.assertEqual(str(mt), "text/html")
 
     def testClassify(self):
         reg = self.registry
@@ -65,12 +72,13 @@ class TestMimeTypesclass(unittest.TestCase):
         mt = reg.classify("")
         self.assertTrue(isinstance(mt, text_xml), str(mt))
 
+        data = os.urandom(1024)
         # test unclassifiable data and no stream flag (filename)
-        mt = reg.classify("xxx")
-        self.assertTrue(isinstance(mt, text_plain), str(mt))
+        mt = reg.classify(data)
+        self.assertTrue(isinstance(mt, application_octet_stream), str(mt))
 
-        # test unclassifiable data and file flag
-        mt = reg.classify("baz", filename="xxx")
+        # test that an unknown file extension does not help classifying data
+        mt = reg.classify(data, filename="xxx")
         self.assertTrue(isinstance(mt, application_octet_stream), str(mt))
 
     def testExtension(self):

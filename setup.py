@@ -45,12 +45,12 @@ setup(
     install_requires=[
         "Products.CMFCore",
         "setuptools",
+        "python-magic",
         'pywin32 ; platform_system=="Windows"',
         "Zope",
     ],
     extras_require=dict(
         test=[
-            "plone.app.contenttypes[test]",
             "plone.app.testing",
         ]
     ),
