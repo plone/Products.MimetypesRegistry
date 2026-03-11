@@ -8,7 +8,6 @@ from Products.MimetypesRegistry.tests.utils import input_file_path
 
 import unittest
 
-
 samplefiles = [
     ("OOoWriter", "application/vnd.sun.xml.writer"),
     ("OOoCalc", "application/vnd.sun.xml.calc"),

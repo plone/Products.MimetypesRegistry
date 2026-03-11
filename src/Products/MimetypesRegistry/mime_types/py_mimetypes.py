@@ -6,7 +6,6 @@ from zope.contenttype import add_files
 import mimetypes as pymimetypes
 import os.path
 
-
 mimes_initialized = False
 
 

@@ -4,7 +4,6 @@ import mimetypes
 import win32api
 import win32con
 
-
 logger = logging.getLogger("mimetypes.win32")
 
 # "safely" query a value, returning a default when it doesn't exist.

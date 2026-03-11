@@ -1,7 +1,6 @@
 from Products.MimetypesRegistry.interfaces import MimeTypeException
 from Products.MimetypesRegistry.MimeTypeItem import MimeTypeItem
 
-
 map = {
     # '.extension' : 'mimetype',
     ".pjpg": "image/pjpeg",  # progressive jpeg - is this is still a thing?

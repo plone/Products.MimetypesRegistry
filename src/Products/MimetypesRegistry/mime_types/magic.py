@@ -14,7 +14,6 @@ __version__ = "$Revision: 1.2 $"[11:-2]
 import string
 import struct
 
-
 magic = [
     [0, "string", "=", b"%PDF-", "application/pdf"],
     [0, "string", "=", b"\177ELF", "application/x-executable"],
