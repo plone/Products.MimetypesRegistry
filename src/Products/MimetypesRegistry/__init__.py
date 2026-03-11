@@ -3,7 +3,6 @@ from AccessControl.SecurityInfo import allow_module
 from Products.MimetypesRegistry import MimeTypesRegistry
 from Products.MimetypesRegistry.interfaces import MimeTypeException
 
-
 # remove when Archetypes are removed:
 allow_module("Products.MimetypesRegistry.common")
 allow_class(MimeTypeException)

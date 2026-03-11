@@ -3,7 +3,6 @@ from Products.MimetypesRegistry.mime_types import smi_mimetypes
 
 import logging
 
-
 logger = logging.getLogger(__name__)
 
 

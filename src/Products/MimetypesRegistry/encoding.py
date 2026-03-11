@@ -1,7 +1,6 @@
 import encodings
 import re
 
-
 EMACS_ENCODING_RGX = re.compile(r"[^#]*[#\s]*-\*-\s*coding: ([^\s]*)\s*-\*-\s*")
 VIM_ENCODING_RGX = re.compile(r"[^#]*[#\s]*vim:fileencoding=\s*([^\s]*)\s*")
 XML_ENCODING_RGX = re.compile(r"<\?xml version=[^\s]*\s*encoding=([^\s]*)\s*\?>")

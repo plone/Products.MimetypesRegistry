@@ -6,7 +6,6 @@ from xml.sax.handler import ContentHandler
 
 import os
 
-
 DIR = os.path.dirname(__file__)
 SMI_NAME = "freedesktop.org.xml"
 SMI_COMPILED_NAME = "freedesktop.org.xml.bin"

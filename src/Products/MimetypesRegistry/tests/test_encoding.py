@@ -18,49 +18,37 @@ class TestGuessEncoding(unittest.TestCase):
     def testEmacs(self):
         e = guess_encoding("# -*- coding: UTF-8  -*-")
         self.assertEqual(e, "UTF-8")
-        e = guess_encoding(
-            """
+        e = guess_encoding("""
         ### -*- coding: ISO-8859-1  -*-
-        """
-        )
+        """)
         self.assertEqual(e, "ISO-8859-1")
-        e = guess_encoding(
-            """
+        e = guess_encoding("""
 
         ### -*- coding: ISO-8859-1  -*-
-        """
-        )
+        """)
         self.assertEqual(e, None)
 
     def testVim(self):
         e = guess_encoding("# vim:fileencoding=UTF-8")
         self.assertEqual(e, "UTF-8")
-        e = guess_encoding(
-            """
+        e = guess_encoding("""
         ### vim:fileencoding=ISO-8859-1
-        """
-        )
+        """)
         self.assertEqual(e, "ISO-8859-1")
-        e = guess_encoding(
-            """
+        e = guess_encoding("""
 
         ### vim:fileencoding= ISO-8859-1
-        """
-        )
+        """)
         self.assertEqual(e, None)
 
     def testXML(self):
         e = guess_encoding("<?xml?>")
         self.assertEqual(e, "UTF-8")
-        e = guess_encoding(
-            """<?xml version="1.0" encoding="ISO-8859-1" ?>
-        """
-        )
+        e = guess_encoding("""<?xml version="1.0" encoding="ISO-8859-1" ?>
+        """)
         self.assertEqual(e, "ISO-8859-1")
-        e = guess_encoding(
-            """<?xml version="1.0" encoding="ISO-8859-1"?>
-        """
-        )
+        e = guess_encoding("""<?xml version="1.0" encoding="ISO-8859-1"?>
+        """)
         self.assertEqual(e, "ISO-8859-1")
         e = guess_encoding(
             """<?xml version="1.0" encoding="ISO-8859-1"?><truc encoding="UTF-8">
@@ -92,8 +80,7 @@ charset=utf-8
         self.assertEqual(e, "iso-8859-1")
 
     def test_broken_percent(self):
-        e = guess_encoding(
-            r"""<pre>
+        e = guess_encoding(r"""<pre>
 &lt;metal:block tal:define="dummy python:
 request.RESPONSE.setHeader('Content-Type',
 'text/html;;charset=%s' % charset)" /&gt;
@@ -102,7 +89,6 @@ python:request.RESPONSE.setHeader('Content-Language', lang)"
 /
 &gt;
 </pre>
-"""
-        )
+""")
         # unable to detect a valid encoding
         self.assertEqual(e, None)
