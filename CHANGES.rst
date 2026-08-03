@@ -551,7 +551,7 @@ Fixes:
 - added a method to detect mimetypes of zipped files,
   here specially for OOo now all Openoffice files and zip
   files are detected properly.  my simple tests are working:
-  a OOo-Writer and a simpe zipfile are detected.
+  a OOo-Writer and a simple zipfile are detected.
   [yenzenz]
 
 - updated freedesktop.org.xml file to latest CVS version rev 1.57 from
