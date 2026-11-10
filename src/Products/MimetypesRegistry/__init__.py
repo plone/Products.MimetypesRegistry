@@ -1,10 +1,12 @@
 from AccessControl.SecurityInfo import allow_class
-from AccessControl.SecurityInfo import allow_module
+from AccessControl.SecurityInfo import ModuleSecurityInfo
 from Products.MimetypesRegistry import MimeTypesRegistry
 from Products.MimetypesRegistry.interfaces import MimeTypeException
 
 # remove when Archetypes are removed:
-allow_module("Products.MimetypesRegistry.common")
+ModuleSecurityInfo("Products.MimetypesRegistry.common").declarePublic(
+    "MimeTypeException"
+)
 allow_class(MimeTypeException)
 # end remove
 
