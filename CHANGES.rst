@@ -8,6 +8,22 @@ Changelog
 
 .. towncrier release notes start
 
+3.0.2 (2026-11-10)
+------------------
+
+Bug fixes:
+
+
+- Declare only ``MimeTypeException`` public in ``Products.MimetypesRegistry.common`` instead of opening the whole module to Restricted Python with ``allow_module``.
+  [plone devs]
+
+
+Internal:
+
+
+- Move distribution to src layout [gforcada] (#4217)
+
+
 3.0.1 (2023-10-18)
 ------------------
 

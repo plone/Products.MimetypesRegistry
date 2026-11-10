@@ -1,2 +1,0 @@
-Declare only ``MimeTypeException`` public in ``Products.MimetypesRegistry.common`` instead of opening the whole module to Restricted Python with ``allow_module``.
-[plone devs]
