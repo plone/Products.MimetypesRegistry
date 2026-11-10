@@ -8,6 +8,16 @@ Changelog
 
 .. towncrier release notes start
 
+4.0.2 (2026-11-10)
+------------------
+
+Bug fixes:
+
+
+- Declare only ``MimeTypeException`` public in ``Products.MimetypesRegistry.common`` instead of opening the whole module to Restricted Python with ``allow_module``.
+  [plone devs]
+
+
 4.0.1 (2026-11-03)
 ------------------
 
